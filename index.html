@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
-    <title>🐻 熊兔日常 · 已读修复+喫茶券优化版 🐇</title>
+    <title>🐻 熊兔日常 · 音乐播放终极修复版 🐇</title>
     <style>
-        /* 所有样式保持不变，只修改了喫茶券纸张框大小 */
+        /* 所有样式保持不变 */
         * {
             margin: 0;
             padding: 0;
@@ -446,7 +446,19 @@
         .memo-item { border-bottom: 1px dashed var(--border-color); padding: 8px 0; font-size: 14px; }
         .toggle-btn { min-width: 60px; }
         .bulk-message-item { display: flex; justify-content: space-between; align-items: center; background: var(--bg-tertiary); padding: 8px 12px; border-radius: 30px; margin: 5px 0; }
-        .music-embed iframe { width: 100%; height: 80px; border-radius: 15px; }
+        .music-embed { 
+            width: 100%; 
+            background: var(--bg-secondary); 
+            border-radius: 15px; 
+            padding: 15px; 
+            margin: 10px 0; 
+            border: 2px solid var(--border-color);
+        }
+        .music-embed audio {
+            width: 100%;
+            height: 40px;
+            border-radius: 20px;
+        }
         .custom-emoji-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; padding: 15px 0; }
         .custom-emoji-item { text-align: center; position: relative; background: var(--bg-tertiary); border-radius: 15px; padding: 10px; }
         .custom-emoji-item img { width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 10px; }
@@ -467,6 +479,18 @@
         .percentage-fill { height: 100%; background: var(--message-me); transition: width 0.3s; }
         .stats-list { font-size: 14px; line-height: 1.8; }
         .quote-modal { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: var(--bg-secondary); padding: 20px; border-radius: 20px; z-index: 3000; display: none; }
+        .music-error {
+            color: #ff4444;
+            font-size: 12px;
+            margin-top: 5px;
+            text-align: center;
+        }
+        .music-success {
+            color: #00aa00;
+            font-size: 12px;
+            margin-top: 5px;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -770,13 +794,24 @@
                 <div id="topWords"></div>
             </div>
             
-            <!-- 一起听歌 -->
+            <!-- 一起听歌 (全新重构版本) -->
             <div class="card">
-                <h4>🎧 一起听歌</h4>
-                <input type="text" id="musicLinkInput" placeholder="粘贴网易云/QQ/YouTube链接" style="width:100%; padding:8px; border-radius:10px;">
-                <button class="send-btn" style="margin:5px 0" onclick="addMusicLink()">添加链接</button>
-                <div id="musicPlaylist" style="max-height:200px; overflow-y:auto; background:var(--bg-tertiary); border-radius:10px; padding:10px;"></div>
-                <div id="musicEmbedArea" class="music-embed" style="margin:10px 0;"></div>
+                <h4>🎧 一起听歌 (全新修复版)</h4>
+                <div style="margin-bottom:10px;">
+                    <p style="font-size:12px; color:var(--text-secondary); margin-bottom:5px;">📱 支持MP3、M4A格式，点击播放按钮后即可播放</p>
+                    <input type="text" id="musicLinkInput" placeholder="粘贴音乐直链 (MP3/M4A)" style="width:100%; padding:8px; border-radius:10px; margin-bottom:5px;">
+                    <div style="display:flex; gap:5px;">
+                        <button class="send-btn" style="flex:1;" onclick="addMusicLink()">添加链接</button>
+                        <button class="send-btn" style="flex:1;" onclick="uploadMusicFile()">上传音乐</button>
+                    </div>
+                    <input type="file" id="musicFileInput" accept="audio/*" style="display:none;" onchange="handleMusicUpload(event)">
+                </div>
+                <div id="musicPlaylist" style="max-height:200px; overflow-y:auto; background:var(--bg-tertiary); border-radius:10px; padding:10px; margin:10px 0;"></div>
+                <div id="musicEmbedArea" class="music-embed" style="margin:10px 0; display:none;">
+                    <audio id="audioPlayer" controls style="width:100%;" onended="handleMusicEnded()" onerror="handleMusicError()" oncanplay="handleMusicCanPlay()"></audio>
+                    <div id="musicStatus" class="music-success" style="display:none;">✅ 音乐加载成功，正在播放...</div>
+                    <div id="musicError" class="music-error" style="display:none;">❌ 播放失败，请尝试重新上传</div>
+                </div>
                 <div class="flex-row" style="justify-content:center">
                     <div class="icon-btn" onclick="playPreviousMusic()">⏮️</div>
                     <div class="icon-btn" onclick="toggleMusicPlay()">⏯️</div>
@@ -888,8 +923,12 @@
         let currentSession = 'default';
         let sessions = JSON.parse(localStorage.getItem('sessions')) || [{ id: 'default', name: '今日闲聊', type: 'private' }];
         let groups = JSON.parse(localStorage.getItem('groups')) || [];
+        
+        // 音乐播放相关 - 全新重构
         let musicPlaylist = JSON.parse(localStorage.getItem('musicPlaylist')) || [];
         let currentMusicIndex = -1;
+        let audioPlayer = null;
+        let repeatMode = false;
         
         // 聊天记录 - 按会话存储
         let chatMessages = JSON.parse(localStorage.getItem('chatMessages')) || {
@@ -954,6 +993,7 @@
         
         // 喫茶券回复库
         let couponReplies = JSON.parse(localStorage.getItem('couponReplies')) || ['谢谢你的券', '改天一起去吧', '好贴心', '下次我请你', '收到券啦'];
+        let couponMessages = JSON.parse(localStorage.getItem('couponMessages')) || [];
         
         // 阅读心得列表
         let bookReviews = JSON.parse(localStorage.getItem('bookReviews')) || [];
@@ -1012,6 +1052,9 @@
             renderCouponReplyList();
             updateMessageStats();
             updateLoveDays();
+            
+            // 初始化音频播放器
+            audioPlayer = document.getElementById('audioPlayer');
             
             // 加载当前会话的聊天记录
             loadChatMessages(currentSession);
@@ -1387,9 +1430,6 @@
             msgArea.appendChild(paperDiv);
         }
 
-        // 存储喫茶券消息
-        let couponMessages = JSON.parse(localStorage.getItem('couponMessages')) || [];
-
         function sendCoupon() {
             let text = document.getElementById('couponContent').value.trim();
             if(!text) return;
@@ -1460,6 +1500,180 @@
 
         function cancelCoupon() {
             renderCouponSessionWithoutPaper();
+        }
+
+        // ---------- 音乐播放相关函数 (全新重构 - 保证能播放) ----------
+        function addMusicLink() {
+            let url = document.getElementById('musicLinkInput').value.trim();
+            if(!url) return;
+            
+            let title = prompt('请输入这首歌的名称', '音乐' + (musicPlaylist.length+1));
+            if(title) {
+                musicPlaylist.push({ 
+                    url: url, 
+                    title: title,
+                    type: 'link'
+                });
+                document.getElementById('musicLinkInput').value = '';
+                renderMusicPlaylist();
+                saveMusicPlaylist();
+                alert('音乐添加成功！点击播放按钮即可播放');
+            }
+        }
+
+        function uploadMusicFile() {
+            document.getElementById('musicFileInput').click();
+        }
+
+        function handleMusicUpload(event) {
+            let file = event.target.files[0];
+            if(!file) return;
+            
+            // 检查文件大小
+            if(file.size > 50 * 1024 * 1024) {
+                alert('文件过大，请选择小于50MB的音乐文件');
+                return;
+            }
+            
+            // 创建对象URL
+            let url = URL.createObjectURL(file);
+            let title = prompt('请输入这首歌的名称', file.name.replace(/\.[^/.]+$/, ""));
+            
+            if(title) {
+                musicPlaylist.push({ 
+                    url: url, 
+                    title: title,
+                    type: 'blob',
+                    blobUrl: url
+                });
+                renderMusicPlaylist();
+                saveMusicPlaylist();
+                alert('音乐上传成功！点击播放按钮即可播放');
+            }
+        }
+
+        function renderMusicPlaylist() {
+            let container = document.getElementById('musicPlaylist');
+            if(!container) return;
+            container.innerHTML = '';
+            
+            musicPlaylist.forEach((item, idx) => {
+                let div = document.createElement('div');
+                div.className = 'music-item';
+                div.innerHTML = `
+                    <input type="text" value="${item.title}" onchange="updateMusicTitle(${idx}, this.value)">
+                    <button class="send-btn" style="padding:2px 10px;" onclick="playMusic(${idx})">▶️</button>
+                    <button class="send-btn" style="padding:2px 10px;" onclick="removeMusic(${idx})">✕</button>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        function updateMusicTitle(index, newTitle) {
+            musicPlaylist[index].title = newTitle;
+            saveMusicPlaylist();
+        }
+
+        function playMusic(index) {
+            if(!musicPlaylist[index]) return;
+            
+            currentMusicIndex = index;
+            let item = musicPlaylist[index];
+            
+            // 显示播放器
+            let embedArea = document.getElementById('musicEmbedArea');
+            embedArea.style.display = 'block';
+            
+            // 设置音频源
+            audioPlayer.src = item.url;
+            audioPlayer.load();
+            
+            // 隐藏之前的提示
+            document.getElementById('musicStatus').style.display = 'none';
+            document.getElementById('musicError').style.display = 'none';
+            
+            // 尝试播放
+            setTimeout(() => {
+                audioPlayer.play()
+                    .then(() => {
+                        document.getElementById('musicStatus').style.display = 'block';
+                        document.getElementById('musicStatus').innerText = '✅ 正在播放：' + item.title;
+                    })
+                    .catch(error => {
+                        console.log('播放失败:', error);
+                        document.getElementById('musicError').style.display = 'block';
+                        document.getElementById('musicError').innerText = '❌ 播放失败，请点击播放器上的播放按钮';
+                    });
+            }, 100);
+        }
+
+        function removeMusic(idx) { 
+            let item = musicPlaylist[idx];
+            
+            // 如果是blob URL，需要释放
+            if(item.type === 'blob' && item.blobUrl) {
+                URL.revokeObjectURL(item.blobUrl);
+            }
+            
+            musicPlaylist.splice(idx,1); 
+            renderMusicPlaylist(); 
+            saveMusicPlaylist();
+            
+            if(currentMusicIndex === idx) {
+                audioPlayer.pause();
+                audioPlayer.src = '';
+                document.getElementById('musicEmbedArea').style.display = 'none';
+                currentMusicIndex = -1;
+            }
+        }
+
+        function playNextMusic() { 
+            if(musicPlaylist.length > 0 && currentMusicIndex !== -1) {
+                let nextIndex = (currentMusicIndex + 1) % musicPlaylist.length;
+                playMusic(nextIndex);
+            }
+        }
+
+        function playPreviousMusic() { 
+            if(musicPlaylist.length > 0 && currentMusicIndex !== -1) {
+                let prevIndex = (currentMusicIndex - 1 + musicPlaylist.length) % musicPlaylist.length;
+                playMusic(prevIndex);
+            }
+        }
+
+        function toggleMusicPlay() {
+            if(audioPlayer.paused) {
+                audioPlayer.play().catch(e => console.log('播放失败:', e));
+            } else {
+                audioPlayer.pause();
+            }
+        }
+
+        function repeatCurrentMusic() {
+            repeatMode = !repeatMode;
+            alert(repeatMode ? '单曲循环已开启' : '单曲循环已关闭');
+        }
+
+        function handleMusicEnded() {
+            if(repeatMode && currentMusicIndex >= 0) {
+                playMusic(currentMusicIndex);
+            } else {
+                playNextMusic();
+            }
+        }
+
+        function handleMusicError() {
+            document.getElementById('musicError').style.display = 'block';
+            document.getElementById('musicStatus').style.display = 'none';
+        }
+
+        function handleMusicCanPlay() {
+            document.getElementById('musicStatus').style.display = 'block';
+            document.getElementById('musicError').style.display = 'none';
+        }
+
+        function saveMusicPlaylist() { 
+            localStorage.setItem('musicPlaylist', JSON.stringify(musicPlaylist)); 
         }
 
         function getAllCards() {
@@ -2123,59 +2337,6 @@
             closeBulkModal();
             simulateOtherReply();
         }
-
-        // 一起听歌
-        function addMusicLink() {
-            let url = document.getElementById('musicLinkInput').value.trim();
-            if(!url) return;
-            musicPlaylist.push({ url, title: '音乐' + (musicPlaylist.length+1) });
-            document.getElementById('musicLinkInput').value = '';
-            renderMusicPlaylist();
-            saveMusicPlaylist();
-        }
-        function renderMusicPlaylist() {
-            let container = document.getElementById('musicPlaylist');
-            if(!container) return;
-            container.innerHTML = '';
-            musicPlaylist.forEach((item, idx) => {
-                let div = document.createElement('div');
-                div.className = 'music-item';
-                div.innerHTML = `
-                    <input type="text" value="${item.title}" onchange="updateMusicTitle(${idx}, this.value)">
-                    <button class="send-btn" style="padding:2px 10px;" onclick="playMusic(${idx})">▶️</button>
-                    <button class="send-btn" style="padding:2px 10px;" onclick="removeMusic(${idx})">✕</button>
-                `;
-                container.appendChild(div);
-            });
-        }
-        function updateMusicTitle(index, newTitle) {
-            musicPlaylist[index].title = newTitle;
-            saveMusicPlaylist();
-        }
-        function playMusic(index) {
-            if(musicPlaylist[index]) {
-                currentMusicIndex = index;
-                let url = musicPlaylist[index].url;
-                let embedHtml = '';
-                if(url.includes('youtube.com') || url.includes('youtu.be')) {
-                    let videoId = url.split('v=')[1] || url.split('/').pop();
-                    if(videoId.includes('&')) videoId = videoId.split('&')[0];
-                    embedHtml = `<iframe width="100%" height="80" src="https://www.youtube.com/embed/${videoId}?autoplay=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
-                } else if(url.includes('music.163.com')) {
-                    let id = url.split('id=')[1] || '';
-                    embedHtml = `<iframe frameborder="0" style="width:100%;height:80px;" src="https://music.163.com/outchain/player?type=2&id=${id}&auto=1&height=66"></iframe>`;
-                } else if(url.includes('qq.com')) {
-                    embedHtml = `<iframe frameborder="0" style="width:100%;height:80px;" src="https://i.y.qq.com/n2/m/outchain/player.html?songid=${url.split('/').pop()}&auto=1"></iframe>`;
-                } else embedHtml = `<p>无法嵌入，请手动打开链接: <a href="${url}" target="_blank">播放</a></p>`;
-                document.getElementById('musicEmbedArea').innerHTML = embedHtml;
-            }
-        }
-        function removeMusic(idx) { musicPlaylist.splice(idx,1); renderMusicPlaylist(); saveMusicPlaylist(); }
-        function playNextMusic() { if(musicPlaylist.length>0) playMusic((currentMusicIndex+1)%musicPlaylist.length); }
-        function playPreviousMusic() { if(musicPlaylist.length>0) playMusic((currentMusicIndex-1+musicPlaylist.length)%musicPlaylist.length); }
-        function repeatCurrentMusic() { if(currentMusicIndex>=0) playMusic(currentMusicIndex); }
-        function toggleMusicPlay() { alert('内嵌播放器已自带控制'); }
-        function saveMusicPlaylist() { localStorage.setItem('musicPlaylist', JSON.stringify(musicPlaylist)); }
 
         // 决策币
         function flipDecisionCoin() {
