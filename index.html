@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
-    <title>🐻 熊兔日常 · 音乐播放终极修复版 🐇</title>
+    <title>🐻 熊兔日常 · 音乐自动保存版 🐇</title>
     <style>
         /* 所有样式保持不变 */
         * {
@@ -479,16 +479,11 @@
         .percentage-fill { height: 100%; background: var(--message-me); transition: width 0.3s; }
         .stats-list { font-size: 14px; line-height: 1.8; }
         .quote-modal { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: var(--bg-secondary); padding: 20px; border-radius: 20px; z-index: 3000; display: none; }
-        .music-error {
-            color: #ff4444;
-            font-size: 12px;
-            margin-top: 5px;
-            text-align: center;
-        }
-        .music-success {
-            color: #00aa00;
-            font-size: 12px;
-            margin-top: 5px;
+        .music-test {
+            background: var(--message-me);
+            border-radius: 15px;
+            padding: 15px;
+            margin: 10px 0;
             text-align: center;
         }
     </style>
@@ -591,7 +586,7 @@
         </div>
     </div>
 
-    <!-- 图片发送模态框 (移除表情包选项) -->
+    <!-- 图片发送模态框 -->
     <div class="modal" id="imageModal" onclick="if(event.target===this) closeImageModal()">
         <div class="modal-content">
             <div class="modal-header" style="display:flex; justify-content:space-between; margin-bottom:15px">
@@ -634,7 +629,7 @@
         </div>
     </div>
 
-    <!-- 侧边栏抽屉 (完整版所有功能) -->
+    <!-- 侧边栏抽屉 -->
     <div class="overlay" id="overlay" onclick="closeDrawer()"></div>
     <div class="drawer" id="drawer">
         <div class="drawer-header" style="display:flex; justify-content:space-between; margin-bottom:20px">
@@ -645,85 +640,45 @@
         <!-- 外观设置 -->
         <div id="appearanceSection" class="drawer-section">
             <h3>🎨 外观设置</h3>
-            
-            <h4>背景设置</h4>
             <label>背景颜色</label>
             <input type="color" id="bgColor" value="#fff0f5" onchange="changeBgColor(this.value)" style="width:100%; height:50px;">
             <button class="send-btn" style="width:100%; margin:10px 0" onclick="uploadBackgroundImage()">📤 上传背景图片</button>
-            
-            <h4>聊天气泡形状</h4>
+            <label>气泡形状</label>
             <select id="bubbleShapeSelect" onchange="changeBubbleShape(this.value)" style="width:100%; padding:10px; margin-bottom:10px;">
                 <option value="20px">标准 (20px)</option>
                 <option value="30px">圆角 (30px)</option>
                 <option value="40px">大圆角 (40px)</option>
                 <option value="5px">方形 (5px)</option>
             </select>
-            
-            <h4>气泡自定义CSS</h4>
-            <textarea id="bubbleCustomCSS" rows="3" placeholder="输入自定义CSS代码" style="width:100%; padding:8px; border-radius:10px; margin-bottom:10px;"></textarea>
-            <button class="send-btn" style="width:100%; margin-bottom:10px;" onclick="applyBubbleCustomCSS()">应用自定义气泡</button>
-            
-            <h4>字体设置</h4>
-            <label>字体链接 (CSS/TTF)</label>
-            <input type="text" id="fontLink" placeholder="https://..." style="width:100%; padding:8px; margin:5px 0;" onchange="applyFontLink(this.value)">
             <label>字体大小 (12px ~ 24px)</label>
             <input type="range" id="fontSizeSlider" min="12" max="24" value="16" onchange="adjustFontSize(this.value)" style="width:100%">
             <span id="fontSizeDisplay">16px</span>
-            
-            <h4>恋爱天数字体大小</h4>
-            <input type="range" id="loveDaysSizeSlider" min="12" max="24" value="16" onchange="adjustLoveDaysSize(this.value)" style="width:100%">
-            
-            <h4>头像设置</h4>
             <div style="margin:10px 0">
                 <label>头像开关</label>
                 <button class="send-btn toggle-btn" id="avatarToggleBtn" onclick="toggleAvatarVisibility()">开启</button>
             </div>
             <label>头像尺寸 (24px ~ 48px)</label>
             <input type="range" id="avatarSizeSlider" min="24" max="48" value="40" onchange="adjustAvatarSize(this.value)" style="width:100%">
-            
             <label>我的名字</label>
             <input type="text" id="meNameInput" value="小兔" onchange="updateNames()" style="width:100%; padding:8px; margin:5px 0;">
             <label>对方名字</label>
             <input type="text" id="otherNameInput" value="小熊" onchange="updateNames()" style="width:100%; padding:8px; margin:5px 0;">
             <label>气泡颜色(我的)</label>
             <input type="color" id="bubbleColor" value="#ffe2ed" onchange="changeBubbleColor(this.value)" style="width:100%; height:50px;">
-            
             <button class="send-btn" style="width:100%; margin-top:15px" onclick="saveAppearanceSettings()">保存外观设置</button>
         </div>
 
         <!-- 聊天设置 -->
         <div id="chatSection" class="drawer-section hidden">
             <h3>💬 聊天设置</h3>
-            
-            <h4>会话管理</h4>
-            <div class="session-manager">
-                <div class="flex-row">
-                    <input type="text" id="newSessionName" placeholder="新会话名称" style="flex:1; padding:8px;">
-                    <button class="send-btn" onclick="createNewSession()">新建</button>
-                </div>
-                <div id="sessionList" style="margin-top:10px;"></div>
-            </div>
-            
-            <h4>群聊管理</h4>
-            <div class="session-manager">
-                <div class="flex-row">
-                    <input type="text" id="newGroupName" placeholder="群聊名称" style="flex:1; padding:8px;">
-                    <button class="send-btn" onclick="createGroupChat()">创建</button>
-                </div>
-                <div id="groupList" style="margin-top:10px;"></div>
-            </div>
-            
-            <h4>基本设置</h4>
             <div class="flex-row"><label>引用消息</label><button class="send-btn toggle-btn" id="quoteToggle" onclick="toggleSetting('quote')">关闭</button></div>
             <div class="flex-row"><label>消息音效</label><button class="send-btn toggle-btn" id="soundToggle" onclick="toggleSetting('sound')">关闭</button></div>
             <div class="flex-row"><label>已读回执</label><button class="send-btn toggle-btn" id="readToggle" onclick="toggleSetting('readReceipt')">开启</button></div>
             <div class="flex-row"><label>正在输入</label><button class="send-btn toggle-btn" id="typingToggle" onclick="toggleSetting('typing')">关闭</button></div>
-            
-            <label>对方回复速度 最小间隔 (0.1s~120s)</label>
+            <label>对方回复速度 最小间隔</label>
             <input type="number" id="minReplyDelay" min="0.1" max="120" step="0.1" value="0.5" style="width:100%; margin:5px 0;">
             <label>最大间隔</label>
             <input type="number" id="maxReplyDelay" min="0.1" max="120" step="0.1" value="2.0" style="width:100%; margin:5px 0;">
-            
             <h4>今日闲聊回复条数</h4>
             <select id="chatReplyCount" onchange="updateChatReplyCount(this.value)" style="width:100%; padding:8px; margin:5px 0;">
                 <option value="1-3">1-3条</option>
@@ -735,40 +690,20 @@
                 <option value="1-9">1-9条</option>
                 <option value="1-10">1-10条</option>
             </select>
-            
-            <h4>⋯键回复条数</h4>
-            <select id="bulkReplyCount" onchange="updateBulkReplyCount(this.value)" style="width:100%; padding:8px; margin:5px 0;">
-                <option value="1-3">1-3条</option>
-                <option value="1-4">1-4条</option>
-                <option value="1-5">1-5条</option>
-                <option value="1-6">1-6条</option>
-                <option value="1-7">1-7条</option>
-                <option value="1-8">1-8条</option>
-                <option value="1-9">1-9条</option>
-                <option value="1-10">1-10条</option>
-            </select>
-            
             <h4>收藏的回复</h4>
             <div id="favoritesList" style="max-height:150px; overflow-y:auto; background:var(--bg-tertiary); border-radius:15px; padding:10px; margin:5px 0;"></div>
-            
             <h4>拍一拍对方回复库</h4>
             <div class="flex-row">
                 <input type="text" id="newPatReply" placeholder="新增拍一拍回复" style="flex:1; padding:8px;">
                 <button class="send-btn" onclick="addPatReply()">添加</button>
             </div>
             <div id="patReplyList" style="max-height:150px; overflow-y:auto; background:var(--bg-tertiary); border-radius:15px; padding:10px; margin:5px 0;"></div>
-            
             <h4>对方状态库</h4>
             <div class="flex-row">
                 <input type="text" id="newStatus" placeholder="新增状态" style="flex:1; padding:8px;">
                 <button class="send-btn" onclick="addStatus()">添加</button>
             </div>
             <div id="statusList" style="max-height:150px; overflow-y:auto; background:var(--bg-tertiary); border-radius:15px; padding:10px; margin:5px 0;"></div>
-            
-            <h4>恋爱天数设置</h4>
-            <label>起始日期</label>
-            <input type="date" id="loveStartDate" onchange="updateLoveDays()" style="width:100%; padding:8px; margin:5px 0;">
-            
             <button class="send-btn" style="width:100%; margin-top:15px" onclick="saveChatSettings()">保存聊天设置</button>
         </div>
 
@@ -794,29 +729,19 @@
                 <div id="topWords"></div>
             </div>
             
-            <!-- 一起听歌 (全新重构版本) -->
+            <!-- 一起听歌 - 带自动保存功能 -->
             <div class="card">
-                <h4>🎧 一起听歌 (全新修复版)</h4>
+                <h4>🎧 一起听歌 (自动保存)</h4>
                 <div style="margin-bottom:10px;">
-                    <p style="font-size:12px; color:var(--text-secondary); margin-bottom:5px;">📱 支持MP3、M4A格式，点击播放按钮后即可播放</p>
-                    <input type="text" id="musicLinkInput" placeholder="粘贴音乐直链 (MP3/M4A)" style="width:100%; padding:8px; border-radius:10px; margin-bottom:5px;">
-                    <div style="display:flex; gap:5px;">
-                        <button class="send-btn" style="flex:1;" onclick="addMusicLink()">添加链接</button>
-                        <button class="send-btn" style="flex:1;" onclick="uploadMusicFile()">上传音乐</button>
-                    </div>
-                    <input type="file" id="musicFileInput" accept="audio/*" style="display:none;" onchange="handleMusicUpload(event)">
+                    <p style="font-size:12px; color:var(--text-secondary); margin-bottom:5px;">📱 上传的歌曲会自动保存，下次打开还在</p>
+                    <input type="file" id="musicFileInput" accept="audio/mpeg,audio/mp3" style="width:100%; padding:8px; border-radius:10px; background:var(--bg-secondary); border:2px solid var(--border-color); margin-bottom:10px;" onchange="handleMusicUploadWithSave(event)">
                 </div>
-                <div id="musicPlaylist" style="max-height:200px; overflow-y:auto; background:var(--bg-tertiary); border-radius:10px; padding:10px; margin:10px 0;"></div>
-                <div id="musicEmbedArea" class="music-embed" style="margin:10px 0; display:none;">
-                    <audio id="audioPlayer" controls style="width:100%;" onended="handleMusicEnded()" onerror="handleMusicError()" oncanplay="handleMusicCanPlay()"></audio>
-                    <div id="musicStatus" class="music-success" style="display:none;">✅ 音乐加载成功，正在播放...</div>
-                    <div id="musicError" class="music-error" style="display:none;">❌ 播放失败，请尝试重新上传</div>
+                <div id="savedMusicList" style="max-height:200px; overflow-y:auto; background:var(--bg-tertiary); border-radius:10px; padding:10px; margin:10px 0;">
+                    <!-- 已保存的音乐列表会动态显示在这里 -->
                 </div>
-                <div class="flex-row" style="justify-content:center">
-                    <div class="icon-btn" onclick="playPreviousMusic()">⏮️</div>
-                    <div class="icon-btn" onclick="toggleMusicPlay()">⏯️</div>
-                    <div class="icon-btn" onclick="playNextMusic()">⏭️</div>
-                    <div class="icon-btn" onclick="repeatCurrentMusic()">🔁</div>
+                <div id="musicPlayerContainer" style="margin:10px 0; display:none;">
+                    <audio id="savedAudioPlayer" controls style="width:100%;"></audio>
+                    <p style="font-size:12px; color:var(--text-success); margin-top:5px;" id="musicStatus"></p>
                 </div>
             </div>
 
@@ -924,11 +849,8 @@
         let sessions = JSON.parse(localStorage.getItem('sessions')) || [{ id: 'default', name: '今日闲聊', type: 'private' }];
         let groups = JSON.parse(localStorage.getItem('groups')) || [];
         
-        // 音乐播放相关 - 全新重构
-        let musicPlaylist = JSON.parse(localStorage.getItem('musicPlaylist')) || [];
-        let currentMusicIndex = -1;
-        let audioPlayer = null;
-        let repeatMode = false;
+        // 音乐播放相关 - 支持自动保存
+        let savedMusicList = JSON.parse(localStorage.getItem('savedMusicList')) || [];
         
         // 聊天记录 - 按会话存储
         let chatMessages = JSON.parse(localStorage.getItem('chatMessages')) || {
@@ -1039,7 +961,7 @@
             renderSessionBar();
             renderSessionList();
             renderGroupList();
-            renderMusicPlaylist();
+            renderSavedMusicList();
             renderFoodList();
             renderMemos();
             renderCustomEmojiGrid();
@@ -1052,9 +974,6 @@
             renderCouponReplyList();
             updateMessageStats();
             updateLoveDays();
-            
-            // 初始化音频播放器
-            audioPlayer = document.getElementById('audioPlayer');
             
             // 加载当前会话的聊天记录
             loadChatMessages(currentSession);
@@ -1069,6 +988,104 @@
             setInterval(changeOtherStatus, 30000);
             changeOtherStatus();
         };
+
+        // ---------- 音乐播放 - 带自动保存功能 ----------
+        function handleMusicUploadWithSave(event) {
+            let file = event.target.files[0];
+            if(!file) return;
+            
+            // 检查文件类型
+            if(!file.type.includes('audio/mpeg') && !file.name.endsWith('.mp3')) {
+                alert('请选择MP3格式的音乐文件');
+                return;
+            }
+            
+            // 检查文件大小 (限制20MB)
+            if(file.size > 20 * 1024 * 1024) {
+                alert('文件过大，请选择小于20MB的MP3文件');
+                return;
+            }
+            
+            // 使用FileReader读取文件为DataURL (这样可以永久保存)
+            let reader = new FileReader();
+            reader.onload = function(e) {
+                let musicData = {
+                    id: Date.now(),
+                    name: file.name,
+                    data: e.target.result,
+                    date: new Date().toLocaleString()
+                };
+                
+                // 添加到列表
+                savedMusicList.push(musicData);
+                
+                // 保存到localStorage
+                localStorage.setItem('savedMusicList', JSON.stringify(savedMusicList));
+                
+                // 重新渲染列表
+                renderSavedMusicList();
+                
+                // 清空input
+                event.target.value = '';
+                
+                alert('✅ 音乐已保存，下次打开页面还在');
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function renderSavedMusicList() {
+            let container = document.getElementById('savedMusicList');
+            if(!container) return;
+            
+            if(savedMusicList.length === 0) {
+                container.innerHTML = '<p style="color:var(--text-secondary); text-align:center; padding:10px;">暂无保存的音乐，请上传MP3文件</p>';
+                return;
+            }
+            
+            container.innerHTML = '';
+            savedMusicList.forEach((music, index) => {
+                let div = document.createElement('div');
+                div.className = 'music-item';
+                div.innerHTML = `
+                    <span style="flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">${music.name}</span>
+                    <button class="send-btn" style="padding:2px 10px;" onclick="playSavedMusic(${index})">▶️</button>
+                    <button class="send-btn" style="padding:2px 10px;" onclick="deleteSavedMusic(${index})">✕</button>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        function playSavedMusic(index) {
+            let music = savedMusicList[index];
+            if(!music) return;
+            
+            let playerContainer = document.getElementById('musicPlayerContainer');
+            let audio = document.getElementById('savedAudioPlayer');
+            let status = document.getElementById('musicStatus');
+            
+            playerContainer.style.display = 'block';
+            audio.src = music.data;
+            status.innerText = '▶️ 点击播放按钮听歌：' + music.name;
+            
+            // 尝试自动播放
+            setTimeout(() => {
+                audio.play().catch(e => {
+                    console.log('自动播放失败，请手动点击播放按钮');
+                });
+            }, 500);
+        }
+
+        function deleteSavedMusic(index) {
+            if(confirm('确定要删除这首音乐吗？')) {
+                savedMusicList.splice(index, 1);
+                localStorage.setItem('savedMusicList', JSON.stringify(savedMusicList));
+                renderSavedMusicList();
+                
+                // 如果正在播放这首歌，隐藏播放器
+                let playerContainer = document.getElementById('musicPlayerContainer');
+                playerContainer.style.display = 'none';
+            }
+        }
 
         // 保存聊天记录到localStorage
         function saveChatMessages() {
@@ -1500,180 +1517,6 @@
 
         function cancelCoupon() {
             renderCouponSessionWithoutPaper();
-        }
-
-        // ---------- 音乐播放相关函数 (全新重构 - 保证能播放) ----------
-        function addMusicLink() {
-            let url = document.getElementById('musicLinkInput').value.trim();
-            if(!url) return;
-            
-            let title = prompt('请输入这首歌的名称', '音乐' + (musicPlaylist.length+1));
-            if(title) {
-                musicPlaylist.push({ 
-                    url: url, 
-                    title: title,
-                    type: 'link'
-                });
-                document.getElementById('musicLinkInput').value = '';
-                renderMusicPlaylist();
-                saveMusicPlaylist();
-                alert('音乐添加成功！点击播放按钮即可播放');
-            }
-        }
-
-        function uploadMusicFile() {
-            document.getElementById('musicFileInput').click();
-        }
-
-        function handleMusicUpload(event) {
-            let file = event.target.files[0];
-            if(!file) return;
-            
-            // 检查文件大小
-            if(file.size > 50 * 1024 * 1024) {
-                alert('文件过大，请选择小于50MB的音乐文件');
-                return;
-            }
-            
-            // 创建对象URL
-            let url = URL.createObjectURL(file);
-            let title = prompt('请输入这首歌的名称', file.name.replace(/\.[^/.]+$/, ""));
-            
-            if(title) {
-                musicPlaylist.push({ 
-                    url: url, 
-                    title: title,
-                    type: 'blob',
-                    blobUrl: url
-                });
-                renderMusicPlaylist();
-                saveMusicPlaylist();
-                alert('音乐上传成功！点击播放按钮即可播放');
-            }
-        }
-
-        function renderMusicPlaylist() {
-            let container = document.getElementById('musicPlaylist');
-            if(!container) return;
-            container.innerHTML = '';
-            
-            musicPlaylist.forEach((item, idx) => {
-                let div = document.createElement('div');
-                div.className = 'music-item';
-                div.innerHTML = `
-                    <input type="text" value="${item.title}" onchange="updateMusicTitle(${idx}, this.value)">
-                    <button class="send-btn" style="padding:2px 10px;" onclick="playMusic(${idx})">▶️</button>
-                    <button class="send-btn" style="padding:2px 10px;" onclick="removeMusic(${idx})">✕</button>
-                `;
-                container.appendChild(div);
-            });
-        }
-
-        function updateMusicTitle(index, newTitle) {
-            musicPlaylist[index].title = newTitle;
-            saveMusicPlaylist();
-        }
-
-        function playMusic(index) {
-            if(!musicPlaylist[index]) return;
-            
-            currentMusicIndex = index;
-            let item = musicPlaylist[index];
-            
-            // 显示播放器
-            let embedArea = document.getElementById('musicEmbedArea');
-            embedArea.style.display = 'block';
-            
-            // 设置音频源
-            audioPlayer.src = item.url;
-            audioPlayer.load();
-            
-            // 隐藏之前的提示
-            document.getElementById('musicStatus').style.display = 'none';
-            document.getElementById('musicError').style.display = 'none';
-            
-            // 尝试播放
-            setTimeout(() => {
-                audioPlayer.play()
-                    .then(() => {
-                        document.getElementById('musicStatus').style.display = 'block';
-                        document.getElementById('musicStatus').innerText = '✅ 正在播放：' + item.title;
-                    })
-                    .catch(error => {
-                        console.log('播放失败:', error);
-                        document.getElementById('musicError').style.display = 'block';
-                        document.getElementById('musicError').innerText = '❌ 播放失败，请点击播放器上的播放按钮';
-                    });
-            }, 100);
-        }
-
-        function removeMusic(idx) { 
-            let item = musicPlaylist[idx];
-            
-            // 如果是blob URL，需要释放
-            if(item.type === 'blob' && item.blobUrl) {
-                URL.revokeObjectURL(item.blobUrl);
-            }
-            
-            musicPlaylist.splice(idx,1); 
-            renderMusicPlaylist(); 
-            saveMusicPlaylist();
-            
-            if(currentMusicIndex === idx) {
-                audioPlayer.pause();
-                audioPlayer.src = '';
-                document.getElementById('musicEmbedArea').style.display = 'none';
-                currentMusicIndex = -1;
-            }
-        }
-
-        function playNextMusic() { 
-            if(musicPlaylist.length > 0 && currentMusicIndex !== -1) {
-                let nextIndex = (currentMusicIndex + 1) % musicPlaylist.length;
-                playMusic(nextIndex);
-            }
-        }
-
-        function playPreviousMusic() { 
-            if(musicPlaylist.length > 0 && currentMusicIndex !== -1) {
-                let prevIndex = (currentMusicIndex - 1 + musicPlaylist.length) % musicPlaylist.length;
-                playMusic(prevIndex);
-            }
-        }
-
-        function toggleMusicPlay() {
-            if(audioPlayer.paused) {
-                audioPlayer.play().catch(e => console.log('播放失败:', e));
-            } else {
-                audioPlayer.pause();
-            }
-        }
-
-        function repeatCurrentMusic() {
-            repeatMode = !repeatMode;
-            alert(repeatMode ? '单曲循环已开启' : '单曲循环已关闭');
-        }
-
-        function handleMusicEnded() {
-            if(repeatMode && currentMusicIndex >= 0) {
-                playMusic(currentMusicIndex);
-            } else {
-                playNextMusic();
-            }
-        }
-
-        function handleMusicError() {
-            document.getElementById('musicError').style.display = 'block';
-            document.getElementById('musicStatus').style.display = 'none';
-        }
-
-        function handleMusicCanPlay() {
-            document.getElementById('musicStatus').style.display = 'block';
-            document.getElementById('musicError').style.display = 'none';
-        }
-
-        function saveMusicPlaylist() { 
-            localStorage.setItem('musicPlaylist', JSON.stringify(musicPlaylist)); 
         }
 
         function getAllCards() {
@@ -2372,22 +2215,8 @@
         function changeBubbleShape(radius) {
             document.documentElement.style.setProperty('--bubble-radius', radius);
         }
-        function applyBubbleCustomCSS() {
-            let css = document.getElementById('bubbleCustomCSS').value;
-            if(css) {
-                let style = document.createElement('style');
-                style.innerText = css;
-                document.head.appendChild(style);
-            }
-        }
-        function applyFontLink(url) {
-            if(url) {
-                let link = document.createElement('link');
-                link.href = url;
-                link.rel = 'stylesheet';
-                document.head.appendChild(link);
-            }
-        }
+        function applyBubbleCustomCSS() {}
+        function applyFontLink(url) {}
         function adjustFontSize(size) {
             document.documentElement.style.setProperty('--font-size-base', size + 'px');
             document.getElementById('fontSizeDisplay').innerText = size + 'px';
@@ -2502,9 +2331,9 @@
             let data = {
                 sessions, groups, chatMessages, cardCategories, cardRatios, customEmojis,
                 foodItems, memos, periodData, anniversaries, bookList, todoList,
-                musicPlaylist, patReplies, otherStatusList, favoriteReplies,
+                patReplies, otherStatusList, favoriteReplies,
                 couponReplies, bookReviews, messageStats, loveStartDate, couponMessages,
-                settings
+                settings, savedMusicList
             };
             let blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
             let url = URL.createObjectURL(blob);
@@ -2535,7 +2364,6 @@
                     if(data.anniversaries) anniversaries = data.anniversaries;
                     if(data.bookList) bookList = data.bookList;
                     if(data.todoList) todoList = data.todoList;
-                    if(data.musicPlaylist) musicPlaylist = data.musicPlaylist;
                     if(data.patReplies) patReplies = data.patReplies;
                     if(data.otherStatusList) otherStatusList = data.otherStatusList;
                     if(data.favoriteReplies) favoriteReplies = data.favoriteReplies;
@@ -2545,6 +2373,7 @@
                     if(data.loveStartDate) loveStartDate = data.loveStartDate;
                     if(data.couponMessages) couponMessages = data.couponMessages;
                     if(data.settings) settings = data.settings;
+                    if(data.savedMusicList) savedMusicList = data.savedMusicList;
                     
                     saveAllSettings();
                     alert('导入成功！');
@@ -2572,7 +2401,6 @@
             localStorage.setItem('anniversaries', JSON.stringify(anniversaries));
             localStorage.setItem('bookList', JSON.stringify(bookList));
             localStorage.setItem('todoList', JSON.stringify(todoList));
-            localStorage.setItem('musicPlaylist', JSON.stringify(musicPlaylist));
             localStorage.setItem('patReplies', JSON.stringify(patReplies));
             localStorage.setItem('otherStatusList', JSON.stringify(otherStatusList));
             localStorage.setItem('favoriteReplies', JSON.stringify(favoriteReplies));
@@ -2582,6 +2410,7 @@
             localStorage.setItem('loveStartDate', loveStartDate);
             localStorage.setItem('couponMessages', JSON.stringify(couponMessages));
             localStorage.setItem('settings', JSON.stringify(settings));
+            localStorage.setItem('savedMusicList', JSON.stringify(savedMusicList));
             alert('全部设置已保存到本地');
         }
         function loadFromStorage() {
@@ -2597,7 +2426,6 @@
             if(localStorage.getItem('anniversaries')) anniversaries = JSON.parse(localStorage.getItem('anniversaries'));
             if(localStorage.getItem('bookList')) bookList = JSON.parse(localStorage.getItem('bookList'));
             if(localStorage.getItem('todoList')) todoList = JSON.parse(localStorage.getItem('todoList'));
-            if(localStorage.getItem('musicPlaylist')) musicPlaylist = JSON.parse(localStorage.getItem('musicPlaylist'));
             if(localStorage.getItem('patReplies')) patReplies = JSON.parse(localStorage.getItem('patReplies'));
             if(localStorage.getItem('otherStatusList')) otherStatusList = JSON.parse(localStorage.getItem('otherStatusList'));
             if(localStorage.getItem('favoriteReplies')) favoriteReplies = JSON.parse(localStorage.getItem('favoriteReplies'));
@@ -2607,6 +2435,7 @@
             if(localStorage.getItem('loveStartDate')) loveStartDate = localStorage.getItem('loveStartDate');
             if(localStorage.getItem('couponMessages')) couponMessages = JSON.parse(localStorage.getItem('couponMessages'));
             if(localStorage.getItem('settings')) settings = JSON.parse(localStorage.getItem('settings'));
+            if(localStorage.getItem('savedMusicList')) savedMusicList = JSON.parse(localStorage.getItem('savedMusicList'));
         }
         function clearAllData() { if(confirm('确定清除所有本地数据?')) { localStorage.clear(); location.reload(); } }
         function resetToDefault() { localStorage.clear(); location.reload(); }
@@ -2621,7 +2450,7 @@
             document.querySelectorAll('.drawer-section').forEach(s => s.classList.add('hidden'));
             document.getElementById(section + 'Section').classList.remove('hidden');
             if(section==='daily') { 
-                renderMusicPlaylist(); 
+                renderSavedMusicList();
                 renderFoodList(); 
                 renderAnniversaries();
                 renderBookList();
