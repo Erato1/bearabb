@@ -1,13 +1,11 @@
-
 ```html
 <!DOCTYPE html>
 <html lang="zh">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
-    <title>🐻 熊兔日常 · 多首音乐自动保存版 🐇</title>
+    <title>🐻 熊兔日常 · 音乐歌单完整版 🐇</title>
     <style>
-        /* 所有样式保持不变 */
         * {
             margin: 0;
             padding: 0;
@@ -498,13 +496,6 @@
         .percentage-fill { height: 100%; background: var(--message-me); transition: width 0.3s; }
         .stats-list { font-size: 14px; line-height: 1.8; }
         .quote-modal { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: var(--bg-secondary); padding: 20px; border-radius: 20px; z-index: 3000; display: none; }
-        .music-test {
-            background: var(--message-me);
-            border-radius: 15px;
-            padding: 15px;
-            margin: 10px 0;
-            text-align: center;
-        }
         .current-playing {
             background: var(--bg-secondary);
             border-radius: 15px;
@@ -515,6 +506,12 @@
         .current-playing h5 {
             margin-bottom: 10px;
             color: var(--text-primary);
+        }
+        .music-count {
+            font-size: 12px;
+            color: var(--text-secondary);
+            text-align: center;
+            margin-top: 5px;
         }
     </style>
 </head>
@@ -761,9 +758,9 @@
             
             <!-- 一起听歌 - 支持多首音乐自动保存 -->
             <div class="card">
-                <h4>🎧 我的歌单 (多首自动保存)</h4>
+                <h4>🎧 我的歌单</h4>
                 <div style="margin-bottom:15px;">
-                    <p style="font-size:12px; color:var(--text-secondary); margin-bottom:5px;">📱 可以上传多首MP3歌曲，全部自动保存</p>
+                    <p style="font-size:12px; color:var(--text-secondary); margin-bottom:5px;">📱 点击选择文件上传MP3歌曲，可上传多首</p>
                     <input type="file" id="musicFileInput" accept="audio/mpeg,audio/mp3" style="width:100%; padding:8px; border-radius:10px; background:var(--bg-secondary); border:2px solid var(--border-color); margin-bottom:10px;" onchange="handleMusicUploadWithSave(event)">
                 </div>
                 
@@ -779,7 +776,7 @@
                     <!-- 已保存的音乐列表会动态显示在这里 -->
                 </div>
                 
-                <p style="font-size:11px; color:var(--text-secondary); text-align:center;">已保存 {{savedMusicCount}} 首歌曲</p>
+                <div class="music-count" id="musicCountDisplay">共 0 首歌曲</div>
             </div>
 
             <!-- 决策币 -->
@@ -999,7 +996,7 @@
             renderSessionBar();
             renderSessionList();
             renderGroupList();
-            renderSavedMusicList();
+            renderSavedMusicList(); // 确保这个函数被调用
             renderFoodList();
             renderMemos();
             renderCustomEmojiGrid();
@@ -1044,7 +1041,7 @@
                 return;
             }
             
-            // 使用FileReader读取文件为DataURL (这样可以永久保存)
+            // 使用FileReader读取文件为DataURL
             let reader = new FileReader();
             reader.onload = function(e) {
                 let musicData = {
@@ -1077,9 +1074,9 @@
             if(!container) return;
             
             // 更新歌曲数量显示
-            let countSpan = document.querySelector('p:contains("已保存")');
-            if(countSpan) {
-                countSpan.innerText = `已保存 ${savedMusicList.length} 首歌曲`;
+            let countDisplay = document.getElementById('musicCountDisplay');
+            if(countDisplay) {
+                countDisplay.innerText = `共 ${savedMusicList.length} 首歌曲`;
             }
             
             if(savedMusicList.length === 0) {
@@ -1174,7 +1171,6 @@
             });
         }
 
-        // 修改addMessage函数，增加保存功能
         function addMessage(sender, text, isMe, shouldSave = true) {
             let area = document.getElementById('chatMessages');
             let msgDiv = document.createElement('div');
@@ -1184,7 +1180,6 @@
             area.appendChild(msgDiv);
             area.scrollTop = area.scrollHeight;
             
-            // 保存到聊天记录
             if(shouldSave && currentSession !== 'reading' && currentSession !== 'coupon' && currentSession !== 'memo') {
                 if(!chatMessages[currentSession]) {
                     chatMessages[currentSession] = [];
@@ -1199,13 +1194,11 @@
                 saveChatMessages();
             }
             
-            // 设置长按事件
             if(!isMe) {
                 setupMessageLongPress(msgDiv, text);
             }
         }
 
-        // 修改addImageMessage函数，增加保存功能
         function addImageMessage(sender, imgSrc, isMe, shouldSave = true) {
             let area = document.getElementById('chatMessages');
             let msgDiv = document.createElement('div');
@@ -1215,7 +1208,6 @@
             area.appendChild(msgDiv);
             area.scrollTop = area.scrollHeight;
             
-            // 保存到聊天记录
             if(shouldSave && currentSession !== 'reading' && currentSession !== 'coupon' && currentSession !== 'memo') {
                 if(!chatMessages[currentSession]) {
                     chatMessages[currentSession] = [];
@@ -1231,7 +1223,6 @@
             }
         }
 
-        // 修改addPatMessage函数，增加保存功能
         function addPatMessage(sender, text, isMe, shouldSave = true) {
             let area = document.getElementById('chatMessages');
             let msgDiv = document.createElement('div');
@@ -1241,7 +1232,6 @@
             area.appendChild(msgDiv);
             area.scrollTop = area.scrollHeight;
             
-            // 保存到聊天记录
             if(shouldSave && currentSession !== 'reading' && currentSession !== 'coupon' && currentSession !== 'memo') {
                 if(!chatMessages[currentSession]) {
                     chatMessages[currentSession] = [];
@@ -1257,7 +1247,6 @@
             }
         }
 
-        // 设置长按事件
         function setupMessageLongPress(element, text) {
             let pressTimer;
             element.addEventListener('touchstart', (e) => {
@@ -1308,13 +1297,11 @@
             }
         }
 
-        // 随机改变对方状态
         function changeOtherStatus() {
             const randomIndex = Math.floor(Math.random() * otherStatusList.length);
             document.getElementById('otherStatus').innerText = otherStatusList[randomIndex];
         }
 
-        // 添加新状态
         function addStatus() {
             let newStatus = document.getElementById('newStatus').value.trim();
             if(newStatus) {
@@ -1343,7 +1330,6 @@
             renderStatusList();
         }
 
-        // 会话管理
         function renderSessionBar() {
             let bar = document.getElementById('sessionBar');
             bar.innerHTML = '';
@@ -1361,7 +1347,6 @@
                 }
                 bar.appendChild(tab);
             });
-            // 添加阅读心得和喫茶券板块
             let readingTab = document.createElement('div');
             readingTab.className = 'session-tab' + (currentSession === 'reading' ? ' active' : '');
             readingTab.dataset.session = 'reading';
@@ -1401,7 +1386,6 @@
                 }
             });
             
-            // 添加输入区域
             let inputDiv = document.createElement('div');
             inputDiv.style.display = 'flex';
             inputDiv.style.gap = '10px';
@@ -1429,13 +1413,11 @@
             renderReadingSession();
             document.getElementById('readingInput').value = '';
             
-            // 模拟48小时内对方已看和回复
             setTimeout(() => {
                 review.viewed = true;
                 localStorage.setItem('bookReviews', JSON.stringify(bookReviews));
                 renderReadingSession();
                 
-                // 随机回复10个字卡 + 随机一条固定回复
                 setTimeout(() => {
                     let allCards = getAllCards();
                     let cards = [];
@@ -1458,7 +1440,6 @@
             let msgArea = document.getElementById('chatMessages');
             msgArea.innerHTML = '';
             
-            // 先显示已有的喫茶券记录
             if(couponMessages && couponMessages.length > 0) {
                 couponMessages.forEach(coupon => {
                     let couponDiv = document.createElement('div');
@@ -1484,7 +1465,6 @@
                 });
             }
             
-            // 显示纸张界面 (放大版)
             let paperDiv = document.createElement('div');
             paperDiv.classList.add('message', 'coupon');
             paperDiv.style.padding = '30px 20px';
@@ -1505,7 +1485,6 @@
             let text = document.getElementById('couponContent').value.trim();
             if(!text) return;
             
-            // 创建新的喫茶券记录
             let coupon = {
                 text: text,
                 viewed: false,
@@ -1517,15 +1496,12 @@
             couponMessages.unshift(coupon);
             localStorage.setItem('couponMessages', JSON.stringify(couponMessages));
             
-            // 重新渲染页面，只显示聊天记录，不显示纸张框
             renderCouponSessionWithoutPaper();
             
-            // 模拟48小时内已读和回复
             setTimeout(() => {
                 coupon.viewed = true;
                 localStorage.setItem('couponMessages', JSON.stringify(couponMessages));
                 
-                // 随机回复1-3条
                 setTimeout(() => {
                     let replyCount = Math.floor(Math.random() * 3) + 1;
                     for(let i=0; i<replyCount; i++) {
@@ -1542,7 +1518,6 @@
             let msgArea = document.getElementById('chatMessages');
             msgArea.innerHTML = '';
             
-            // 只显示喫茶券记录，不显示纸张框
             if(couponMessages && couponMessages.length > 0) {
                 couponMessages.forEach(coupon => {
                     let couponDiv = document.createElement('div');
@@ -1623,7 +1598,6 @@
             loadChatMessages(currentSession);
         }
 
-        // 群聊管理
         function createGroupChat() {
             let groupName = document.getElementById('newGroupName').value.trim();
             if(groupName) {
@@ -1706,7 +1680,6 @@
             renderGroupList();
         }
 
-        // 自定义表情包
         function openCustomEmojiModal() {
             document.getElementById('customEmojiModal').classList.add('show');
             renderCustomEmojiGrid();
@@ -1761,7 +1734,6 @@
             renderCustomEmojiGrid();
         }
 
-        // 拍一拍
         function openPatModal() { document.getElementById('patModal').classList.add('show'); }
         function closePatModal() { document.getElementById('patModal').classList.remove('show'); document.getElementById('patInput').value = ''; }
         
@@ -1806,7 +1778,6 @@
             renderPatReplyList();
         }
 
-        // 更新回复条数设置
         function updateChatReplyCount(value) {
             let [min, max] = value.split('-').map(Number);
             chatReplyRange = { min, max };
@@ -1817,7 +1788,6 @@
             bulkReplyRange = { min, max };
         }
 
-        // 模拟对方回复
         function simulateOtherReply() {
             if(settings.typing) {
                 let typingDiv = document.createElement('div');
@@ -1855,7 +1825,6 @@
             }, delay);
         }
 
-        // 发送消息
         function sendMessage() {
             let input = document.getElementById('chatInput');
             let text = input.value.trim();
@@ -1879,12 +1848,10 @@
                     simulateOtherReply();
                 }
                 
-                // 修复已读回执 - 确保显示在消息下方
                 if(settings.readReceipt) {
                     setTimeout(() => {
                         let lastMsg = document.querySelector('.message.me:last-child');
                         if(lastMsg) {
-                            // 检查是否已经有已读回执
                             let nextElement = lastMsg.nextElementSibling;
                             if(!nextElement || !nextElement.classList.contains('read-receipt')) {
                                 let receipt = document.createElement('div');
@@ -1898,7 +1865,6 @@
             }
         }
 
-        // 更新消息统计显示
         function updateMessageStats() {
             document.getElementById('totalMsgCount').innerText = messageStats.total || 0;
             document.getElementById('myMsgCount').innerText = messageStats.me || 0;
@@ -1922,7 +1888,6 @@
             }
         }
 
-        // 更新恋爱天数
         function updateLoveDays() {
             let start = new Date(loveStartDate);
             let today = new Date();
@@ -1936,7 +1901,6 @@
             document.documentElement.style.setProperty('--love-days-size', size + 'px');
         }
 
-        // 塔罗占卜
         function drawTarotCard() {
             const randomIndex = Math.floor(Math.random() * tarotCards.length);
             const card = tarotCards[randomIndex];
@@ -1950,7 +1914,6 @@
             addMessage('me', '🔮 抽到了塔罗牌：' + card.name + position + ' - ' + meaning, true);
         }
 
-        // 月经预测
         function savePeriod() {
             periodData.lastDate = document.getElementById('lastPeriodDate').value;
             periodData.cycle = parseInt(document.getElementById('cycleLength').value) || 28;
@@ -1973,7 +1936,6 @@
             alert('周期已保存');
         }
 
-        // 备忘录独立板块
         function openMemoSection() {
             currentSession = 'memo';
             let msgArea = document.getElementById('chatMessages');
@@ -2054,7 +2016,6 @@
             openMemoSection();
         }
 
-        // 书籍管理
         function addBook() {
             let book = document.getElementById('bookInput').value.trim();
             if(book) {
@@ -2101,7 +2062,6 @@
             }
         }
 
-        // 今日可以做
         function addTodo() {
             let todo = document.getElementById('todoInput').value.trim();
             if(todo) {
@@ -2137,7 +2097,6 @@
             }
         }
 
-        // 喫茶券回复管理
         function addCouponReply() {
             let reply = document.getElementById('couponReplyInput').value.trim();
             if(reply) {
@@ -2166,7 +2125,6 @@
             renderCouponReplyList();
         }
 
-        // 歌曲传讯自定义
         function customSongMessage() {
             let playlistCount = parseInt(document.getElementById('customPlaylistCount').value) || Math.floor(Math.random() * 2000) + 1;
             let songCount = parseInt(document.getElementById('customSongCount').value) || Math.floor(Math.random() * 10000) + 1;
@@ -2179,7 +2137,6 @@
             document.getElementById('songMessage').innerText = `第${randomPlaylist}个歌单中的第${randomSong}首歌`;
         }
 
-        // 图片发送
         function openImageModal() { document.getElementById('imageModal').classList.add('show'); showImageTab('upload'); }
         function closeImageModal() { document.getElementById('imageModal').classList.remove('show'); currentImageData = null; document.getElementById('imagePreview').innerHTML = ''; }
         function showImageTab(tab) {
@@ -2209,7 +2166,6 @@
             simulateOtherReply();
         }
 
-        // 批量发送
         function openBulkModal() { document.getElementById('bulkModal').classList.add('show'); bulkMessages = []; renderBulkList(); }
         function closeBulkModal() { document.getElementById('bulkModal').classList.remove('show'); }
         function prepareBulkMessages() {
@@ -2235,7 +2191,6 @@
             simulateOtherReply();
         }
 
-        // 决策币
         function flipDecisionCoin() {
             let question = document.getElementById('decisionQuestion').value.trim();
             let result = Math.random() > 0.5 ? 'YES' : 'NO';
@@ -2245,11 +2200,9 @@
             }
         }
 
-        // 每日运势
         const fortunes = ['大吉', '中吉', '小吉', '吉', '末吉', '凶', '大凶'];
         function drawFortune() { document.getElementById('dailyFortune').innerText = fortunes[Math.floor(Math.random() * fortunes.length)]; }
 
-        // 开关功能
         function toggleSetting(name) {
             settings[name] = !settings[name];
             updateToggleButton(name);
@@ -2263,7 +2216,6 @@
             for(let key in settings) updateToggleButton(key);
         }
 
-        // 外观功能
         function changeBgColor(color) { document.body.style.backgroundColor = color; }
         function changeBubbleColor(color) { document.documentElement.style.setProperty('--message-me', color); }
         function changeBubbleShape(radius) {
@@ -2298,7 +2250,6 @@
             updateLoveDays();
         }
 
-        // 纪念日管理
         function addAnniversary() {
             let name = document.getElementById('anniversaryName').value.trim();
             let date = document.getElementById('anniversaryDate').value;
@@ -2359,7 +2310,6 @@
             renderAnniversaries();
         }
 
-        // 食物
         function addFood() {
             let food = document.getElementById('foodInput').value.trim();
             if(food) { foodItems.push(food); document.getElementById('foodInput').value = ''; renderFoodList(); saveFood(); }
@@ -2380,7 +2330,6 @@
         }
         function saveFood() { localStorage.setItem('foodItems', JSON.stringify(foodItems)); }
 
-        // 数据导入导出
         function exportAllData() {
             let data = {
                 sessions, groups, chatMessages, cardCategories, cardRatios, customEmojis,
@@ -2504,7 +2453,7 @@
             document.querySelectorAll('.drawer-section').forEach(s => s.classList.add('hidden'));
             document.getElementById(section + 'Section').classList.remove('hidden');
             if(section==='daily') { 
-                renderSavedMusicList();
+                renderSavedMusicList(); // 确保这个函数被调用
                 renderFoodList(); 
                 renderAnniversaries();
                 renderBookList();
