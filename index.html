@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
-    <title>🐻 熊兔日常 · 音乐上传修复版 🐇</title>
+    <title>🐻 熊兔日常 · 音乐播放完全修复版 🐇</title>
     <style>
         /* 所有样式保持不变 */
         * {
@@ -466,9 +466,9 @@
         .music-item { 
             display: flex; 
             align-items: center; 
-            gap: 5px; 
-            margin: 5px 0; 
-            padding: 8px; 
+            gap: 10px; 
+            margin: 8px 0; 
+            padding: 10px; 
             background: var(--message-me); 
             border-radius: 30px;
         }
@@ -478,10 +478,12 @@
             text-overflow: ellipsis;
             white-space: nowrap;
             font-size: 14px;
+            color: var(--text-primary);
         }
         .music-item button {
-            padding: 4px 10px;
+            padding: 6px 12px;
             font-size: 14px;
+            min-width: 40px;
         }
         .anniversary-item { background: var(--anniversary-bg); border-radius: 15px; padding: 10px; margin: 5px 0; }
         .tarot-card { background: var(--tarot-bg); border-radius: 20px; padding: 15px; margin: 10px 0; text-align: center; border: 3px solid var(--border-color); }
@@ -771,19 +773,17 @@
                 <div id="topWords"></div>
             </div>
             
-            <!-- 一起听歌 - 支持多首音乐自动保存 -->
+            <!-- 一起听歌 - 完全修复版 -->
             <div class="card">
                 <h4>🎧 我的歌单</h4>
                 <div style="margin-bottom:15px;">
                     <p style="font-size:12px; color:var(--text-secondary); margin-bottom:5px;">📱 点击下方按钮上传MP3歌曲，可上传多首</p>
                     
-                    <!-- 使用label和input组合，确保上传功能正常 -->
                     <div style="display: flex; gap: 10px; margin-bottom: 10px;">
                         <input type="file" id="musicFileInput" accept="audio/mpeg,audio/mp3" style="display: none;" onchange="handleMusicUploadWithSave(event)">
                         <button class="send-btn" style="flex: 1;" onclick="document.getElementById('musicFileInput').click()">📁 选择MP3文件</button>
                     </div>
                     
-                    <!-- 显示已选择的文件名 -->
                     <div id="selectedFileName" style="font-size: 12px; color: var(--text-primary); margin-bottom: 10px; padding: 5px; background: var(--bg-tertiary); border-radius: 5px;"></div>
                 </div>
                 
@@ -1121,11 +1121,31 @@
             savedMusicList.forEach((music, index) => {
                 let div = document.createElement('div');
                 div.className = 'music-item';
-                div.innerHTML = `
-                    <span class="music-info" title="${music.name} (${music.size})">${index+1}. ${music.name}</span>
-                    <button class="send-btn" style="padding:2px 8px;" onclick="playSavedMusic(${index})">▶️</button>
-                    <button class="send-btn" style="padding:2px 8px;" onclick="deleteSavedMusic(${index})">✕</button>
-                `;
+                
+                // 创建播放按钮
+                let playBtn = document.createElement('button');
+                playBtn.className = 'send-btn';
+                playBtn.style.padding = '6px 12px';
+                playBtn.innerHTML = '▶️';
+                playBtn.onclick = function() { playSavedMusic(index); };
+                
+                // 创建删除按钮
+                let deleteBtn = document.createElement('button');
+                deleteBtn.className = 'send-btn';
+                deleteBtn.style.padding = '6px 12px';
+                deleteBtn.innerHTML = '✕';
+                deleteBtn.onclick = function() { deleteSavedMusic(index); };
+                
+                // 创建歌曲信息
+                let infoSpan = document.createElement('span');
+                infoSpan.className = 'music-info';
+                infoSpan.title = `${music.name} (${music.size})`;
+                infoSpan.innerText = `${index+1}. ${music.name}`;
+                
+                div.appendChild(infoSpan);
+                div.appendChild(playBtn);
+                div.appendChild(deleteBtn);
+                
                 container.appendChild(div);
             });
         }
