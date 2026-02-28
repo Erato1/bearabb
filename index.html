@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
-    <title>🐻 熊兔日常 · 完整音乐播放器 🐇</title>
+    <title>🐻 熊兔日常 · 音乐自动保存版 🐇</title>
     <style>
-        /* 所有样式保持不变，新增音乐播放器样式 */
+        /* 所有样式保持不变 */
         * {
             margin: 0;
             padding: 0;
@@ -479,38 +479,12 @@
         .percentage-fill { height: 100%; background: var(--message-me); transition: width 0.3s; }
         .stats-list { font-size: 14px; line-height: 1.8; }
         .quote-modal { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: var(--bg-secondary); padding: 20px; border-radius: 20px; z-index: 3000; display: none; }
-        .music-player-controls {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin: 15px 0;
-        }
-        .music-control-btn {
-            background: var(--bg-secondary);
-            border: 2px solid var(--button-border);
-            border-radius: 50%;
-            width: 44px;
-            height: 44px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            cursor: pointer;
-            color: var(--text-primary);
-            box-shadow: 0 2px 0 var(--button-shadow);
-        }
-        .music-control-btn.active {
+        .music-test {
             background: var(--message-me);
-            border-color: var(--text-primary);
-        }
-        .now-playing {
+            border-radius: 15px;
+            padding: 15px;
+            margin: 10px 0;
             text-align: center;
-            font-size: 14px;
-            color: var(--text-primary);
-            margin: 5px 0;
-            padding: 5px;
-            background: var(--bg-tertiary);
-            border-radius: 20px;
         }
     </style>
 </head>
@@ -755,34 +729,19 @@
                 <div id="topWords"></div>
             </div>
             
-            <!-- 一起听歌 - 完整播放控制版 -->
+            <!-- 一起听歌 - 带自动保存功能 -->
             <div class="card">
-                <h4>🎧 一起听歌 (完整版)</h4>
+                <h4>🎧 一起听歌 (自动保存)</h4>
                 <div style="margin-bottom:10px;">
-                    <p style="font-size:12px; color:var(--text-secondary); margin-bottom:5px;">📱 支持上一首/下一首/重复播放，自动保存</p>
+                    <p style="font-size:12px; color:var(--text-secondary); margin-bottom:5px;">📱 上传的歌曲会自动保存，下次打开还在</p>
                     <input type="file" id="musicFileInput" accept="audio/mpeg,audio/mp3" style="width:100%; padding:8px; border-radius:10px; background:var(--bg-secondary); border:2px solid var(--border-color); margin-bottom:10px;" onchange="handleMusicUploadWithSave(event)">
                 </div>
-                
-                <!-- 当前播放显示 -->
-                <div id="nowPlaying" class="now-playing" style="display:none;">
-                    🎵 正在播放: <span id="currentSongName"></span>
+                <div id="savedMusicList" style="max-height:200px; overflow-y:auto; background:var(--bg-tertiary); border-radius:10px; padding:10px; margin:10px 0;">
+                    <!-- 已保存的音乐列表会动态显示在这里 -->
                 </div>
-                
-                <!-- 音乐列表 -->
-                <div id="savedMusicList" style="max-height:150px; overflow-y:auto; background:var(--bg-tertiary); border-radius:10px; padding:10px; margin:10px 0;"></div>
-                
-                <!-- 播放器控件 -->
                 <div id="musicPlayerContainer" style="margin:10px 0; display:none;">
-                    <audio id="savedAudioPlayer" controls style="width:100%;" onended="handleSongEnd()"></audio>
+                    <audio id="savedAudioPlayer" controls style="width:100%;"></audio>
                     <p style="font-size:12px; color:var(--text-success); margin-top:5px;" id="musicStatus"></p>
-                </div>
-                
-                <!-- 播放控制按钮 -->
-                <div class="music-player-controls">
-                    <div class="music-control-btn" onclick="playPreviousSong()" title="上一首">⏮️</div>
-                    <div class="music-control-btn" onclick="togglePlayPause()" id="playPauseBtn" title="播放/暂停">⏯️</div>
-                    <div class="music-control-btn" onclick="playNextSong()" title="下一首">⏭️</div>
-                    <div class="music-control-btn" id="repeatBtn" onclick="toggleRepeat()" title="重复播放">🔁</div>
                 </div>
             </div>
 
@@ -890,12 +849,8 @@
         let sessions = JSON.parse(localStorage.getItem('sessions')) || [{ id: 'default', name: '今日闲聊', type: 'private' }];
         let groups = JSON.parse(localStorage.getItem('groups')) || [];
         
-        // 音乐播放相关 - 支持完整播放控制
+        // 音乐播放相关 - 支持自动保存
         let savedMusicList = JSON.parse(localStorage.getItem('savedMusicList')) || [];
-        let currentSongIndex = -1;
-        let repeatMode = false;
-        let isPlaying = false;
-        let audioPlayer = null;
         
         // 聊天记录 - 按会话存储
         let chatMessages = JSON.parse(localStorage.getItem('chatMessages')) || {
@@ -1020,14 +975,6 @@
             updateMessageStats();
             updateLoveDays();
             
-            // 初始化音频播放器
-            audioPlayer = document.getElementById('savedAudioPlayer');
-            if (audioPlayer) {
-                audioPlayer.addEventListener('play', () => { isPlaying = true; });
-                audioPlayer.addEventListener('pause', () => { isPlaying = false; });
-                audioPlayer.addEventListener('ended', handleSongEnd);
-            }
-            
             // 加载当前会话的聊天记录
             loadChatMessages(currentSession);
             
@@ -1042,7 +989,7 @@
             changeOtherStatus();
         };
 
-        // ---------- 音乐播放 - 完整控制版本 ----------
+        // ---------- 音乐播放 - 带自动保存功能 ----------
         function handleMusicUploadWithSave(event) {
             let file = event.target.files[0];
             if(!file) return;
@@ -1081,7 +1028,7 @@
                 // 清空input
                 event.target.value = '';
                 
-                alert('✅ 音乐已保存，可使用上一首/下一首播放');
+                alert('✅ 音乐已保存，下次打开页面还在');
             };
             reader.readAsDataURL(file);
         }
@@ -1101,127 +1048,42 @@
                 div.className = 'music-item';
                 div.innerHTML = `
                     <span style="flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">${music.name}</span>
-                    <button class="send-btn" style="padding:2px 10px;" onclick="playSongByIndex(${index})">▶️</button>
+                    <button class="send-btn" style="padding:2px 10px;" onclick="playSavedMusic(${index})">▶️</button>
                     <button class="send-btn" style="padding:2px 10px;" onclick="deleteSavedMusic(${index})">✕</button>
                 `;
                 container.appendChild(div);
             });
-            
-            // 高亮当前播放的歌曲
-            if (currentSongIndex !== -1) {
-                let items = container.children;
-                for (let i = 0; i < items.length; i++) {
-                    if (i === currentSongIndex) {
-                        items[i].style.background = 'var(--message-other)';
-                        items[i].style.border = '2px solid var(--text-primary)';
-                    }
-                }
-            }
         }
 
-        function playSongByIndex(index) {
-            if (index < 0 || index >= savedMusicList.length) return;
-            
-            currentSongIndex = index;
+        function playSavedMusic(index) {
             let music = savedMusicList[index];
+            if(!music) return;
             
             let playerContainer = document.getElementById('musicPlayerContainer');
-            let nowPlayingDiv = document.getElementById('nowPlaying');
-            let currentSongSpan = document.getElementById('currentSongName');
+            let audio = document.getElementById('savedAudioPlayer');
+            let status = document.getElementById('musicStatus');
             
             playerContainer.style.display = 'block';
-            nowPlayingDiv.style.display = 'block';
-            currentSongSpan.innerText = music.name;
+            audio.src = music.data;
+            status.innerText = '▶️ 点击播放按钮听歌：' + music.name;
             
-            audioPlayer.src = music.data;
-            
-            // 尝试播放
+            // 尝试自动播放
             setTimeout(() => {
-                audioPlayer.play()
-                    .then(() => {
-                        document.getElementById('musicStatus').innerText = '▶️ 正在播放';
-                    })
-                    .catch(e => {
-                        console.log('自动播放失败，请手动点击播放按钮');
-                        document.getElementById('musicStatus').innerText = '▶️ 请点击播放按钮';
-                    });
-            }, 100);
-            
-            renderSavedMusicList();
-        }
-
-        function playPreviousSong() {
-            if (savedMusicList.length === 0) return;
-            
-            let newIndex = currentSongIndex - 1;
-            if (newIndex < 0) {
-                newIndex = savedMusicList.length - 1;
-            }
-            playSongByIndex(newIndex);
-        }
-
-        function playNextSong() {
-            if (savedMusicList.length === 0) return;
-            
-            let newIndex = currentSongIndex + 1;
-            if (newIndex >= savedMusicList.length) {
-                newIndex = 0;
-            }
-            playSongByIndex(newIndex);
-        }
-
-        function togglePlayPause() {
-            if (!audioPlayer.src) {
-                if (savedMusicList.length > 0) {
-                    playSongByIndex(0);
-                }
-                return;
-            }
-            
-            if (audioPlayer.paused) {
-                audioPlayer.play();
-            } else {
-                audioPlayer.pause();
-            }
-        }
-
-        function toggleRepeat() {
-            repeatMode = !repeatMode;
-            let repeatBtn = document.getElementById('repeatBtn');
-            if (repeatMode) {
-                repeatBtn.classList.add('active');
-                repeatBtn.style.background = 'var(--message-me)';
-            } else {
-                repeatBtn.classList.remove('active');
-                repeatBtn.style.background = '';
-            }
-        }
-
-        function handleSongEnd() {
-            if (repeatMode) {
-                // 单曲循环
-                audioPlayer.currentTime = 0;
-                audioPlayer.play();
-            } else {
-                // 自动下一首
-                playNextSong();
-            }
+                audio.play().catch(e => {
+                    console.log('自动播放失败，请手动点击播放按钮');
+                });
+            }, 500);
         }
 
         function deleteSavedMusic(index) {
             if(confirm('确定要删除这首音乐吗？')) {
-                // 如果正在播放这首歌，停止播放
-                if (currentSongIndex === index) {
-                    audioPlayer.pause();
-                    audioPlayer.src = '';
-                    document.getElementById('musicPlayerContainer').style.display = 'none';
-                    document.getElementById('nowPlaying').style.display = 'none';
-                    currentSongIndex = -1;
-                }
-                
                 savedMusicList.splice(index, 1);
                 localStorage.setItem('savedMusicList', JSON.stringify(savedMusicList));
                 renderSavedMusicList();
+                
+                // 如果正在播放这首歌，隐藏播放器
+                let playerContainer = document.getElementById('musicPlayerContainer');
+                playerContainer.style.display = 'none';
             }
         }
 
