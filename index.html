@@ -4,8 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
-    <title>🐻 熊兔日常 · 音乐歌单完整版 🐇</title>
+    <title>🐻 熊兔日常 · 音乐上传修复版 🐇</title>
     <style>
+        /* 所有样式保持不变 */
         * {
             margin: 0;
             padding: 0;
@@ -513,6 +514,20 @@
             text-align: center;
             margin-top: 5px;
         }
+        .upload-btn {
+            background: var(--message-me);
+            border: 2px solid var(--button-border);
+            border-radius: 30px;
+            padding: 10px 15px;
+            text-align: center;
+            margin: 10px 0;
+            cursor: pointer;
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+        .upload-btn:hover {
+            opacity: 0.8;
+        }
     </style>
 </head>
 <body>
@@ -760,8 +775,16 @@
             <div class="card">
                 <h4>🎧 我的歌单</h4>
                 <div style="margin-bottom:15px;">
-                    <p style="font-size:12px; color:var(--text-secondary); margin-bottom:5px;">📱 点击选择文件上传MP3歌曲，可上传多首</p>
-                    <input type="file" id="musicFileInput" accept="audio/mpeg,audio/mp3" style="width:100%; padding:8px; border-radius:10px; background:var(--bg-secondary); border:2px solid var(--border-color); margin-bottom:10px;" onchange="handleMusicUploadWithSave(event)">
+                    <p style="font-size:12px; color:var(--text-secondary); margin-bottom:5px;">📱 点击下方按钮上传MP3歌曲，可上传多首</p>
+                    
+                    <!-- 使用label和input组合，确保上传功能正常 -->
+                    <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+                        <input type="file" id="musicFileInput" accept="audio/mpeg,audio/mp3" style="display: none;" onchange="handleMusicUploadWithSave(event)">
+                        <button class="send-btn" style="flex: 1;" onclick="document.getElementById('musicFileInput').click()">📁 选择MP3文件</button>
+                    </div>
+                    
+                    <!-- 显示已选择的文件名 -->
+                    <div id="selectedFileName" style="font-size: 12px; color: var(--text-primary); margin-bottom: 10px; padding: 5px; background: var(--bg-tertiary); border-radius: 5px;"></div>
                 </div>
                 
                 <!-- 当前播放器 -->
@@ -1029,6 +1052,10 @@
             let file = event.target.files[0];
             if(!file) return;
             
+            // 显示选中的文件名
+            let fileNameDisplay = document.getElementById('selectedFileName');
+            fileNameDisplay.innerHTML = `📁 已选择: ${file.name}`;
+            
             // 检查文件类型
             if(!file.type.includes('audio/mpeg') && !file.name.endsWith('.mp3')) {
                 alert('请选择MP3格式的音乐文件');
@@ -1064,6 +1091,12 @@
                 // 清空input
                 event.target.value = '';
                 
+                // 显示成功消息
+                fileNameDisplay.innerHTML = `✅ 上传成功: ${file.name}`;
+                setTimeout(() => {
+                    fileNameDisplay.innerHTML = '';
+                }, 3000);
+                
                 alert(`✅ 《${file.name}》已保存到歌单，现在共有 ${savedMusicList.length} 首歌曲`);
             };
             reader.readAsDataURL(file);
@@ -1080,7 +1113,7 @@
             }
             
             if(savedMusicList.length === 0) {
-                container.innerHTML = '<p style="color:var(--text-secondary); text-align:center; padding:10px;">暂无保存的音乐，请上传MP3文件</p>';
+                container.innerHTML = '<p style="color:var(--text-secondary); text-align:center; padding:10px;">暂无保存的音乐，请点击上方按钮上传MP3文件</p>';
                 return;
             }
             
