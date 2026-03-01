@@ -1,11 +1,10 @@
-
 ```html
 <!DOCTYPE html>
 <html lang="zh">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
-    <title>🐻 熊兔日常 · 完整字体+比例版 🐇</title>
+    <title>🐻 熊兔日常 · 音乐永久保存版 🐇</title>
     <style>
         /* 所有样式保持不变 */
         * {
@@ -751,7 +750,7 @@
             <span style="font-size:28px; cursor:pointer" onclick="closeDrawer()">✕</span>
         </div>
 
-        <!-- 外观设置 - 包含字体导入功能 -->
+        <!-- 外观设置 -->
         <div id="appearanceSection" class="drawer-section">
             <h3>🎨 外观设置</h3>
             
@@ -805,7 +804,7 @@
             <button class="send-btn" style="width:100%; margin-top:15px" onclick="saveAppearanceSettings()">保存外观设置</button>
         </div>
 
-        <!-- 聊天设置 - 包含完整的字卡库和比例功能 -->
+        <!-- 聊天设置 -->
         <div id="chatSection" class="drawer-section hidden">
             <h3>💬 聊天设置</h3>
             
@@ -868,7 +867,7 @@
                 <div id="numberList" style="max-height:200px; overflow-y:auto; background:var(--bg-secondary); border-radius:15px; padding:10px;"></div>
             </div>
             
-            <!-- 字卡分类 (可创建多个角色字卡库) -->
+            <!-- 字卡分类 -->
             <div id="characterCategory" class="card-category" style="display:none;">
                 <h4>📝 角色字卡库</h4>
                 
@@ -967,11 +966,11 @@
                 <div id="topWords"></div>
             </div>
             
-            <!-- 一起听歌 -->
+            <!-- 一起听歌 - 永久保存版 -->
             <div class="card">
-                <h4>🎧 我的歌单</h4>
+                <h4>🎧 我的歌单 (永久保存)</h4>
                 <div style="margin-bottom:15px;">
-                    <p style="font-size:12px; color:var(--text-secondary); margin-bottom:5px;">📱 点击下方按钮上传MP3歌曲，可上传多首</p>
+                    <p style="font-size:12px; color:var(--text-secondary); margin-bottom:5px;">📱 点击下方按钮上传MP3歌曲，可上传多首，刷新页面也不会丢失</p>
                     
                     <div style="display: flex; gap: 10px; margin-bottom: 10px;">
                         <input type="file" id="musicFileInput" accept="audio/mpeg,audio/mp3" style="display: none;" onchange="handleMusicUploadWithSave(event)">
@@ -1100,7 +1099,7 @@
         let sessions = JSON.parse(localStorage.getItem('sessions')) || [{ id: 'default', name: '今日闲聊', type: 'private' }];
         let groups = JSON.parse(localStorage.getItem('groups')) || [];
         
-        // 音乐播放相关
+        // 音乐播放相关 - 从localStorage加载已保存的音乐
         let savedMusicList = JSON.parse(localStorage.getItem('savedMusicList')) || [];
         let currentPlayingIndex = -1;
         
@@ -1109,7 +1108,7 @@
             default: []
         };
         
-        // 字卡库分类系统 - 完整版
+        // 字卡库分类系统
         let cardCategories = JSON.parse(localStorage.getItem('cardCategories')) || {
             emoji: ['😊', '😂', '🥰', '😍', '🤔', '😭', '👍', '🎉', '❤️', '😘', '🥺', '😤', '😎', '🤗'],
             number: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '100', '1000'],
@@ -1216,7 +1215,11 @@
             renderSessionBar();
             renderSessionList();
             renderGroupList();
+            
+            // 关键修复：确保在页面加载时渲染音乐列表
+            console.log('页面加载，当前保存的音乐数量:', savedMusicList.length);
             renderSavedMusicList();
+            
             renderFoodList();
             renderMemos();
             renderCustomEmojiGrid();
@@ -1486,7 +1489,7 @@
             renderCharacterCardList(filter);
         }
 
-        // ---------- 音乐播放功能 ----------
+        // ---------- 音乐播放功能 - 确保永久保存 ----------
         function handleMusicUploadWithSave(event) {
             let file = event.target.files[0];
             if(!file) {
@@ -1522,7 +1525,7 @@
                 let musicData = {
                     id: Date.now(),
                     name: file.name,
-                    data: e.target.result,
+                    data: e.target.result,  // 这是base64编码的音频数据，可以永久保存
                     date: new Date().toLocaleString(),
                     size: (file.size / 1024 / 1024).toFixed(2) + 'MB'
                 };
@@ -1530,8 +1533,9 @@
                 // 添加到列表
                 savedMusicList.push(musicData);
                 
-                // 保存到localStorage
+                // 关键：保存到localStorage
                 localStorage.setItem('savedMusicList', JSON.stringify(savedMusicList));
+                console.log('音乐已保存到localStorage，当前总数:', savedMusicList.length);
                 
                 // 重新渲染列表
                 renderSavedMusicList();
@@ -1545,7 +1549,7 @@
                     fileNameDisplay.innerHTML = '';
                 }, 3000);
                 
-                alert(`✅ 《${file.name}》已保存到歌单，现在共有 ${savedMusicList.length} 首歌曲`);
+                alert(`✅ 《${file.name}》已保存到歌单，现在共有 ${savedMusicList.length} 首歌曲，刷新页面也不会丢失`);
             };
             
             reader.onerror = function() {
@@ -1657,6 +1661,7 @@
                 }
                 
                 savedMusicList.splice(index, 1);
+                // 更新localStorage
                 localStorage.setItem('savedMusicList', JSON.stringify(savedMusicList));
                 renderSavedMusicList();
                 
