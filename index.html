@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
-    <title>🐻 熊兔日常 · 音乐上传完全修复版 🐇</title>
+    <title>🐻 熊兔日常 · 完整字体+比例版 🐇</title>
     <style>
         /* 所有样式保持不变 */
         * {
@@ -44,6 +44,7 @@
             --font-size-base: 16px;
             --bubble-radius: 20px;
             --love-days-size: 16px;
+            --custom-font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         }
         body.dark-mode {
             --bg-primary: #2a1e24;
@@ -208,6 +209,7 @@
             background: var(--bg-tertiary);
             -webkit-overflow-scrolling: touch;
             font-size: var(--font-size-base);
+            font-family: var(--custom-font);
         }
         .message {
             max-width: 85%;
@@ -218,6 +220,7 @@
             position: relative;
             color: var(--text-primary);
             transition: all 0.2s;
+            font-family: var(--custom-font);
         }
         .message.me {
             background: var(--message-me);
@@ -346,6 +349,7 @@
             outline: none;
             color: var(--text-primary);
             min-width: 0;
+            font-family: var(--custom-font);
         }
         .input-field::placeholder {
             color: var(--text-secondary);
@@ -366,6 +370,7 @@
             box-shadow: 0 3px 0 var(--button-shadow);
             cursor: pointer;
             flex-shrink: 0;
+            font-family: var(--custom-font);
         }
         .more-btn {
             width: 42px;
@@ -493,8 +498,31 @@
         .decision-input { width: 100%; padding: 8px; border-radius: 15px; border: 2px solid var(--button-border); background: var(--bg-secondary); color: var(--text-primary); margin-bottom: 10px; }
         .session-manager { background: var(--bg-tertiary); border-radius: 20px; padding: 15px; margin: 10px 0; }
         .group-member { display: flex; gap: 10px; align-items: center; margin: 8px 0; padding: 8px; background: var(--bg-secondary); border-radius: 15px; }
-        .card-category { background: var(--bg-tertiary); border-radius: 15px; padding: 10px; margin: 5px 0; }
-        .card-category-header { display: flex; justify-content: space-between; align-items: center; cursor: pointer; }
+        .card-category { 
+            background: var(--bg-tertiary); 
+            border-radius: 15px; 
+            padding: 15px; 
+            margin: 10px 0; 
+        }
+        .card-category-header { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            cursor: pointer;
+            padding: 10px;
+            background: var(--message-me);
+            border-radius: 30px;
+        }
+        .card-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 12px;
+            margin: 5px 0;
+            background: var(--bg-secondary);
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+        }
         .book-item, .todo-item, .coupon-item { background: var(--bg-tertiary); border-radius: 15px; padding: 8px; margin: 5px 0; display: flex; justify-content: space-between; }
         .percentage-bar { width: 100%; height: 20px; background: var(--bg-tertiary); border-radius: 10px; margin: 5px 0; overflow: hidden; }
         .percentage-fill { height: 100%; background: var(--message-me); transition: width 0.3s; }
@@ -541,6 +569,36 @@
             cursor: pointer;
             color: var(--text-primary);
             font-weight: 600;
+        }
+        .category-tab {
+            display: inline-block;
+            padding: 8px 16px;
+            margin: 5px;
+            background: var(--bg-secondary);
+            border: 2px solid var(--border-color);
+            border-radius: 30px;
+            cursor: pointer;
+            color: var(--text-primary);
+            font-family: var(--custom-font);
+        }
+        .category-tab.active {
+            background: var(--message-me);
+            border-color: var(--text-primary);
+        }
+        .ratio-input {
+            width: 60px;
+            padding: 5px;
+            border-radius: 10px;
+            border: 2px solid var(--border-color);
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            text-align: center;
+        }
+        .total-percent {
+            font-size: 14px;
+            font-weight: bold;
+            color: var(--text-primary);
+            margin-top: 5px;
         }
     </style>
 </head>
@@ -693,12 +751,29 @@
             <span style="font-size:28px; cursor:pointer" onclick="closeDrawer()">✕</span>
         </div>
 
-        <!-- 外观设置 -->
+        <!-- 外观设置 - 包含字体导入功能 -->
         <div id="appearanceSection" class="drawer-section">
             <h3>🎨 外观设置</h3>
+            
+            <h4>🔤 字体设置</h4>
+            <label>字体链接 (Google Fonts / 自定义CSS)</label>
+            <input type="text" id="fontLink" placeholder="https://fonts.googleapis.com/css2?family=..." style="width:100%; padding:8px; margin:5px 0;" onchange="applyFontLink(this.value)">
+            <button class="send-btn" style="width:100%; margin:5px 0;" onclick="applyFontLink(document.getElementById('fontLink').value)">应用字体链接</button>
+            
+            <label>自定义字体CSS</label>
+            <textarea id="customFontCSS" rows="3" placeholder="@import url('...'); 或 @font-face { ... }" style="width:100%; padding:8px; border-radius:10px; margin:5px 0;"></textarea>
+            <button class="send-btn" style="width:100%; margin:5px 0;" onclick="applyCustomFontCSS()">应用自定义字体</button>
+            
+            <label>字体大小 (12px ~ 24px)</label>
+            <input type="range" id="fontSizeSlider" min="12" max="24" value="16" onchange="adjustFontSize(this.value)" style="width:100%">
+            <span id="fontSizeDisplay">16px</span>
+            
+            <h4>🎨 背景设置</h4>
             <label>背景颜色</label>
             <input type="color" id="bgColor" value="#fff0f5" onchange="changeBgColor(this.value)" style="width:100%; height:50px;">
             <button class="send-btn" style="width:100%; margin:10px 0" onclick="uploadBackgroundImage()">📤 上传背景图片</button>
+            
+            <h4>💬 气泡设置</h4>
             <label>气泡形状</label>
             <select id="bubbleShapeSelect" onchange="changeBubbleShape(this.value)" style="width:100%; padding:10px; margin-bottom:10px;">
                 <option value="20px">标准 (20px)</option>
@@ -706,27 +781,129 @@
                 <option value="40px">大圆角 (40px)</option>
                 <option value="5px">方形 (5px)</option>
             </select>
-            <label>字体大小 (12px ~ 24px)</label>
-            <input type="range" id="fontSizeSlider" min="12" max="24" value="16" onchange="adjustFontSize(this.value)" style="width:100%">
-            <span id="fontSizeDisplay">16px</span>
+            
+            <h4>👤 头像设置</h4>
             <div style="margin:10px 0">
                 <label>头像开关</label>
                 <button class="send-btn toggle-btn" id="avatarToggleBtn" onclick="toggleAvatarVisibility()">开启</button>
             </div>
             <label>头像尺寸 (24px ~ 48px)</label>
             <input type="range" id="avatarSizeSlider" min="24" max="48" value="40" onchange="adjustAvatarSize(this.value)" style="width:100%">
+            
+            <h4>📝 名称设置</h4>
             <label>我的名字</label>
             <input type="text" id="meNameInput" value="小兔" onchange="updateNames()" style="width:100%; padding:8px; margin:5px 0;">
             <label>对方名字</label>
             <input type="text" id="otherNameInput" value="小熊" onchange="updateNames()" style="width:100%; padding:8px; margin:5px 0;">
             <label>气泡颜色(我的)</label>
             <input type="color" id="bubbleColor" value="#ffe2ed" onchange="changeBubbleColor(this.value)" style="width:100%; height:50px;">
+            
+            <h4>❤️ 恋爱天数设置</h4>
+            <label>恋爱天数字体大小</label>
+            <input type="range" id="loveDaysSizeSlider" min="12" max="24" value="16" onchange="adjustLoveDaysSize(this.value)" style="width:100%">
+            
             <button class="send-btn" style="width:100%; margin-top:15px" onclick="saveAppearanceSettings()">保存外观设置</button>
         </div>
 
-        <!-- 聊天设置 -->
+        <!-- 聊天设置 - 包含完整的字卡库和比例功能 -->
         <div id="chatSection" class="drawer-section hidden">
             <h3>💬 聊天设置</h3>
+            
+            <!-- 字卡比例设置 -->
+            <h4>📊 字卡回复比例 (总和需为100%)</h4>
+            <div style="margin:15px 0;">
+                <div class="flex-row">
+                    <span>🔢 数字:</span>
+                    <input type="number" id="numberRatio" class="ratio-input" min="0" max="100" value="25" onchange="updateCardRatios()">
+                    <span>%</span>
+                </div>
+                <div class="flex-row">
+                    <span>😊 表情符号:</span>
+                    <input type="number" id="emojiRatio" class="ratio-input" min="0" max="100" value="25" onchange="updateCardRatios()">
+                    <span>%</span>
+                </div>
+                <div class="flex-row">
+                    <span>📝 文字字卡:</span>
+                    <input type="number" id="textRatio" class="ratio-input" min="0" max="100" value="25" onchange="updateCardRatios()">
+                    <span>%</span>
+                </div>
+                <div class="flex-row">
+                    <span>🖼️ 表情包图片:</span>
+                    <input type="number" id="imageRatio" class="ratio-input" min="0" max="100" value="25" onchange="updateCardRatios()">
+                    <span>%</span>
+                </div>
+                <div class="percentage-bar" style="margin:10px 0;">
+                    <div id="ratioBar" class="percentage-fill" style="width:100%;"></div>
+                </div>
+                <div id="totalRatio" class="total-percent">当前总和: 100%</div>
+            </div>
+            
+            <!-- 字卡库分类标签 -->
+            <h4>📚 字卡库</h4>
+            <div style="margin:15px 0;">
+                <div class="flex-row" style="justify-content:center;">
+                    <span class="category-tab active" onclick="switchCardCategory('emoji')" id="catEmoji">😊 表情符号</span>
+                    <span class="category-tab" onclick="switchCardCategory('number')" id="catNumber">🔢 数字</span>
+                    <span class="category-tab" onclick="switchCardCategory('character')" id="catCharacter">📝 字卡</span>
+                </div>
+            </div>
+            
+            <!-- 表情符号分类 -->
+            <div id="emojiCategory" class="card-category">
+                <h4>😊 表情符号库</h4>
+                <div style="margin:10px 0;">
+                    <input type="text" id="newEmoji" placeholder="输入新表情符号" style="width:70%; padding:8px; border-radius:15px; border:2px solid var(--button-border); background:var(--bg-tertiary);">
+                    <button class="send-btn" onclick="addEmoji()">添加</button>
+                </div>
+                <div id="emojiList" style="max-height:200px; overflow-y:auto; background:var(--bg-secondary); border-radius:15px; padding:10px;"></div>
+            </div>
+            
+            <!-- 数字分类 -->
+            <div id="numberCategory" class="card-category" style="display:none;">
+                <h4>🔢 数字库</h4>
+                <div style="margin:10px 0;">
+                    <input type="text" id="newNumber" placeholder="输入数字" style="width:70%; padding:8px; border-radius:15px; border:2px solid var(--button-border); background:var(--bg-tertiary);">
+                    <button class="send-btn" onclick="addNumber()">添加</button>
+                </div>
+                <div id="numberList" style="max-height:200px; overflow-y:auto; background:var(--bg-secondary); border-radius:15px; padding:10px;"></div>
+            </div>
+            
+            <!-- 字卡分类 (可创建多个角色字卡库) -->
+            <div id="characterCategory" class="card-category" style="display:none;">
+                <h4>📝 角色字卡库</h4>
+                
+                <!-- 角色选择标签 -->
+                <div class="flex-row" style="margin:10px 0; overflow-x:auto;">
+                    <span class="category-tab active" onclick="switchCharacterCard('小熊')" id="char小熊">🐻 小熊</span>
+                    <span class="category-tab" onclick="switchCharacterCard('小兔')" id="char小兔">🐰 小兔</span>
+                    <span class="category-tab" onclick="switchCharacterCard('自定义')" id="char自定义">➕ 新建角色</span>
+                </div>
+                
+                <!-- 当前选中的角色字卡显示 -->
+                <div id="currentCharacterCards">
+                    <div style="margin:10px 0;">
+                        <input type="text" id="newCharacterCard" placeholder="输入新字卡" style="width:70%; padding:8px; border-radius:15px; border:2px solid var(--button-border); background:var(--bg-tertiary);">
+                        <button class="send-btn" onclick="addCharacterCard()">添加</button>
+                    </div>
+                    
+                    <!-- 批量添加区域 -->
+                    <div style="margin:10px 0;">
+                        <textarea id="bulkCharacterCards" rows="3" placeholder="批量添加字卡，每行一个" style="width:100%; padding:8px; border-radius:15px; border:2px solid var(--button-border); background:var(--bg-tertiary);"></textarea>
+                        <button class="send-btn" style="margin-top:5px;" onclick="bulkAddCharacterCards()">批量添加</button>
+                    </div>
+                    
+                    <!-- 搜索框 -->
+                    <div style="margin:10px 0;">
+                        <input type="text" id="searchCharacterCard" placeholder="搜索字卡..." style="width:100%; padding:8px; border-radius:15px; border:2px solid var(--button-border); background:var(--bg-tertiary);" oninput="searchCharacterCards()">
+                    </div>
+                    
+                    <!-- 字卡列表 -->
+                    <div id="characterCardList" style="max-height:200px; overflow-y:auto; background:var(--bg-secondary); border-radius:15px; padding:10px;"></div>
+                </div>
+            </div>
+            
+            <!-- 基本设置区域 -->
+            <h4 style="margin-top:20px;">⚙️ 基本设置</h4>
             <div class="flex-row"><label>引用消息</label><button class="send-btn toggle-btn" id="quoteToggle" onclick="toggleSetting('quote')">关闭</button></div>
             <div class="flex-row"><label>消息音效</label><button class="send-btn toggle-btn" id="soundToggle" onclick="toggleSetting('sound')">关闭</button></div>
             <div class="flex-row"><label>已读回执</label><button class="send-btn toggle-btn" id="readToggle" onclick="toggleSetting('readReceipt')">开启</button></div>
@@ -735,6 +912,7 @@
             <input type="number" id="minReplyDelay" min="0.1" max="120" step="0.1" value="0.5" style="width:100%; margin:5px 0;">
             <label>最大间隔</label>
             <input type="number" id="maxReplyDelay" min="0.1" max="120" step="0.1" value="2.0" style="width:100%; margin:5px 0;">
+            
             <h4>今日闲聊回复条数</h4>
             <select id="chatReplyCount" onchange="updateChatReplyCount(this.value)" style="width:100%; padding:8px; margin:5px 0;">
                 <option value="1-3">1-3条</option>
@@ -746,20 +924,24 @@
                 <option value="1-9">1-9条</option>
                 <option value="1-10">1-10条</option>
             </select>
+            
             <h4>收藏的回复</h4>
             <div id="favoritesList" style="max-height:150px; overflow-y:auto; background:var(--bg-tertiary); border-radius:15px; padding:10px; margin:5px 0;"></div>
+            
             <h4>拍一拍对方回复库</h4>
             <div class="flex-row">
                 <input type="text" id="newPatReply" placeholder="新增拍一拍回复" style="flex:1; padding:8px;">
                 <button class="send-btn" onclick="addPatReply()">添加</button>
             </div>
             <div id="patReplyList" style="max-height:150px; overflow-y:auto; background:var(--bg-tertiary); border-radius:15px; padding:10px; margin:5px 0;"></div>
+            
             <h4>对方状态库</h4>
             <div class="flex-row">
                 <input type="text" id="newStatus" placeholder="新增状态" style="flex:1; padding:8px;">
                 <button class="send-btn" onclick="addStatus()">添加</button>
             </div>
             <div id="statusList" style="max-height:150px; overflow-y:auto; background:var(--bg-tertiary); border-radius:15px; padding:10px; margin:5px 0;"></div>
+            
             <button class="send-btn" style="width:100%; margin-top:15px" onclick="saveChatSettings()">保存聊天设置</button>
         </div>
 
@@ -785,7 +967,7 @@
                 <div id="topWords"></div>
             </div>
             
-            <!-- 一起听歌 - 完全修复版 -->
+            <!-- 一起听歌 -->
             <div class="card">
                 <h4>🎧 我的歌单</h4>
                 <div style="margin-bottom:15px;">
@@ -918,24 +1100,27 @@
         let sessions = JSON.parse(localStorage.getItem('sessions')) || [{ id: 'default', name: '今日闲聊', type: 'private' }];
         let groups = JSON.parse(localStorage.getItem('groups')) || [];
         
-        // 音乐播放相关 - 支持多首音乐自动保存
+        // 音乐播放相关
         let savedMusicList = JSON.parse(localStorage.getItem('savedMusicList')) || [];
         let currentPlayingIndex = -1;
         
-        // 聊天记录 - 按会话存储
+        // 聊天记录
         let chatMessages = JSON.parse(localStorage.getItem('chatMessages')) || {
             default: []
         };
         
-        // 字卡库分类系统
+        // 字卡库分类系统 - 完整版
         let cardCategories = JSON.parse(localStorage.getItem('cardCategories')) || {
-            emoji: ['😊', '😂', '🥰', '😍', '🤔', '😭', '👍', '🎉'],
-            number: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
+            emoji: ['😊', '😂', '🥰', '😍', '🤔', '😭', '👍', '🎉', '❤️', '😘', '🥺', '😤', '😎', '🤗'],
+            number: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '100', '1000'],
             character: {
-                '小熊': ['你好', '在干嘛', '今天怎么样', '晚安', '想你啦', '吃饭了吗', '开心', '好的'],
-                '小兔': ['嗨', '嗯嗯', '好棒', '❤️', '哈哈', '真的吗', '不错', '收到']
+                '小熊': ['你好', '在干嘛', '今天怎么样', '晚安', '想你啦', '吃饭了吗', '开心', '好的', '嗯嗯', '哈哈'],
+                '小兔': ['嗨', '嗯嗯', '好棒', '❤️', '哈哈', '真的吗', '不错', '收到', '好的', '😊']
             }
         };
+        
+        // 当前选中的角色
+        let currentCharacter = '小熊';
         
         // 字卡比例
         let cardRatios = JSON.parse(localStorage.getItem('cardRatios')) || {
@@ -1031,7 +1216,7 @@
             renderSessionBar();
             renderSessionList();
             renderGroupList();
-            renderSavedMusicList(); // 确保这个函数被调用
+            renderSavedMusicList();
             renderFoodList();
             renderMemos();
             renderCustomEmojiGrid();
@@ -1042,6 +1227,15 @@
             renderBookList();
             renderTodoList();
             renderCouponReplyList();
+            
+            // 渲染字卡库
+            renderEmojiList();
+            renderNumberList();
+            renderCharacterCardList();
+            
+            // 更新比例显示
+            updateRatioInputs();
+            
             updateMessageStats();
             updateLoveDays();
             
@@ -1059,7 +1253,240 @@
             changeOtherStatus();
         };
 
-        // ---------- 音乐播放 - 支持多首音乐自动保存 ----------
+        // ---------- 字体导入功能 ----------
+        function applyFontLink(url) {
+            if(url) {
+                let link = document.createElement('link');
+                link.href = url;
+                link.rel = 'stylesheet';
+                document.head.appendChild(link);
+                
+                // 设置自定义字体变量
+                let fontFamily = url.match(/family=([^&:]+)/);
+                if(fontFamily && fontFamily[1]) {
+                    let family = fontFamily[1].replace(/\+/g, ' ');
+                    document.documentElement.style.setProperty('--custom-font', `'${family}', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif`);
+                    alert(`字体 ${family} 已应用`);
+                } else {
+                    alert('字体链接已添加');
+                }
+            }
+        }
+
+        function applyCustomFontCSS() {
+            let css = document.getElementById('customFontCSS').value;
+            if(css) {
+                let style = document.createElement('style');
+                style.innerText = css;
+                document.head.appendChild(style);
+                
+                // 尝试提取字体名称
+                let fontMatch = css.match(/font-family:\s*['"]([^'"]+)['"]/);
+                if(fontMatch && fontMatch[1]) {
+                    document.documentElement.style.setProperty('--custom-font', `'${fontMatch[1]}', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif`);
+                }
+                alert('自定义字体CSS已应用');
+            }
+        }
+
+        // ---------- 字卡比例功能 ----------
+        function updateCardRatios() {
+            let number = parseInt(document.getElementById('numberRatio').value) || 0;
+            let emoji = parseInt(document.getElementById('emojiRatio').value) || 0;
+            let text = parseInt(document.getElementById('textRatio').value) || 0;
+            let image = parseInt(document.getElementById('imageRatio').value) || 0;
+            
+            let total = number + emoji + text + image;
+            
+            document.getElementById('totalRatio').innerText = `当前总和: ${total}%`;
+            
+            if(total === 100) {
+                cardRatios = { number, emoji, text, image };
+                localStorage.setItem('cardRatios', JSON.stringify(cardRatios));
+                document.getElementById('totalRatio').style.color = 'var(--text-primary)';
+            } else {
+                document.getElementById('totalRatio').style.color = '#ff4444';
+            }
+        }
+
+        function updateRatioInputs() {
+            document.getElementById('numberRatio').value = cardRatios.number;
+            document.getElementById('emojiRatio').value = cardRatios.emoji;
+            document.getElementById('textRatio').value = cardRatios.text;
+            document.getElementById('imageRatio').value = cardRatios.image;
+            updateCardRatios();
+        }
+
+        // ---------- 字卡库功能 ----------
+        function switchCardCategory(category) {
+            // 更新标签样式
+            document.getElementById('catEmoji').classList.remove('active');
+            document.getElementById('catNumber').classList.remove('active');
+            document.getElementById('catCharacter').classList.remove('active');
+            document.getElementById('cat' + category.charAt(0).toUpperCase() + category.slice(1)).classList.add('active');
+            
+            // 显示对应的分类
+            document.getElementById('emojiCategory').style.display = category === 'emoji' ? 'block' : 'none';
+            document.getElementById('numberCategory').style.display = category === 'number' ? 'block' : 'none';
+            document.getElementById('characterCategory').style.display = category === 'character' ? 'block' : 'none';
+        }
+
+        function switchCharacterCard(character) {
+            if(character === '自定义') {
+                let newCharacter = prompt('请输入新角色名称：');
+                if(newCharacter && !cardCategories.character[newCharacter]) {
+                    cardCategories.character[newCharacter] = [];
+                    currentCharacter = newCharacter;
+                    // 添加新的标签
+                    let tabHtml = `<span class="category-tab" onclick="switchCharacterCard('${newCharacter}')" id="char${newCharacter}">👤 ${newCharacter}</span>`;
+                    document.querySelector('#characterCategory .flex-row').insertAdjacentHTML('beforeend', tabHtml);
+                } else if(newCharacter) {
+                    alert('该角色已存在');
+                    return;
+                } else {
+                    return;
+                }
+            }
+            
+            // 更新所有角色标签的active状态
+            document.querySelectorAll('#characterCategory .category-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.getElementById('char' + character).classList.add('active');
+            
+            currentCharacter = character;
+            renderCharacterCardList();
+        }
+
+        function renderEmojiList() {
+            let container = document.getElementById('emojiList');
+            if(!container) return;
+            container.innerHTML = '';
+            cardCategories.emoji.forEach((emoji, index) => {
+                let div = document.createElement('div');
+                div.className = 'card-item';
+                div.innerHTML = `
+                    <span style="font-size:20px;">${emoji}</span>
+                    <button class="send-btn" style="padding:2px 8px;" onclick="deleteEmoji(${index})">删除</button>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        function renderNumberList() {
+            let container = document.getElementById('numberList');
+            if(!container) return;
+            container.innerHTML = '';
+            cardCategories.number.forEach((num, index) => {
+                let div = document.createElement('div');
+                div.className = 'card-item';
+                div.innerHTML = `
+                    <span>${num}</span>
+                    <button class="send-btn" style="padding:2px 8px;" onclick="deleteNumber(${index})">删除</button>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        function renderCharacterCardList(filter = '') {
+            let container = document.getElementById('characterCardList');
+            if(!container) return;
+            container.innerHTML = '';
+            
+            let cards = cardCategories.character[currentCharacter] || [];
+            let filteredCards = filter ? cards.filter(card => card.includes(filter)) : cards;
+            
+            filteredCards.forEach((card, index) => {
+                let div = document.createElement('div');
+                div.className = 'card-item';
+                div.innerHTML = `
+                    <span>${card}</span>
+                    <button class="send-btn" style="padding:2px 8px;" onclick="deleteCharacterCard(${index})">删除</button>
+                `;
+                container.appendChild(div);
+            });
+            
+            if(filteredCards.length === 0) {
+                container.innerHTML = '<p style="color:var(--text-secondary); text-align:center; padding:10px;">暂无字卡</p>';
+            }
+        }
+
+        function addEmoji() {
+            let input = document.getElementById('newEmoji');
+            let emoji = input.value.trim();
+            if(emoji) {
+                cardCategories.emoji.push(emoji);
+                localStorage.setItem('cardCategories', JSON.stringify(cardCategories));
+                renderEmojiList();
+                input.value = '';
+            }
+        }
+
+        function deleteEmoji(index) {
+            cardCategories.emoji.splice(index, 1);
+            localStorage.setItem('cardCategories', JSON.stringify(cardCategories));
+            renderEmojiList();
+        }
+
+        function addNumber() {
+            let input = document.getElementById('newNumber');
+            let num = input.value.trim();
+            if(num) {
+                cardCategories.number.push(num);
+                localStorage.setItem('cardCategories', JSON.stringify(cardCategories));
+                renderNumberList();
+                input.value = '';
+            }
+        }
+
+        function deleteNumber(index) {
+            cardCategories.number.splice(index, 1);
+            localStorage.setItem('cardCategories', JSON.stringify(cardCategories));
+            renderNumberList();
+        }
+
+        function addCharacterCard() {
+            let input = document.getElementById('newCharacterCard');
+            let card = input.value.trim();
+            if(card) {
+                if(!cardCategories.character[currentCharacter]) {
+                    cardCategories.character[currentCharacter] = [];
+                }
+                cardCategories.character[currentCharacter].push(card);
+                localStorage.setItem('cardCategories', JSON.stringify(cardCategories));
+                renderCharacterCardList();
+                input.value = '';
+            }
+        }
+
+        function bulkAddCharacterCards() {
+            let textarea = document.getElementById('bulkCharacterCards');
+            let text = textarea.value.trim();
+            if(text) {
+                let cards = text.split('\n').filter(card => card.trim() !== '');
+                if(!cardCategories.character[currentCharacter]) {
+                    cardCategories.character[currentCharacter] = [];
+                }
+                cardCategories.character[currentCharacter].push(...cards);
+                localStorage.setItem('cardCategories', JSON.stringify(cardCategories));
+                renderCharacterCardList();
+                textarea.value = '';
+            }
+        }
+
+        function deleteCharacterCard(index) {
+            cardCategories.character[currentCharacter].splice(index, 1);
+            localStorage.setItem('cardCategories', JSON.stringify(cardCategories));
+            renderCharacterCardList();
+        }
+
+        function searchCharacterCards() {
+            let searchInput = document.getElementById('searchCharacterCard');
+            let filter = searchInput.value;
+            renderCharacterCardList(filter);
+        }
+
+        // ---------- 音乐播放功能 ----------
         function handleMusicUploadWithSave(event) {
             let file = event.target.files[0];
             if(!file) {
@@ -1649,12 +2076,15 @@
 
         function getAllCards() {
             let cards = [];
+            
+            // 根据比例生成卡片池
             for(let i=0; i<cardRatios.number; i++) cards.push(...cardCategories.number);
             for(let i=0; i<cardRatios.emoji; i++) cards.push(...cardCategories.emoji);
             for(let i=0; i<cardRatios.text; i++) {
                 Object.values(cardCategories.character).forEach(arr => cards.push(...arr));
             }
             for(let i=0; i<cardRatios.image; i++) cards.push(...customEmojis);
+            
             return cards;
         }
 
@@ -2320,8 +2750,6 @@
         function changeBubbleShape(radius) {
             document.documentElement.style.setProperty('--bubble-radius', radius);
         }
-        function applyBubbleCustomCSS() {}
-        function applyFontLink(url) {}
         function adjustFontSize(size) {
             document.documentElement.style.setProperty('--font-size-base', size + 'px');
             document.getElementById('fontSizeDisplay').innerText = size + 'px';
@@ -2487,8 +2915,13 @@
             reader.readAsText(file);
         }
 
-        function saveAppearanceSettings() { alert('外观已保存'); }
-        function saveChatSettings() { alert('聊天设置已保存'); }
+        function saveAppearanceSettings() { 
+            alert('外观设置已保存'); 
+        }
+        function saveChatSettings() { 
+            updateCardRatios();
+            alert('聊天设置已保存'); 
+        }
         function saveAllDailySettings() { alert('日常设置已保存'); }
         function saveAllSettings() {
             localStorage.setItem('sessions', JSON.stringify(sessions));
@@ -2552,7 +2985,7 @@
             document.querySelectorAll('.drawer-section').forEach(s => s.classList.add('hidden'));
             document.getElementById(section + 'Section').classList.remove('hidden');
             if(section==='daily') { 
-                renderSavedMusicList(); // 确保这个函数被调用
+                renderSavedMusicList();
                 renderFoodList(); 
                 renderAnniversaries();
                 renderBookList();
@@ -2566,6 +2999,11 @@
                 renderPatReplyList();
                 renderStatusList();
                 renderFavoritesList();
+                // 渲染字卡库
+                renderEmojiList();
+                renderNumberList();
+                renderCharacterCardList();
+                updateRatioInputs();
             }
         }
         function closeDrawer() { document.getElementById('drawer').classList.remove('open'); document.getElementById('overlay').classList.remove('show'); }
