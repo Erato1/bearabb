@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="zh">
 <head>
@@ -1060,6 +1059,7 @@
     </div>
 
     <script>
+        // ---------- 全局变量 ----------
         let currentSession = 'default';
         let sessions = JSON.parse(localStorage.getItem('sessions')) || [{ id: 'default', name: '今日闲聊', type: 'private' }];
         let groups = JSON.parse(localStorage.getItem('groups')) || [];
@@ -1094,6 +1094,13 @@
         let bookReviews = JSON.parse(localStorage.getItem('bookReviews')) || [];
         let loveStartDate = localStorage.getItem('loveStartDate') || new Date().toISOString().split('T')[0];
         let messageStats = JSON.parse(localStorage.getItem('messageStats')) || { total: 0, me: 0, other: 0, firstDate: new Date().toISOString().split('T')[0], lastContact: new Date().toISOString().split('T')[0], wordCount: {} };
+        
+        // 添加头像和名称存储变量
+        let otherAvatar = localStorage.getItem('otherAvatar') || '';
+        let meAvatar = localStorage.getItem('meAvatar') || '';
+        let otherName = localStorage.getItem('otherName') || '小熊';
+        let meName = localStorage.getItem('meName') || '小兔';
+        
         let bulkMessages = [];
         let currentImageData = null;
         let currentEmojiData = null;
@@ -1132,6 +1139,16 @@
 
         window.onload = function() {
             loadFromStorage();
+            
+            // 加载保存的头像和名称
+            if(otherAvatar) document.getElementById('otherAvatarImg').src = otherAvatar;
+            if(meAvatar) document.getElementById('meAvatarImg').src = meAvatar;
+            
+            document.getElementById('otherName').innerText = otherName;
+            document.getElementById('meName').innerText = meName;
+            document.getElementById('otherNameInput').value = otherName;
+            document.getElementById('meNameInput').value = meName;
+            
             renderSessionBar();
             renderSavedMusicList();
             renderEmojiList();
@@ -1189,6 +1206,12 @@
             bookReviews = JSON.parse(localStorage.getItem('bookReviews')) || [];
             loveStartDate = localStorage.getItem('loveStartDate') || new Date().toISOString().split('T')[0];
             messageStats = JSON.parse(localStorage.getItem('messageStats')) || { total: 0, me: 0, other: 0, firstDate: new Date().toISOString().split('T')[0], lastContact: new Date().toISOString().split('T')[0], wordCount: {} };
+            
+            // 加载头像和名称
+            otherAvatar = localStorage.getItem('otherAvatar') || '';
+            meAvatar = localStorage.getItem('meAvatar') || '';
+            otherName = localStorage.getItem('otherName') || '小熊';
+            meName = localStorage.getItem('meName') || '小兔';
         }
 
         function saveAllSettings() {
@@ -1213,7 +1236,56 @@
             localStorage.setItem('loveStartDate', loveStartDate);
             localStorage.setItem('messageStats', JSON.stringify(messageStats));
             localStorage.setItem('savedMusicList', JSON.stringify(savedMusicList));
+            
+            // 保存头像和名称
+            localStorage.setItem('otherAvatar', otherAvatar || '');
+            localStorage.setItem('meAvatar', meAvatar || '');
+            localStorage.setItem('otherName', otherName);
+            localStorage.setItem('meName', meName);
+            
             alert('✅ 全部设置已保存');
+        }
+
+        // 头像上传函数
+        function uploadAvatar(event, who) {
+            let file = event.target.files[0];
+            if(file) {
+                let reader = new FileReader();
+                reader.onload = e => {
+                    let img = document.getElementById(who + 'AvatarImg');
+                    if(img) {
+                        img.src = e.target.result;
+                        // 保存到 localStorage
+                        if(who === 'other') {
+                            otherAvatar = e.target.result;
+                            localStorage.setItem('otherAvatar', otherAvatar);
+                        } else {
+                            meAvatar = e.target.result;
+                            localStorage.setItem('meAvatar', meAvatar);
+                        }
+                        alert('✅ 头像已保存');
+                    }
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // 名称更新函数
+        function updateNames() {
+            let meNameInput = document.getElementById('meNameInput');
+            let otherNameInput = document.getElementById('otherNameInput');
+            
+            meName = meNameInput.value;
+            otherName = otherNameInput.value;
+            
+            document.getElementById('meName').innerText = meName;
+            document.getElementById('otherName').innerText = otherName;
+            
+            // 立即保存到 localStorage
+            localStorage.setItem('meName', meName);
+            localStorage.setItem('otherName', otherName);
+            
+            updateLoveDays();
         }
 
         // 备忘录功能完整实现
@@ -1299,11 +1371,7 @@
                     memo.viewedByOther = true;
                     
                     let allCards = getAllCards();
-                    let cards = [];
-                    for(let i=0; i<5; i++) {
-                        cards.push(allCards[Math.floor(Math.random() * allCards.length)]);
-                    }
-                    let replyText = '📝 ' + cards.join(' ');
+                    let replyText = allCards[Math.floor(Math.random() * allCards.length)];
                     
                     if(!memo.replies) memo.replies = [];
                     memo.replies.push({ text: replyText, timestamp: Date.now() });
@@ -1329,6 +1397,12 @@
             }
             for(let i=0; i<cardRatios.image; i++) cards.push(...customEmojis);
             return cards.length ? cards : ['❤️', '😊', '👍'];
+        }
+
+        // 获取单张字卡
+        function getSingleCard() {
+            let allCards = getAllCards();
+            return allCards[Math.floor(Math.random() * allCards.length)];
         }
 
         function handleMusicUploadWithSave(event) {
@@ -1650,18 +1724,23 @@
                     document.querySelector('.typing-indicator')?.remove();
                 }
                 
-                let allCards = getAllCards();
-                let reply = '';
-                for(let j=0; j<3; j++) {
-                    reply += allCards[Math.floor(Math.random() * allCards.length)] + ' ';
-                }
-                addMessage('other', reply, false);
+                // 根据设置的回复条数，逐条发送单张字卡
+                let range = currentSession === 'default' ? chatReplyRange : bulkReplyRange;
+                let count = Math.floor(Math.random() * (range.max - range.min + 1)) + range.min;
                 
-                messageStats.other = (messageStats.other || 0) + 1;
-                messageStats.total = (messageStats.total || 0) + 1;
-                messageStats.lastContact = new Date().toISOString().split('T')[0];
-                localStorage.setItem('messageStats', JSON.stringify(messageStats));
-                updateMessageStats();
+                // 逐条发送，每条间隔0.5秒
+                for(let i = 0; i < count; i++) {
+                    setTimeout(() => {
+                        let card = getSingleCard();
+                        addMessage('other', card, false);
+                        
+                        messageStats.other = (messageStats.other || 0) + 1;
+                        messageStats.total = (messageStats.total || 0) + 1;
+                        messageStats.lastContact = new Date().toISOString().split('T')[0];
+                        localStorage.setItem('messageStats', JSON.stringify(messageStats));
+                        updateMessageStats();
+                    }, i * 500); // 每条间隔0.5秒
+                }
             }, delay);
         }
 
@@ -1670,6 +1749,25 @@
             let myEl = document.getElementById('myMsgCount');
             if(totalEl) totalEl.innerText = messageStats.total || 0;
             if(myEl) myEl.innerText = messageStats.me || 0;
+            
+            let statsDiv = document.getElementById('messageStats');
+            if(statsDiv) {
+                statsDiv.innerHTML = `
+                    <div>总消息数: ${messageStats.total || 0}</div>
+                    <div>我发送的: ${messageStats.me || 0}</div>
+                    <div>对方发送的: ${messageStats.other || 0}</div>
+                    <div>初次相遇: ${messageStats.firstDate || '今天'}</div>
+                    <div>最近联络: ${messageStats.lastContact || '今天'}</div>
+                `;
+            }
+            
+            let words = Object.entries(messageStats.wordCount || {})
+                .sort((a,b) => b[1] - a[1])
+                .slice(0,5);
+            let topWordsDiv = document.getElementById('topWords');
+            if(topWordsDiv) {
+                topWordsDiv.innerHTML = words.map(w => `${w[0]} (${w[1]}次)`).join('<br>') || '暂无数据';
+            }
         }
 
         function updateLoveDays() {
@@ -1677,7 +1775,6 @@
             let today = new Date();
             let diffTime = Math.abs(today - start);
             let diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-            let otherName = document.getElementById('otherName')?.innerText || '小熊';
             let loveDisplay = document.getElementById('loveDaysDisplay');
             if(loveDisplay) loveDisplay.innerText = `和${otherName}恋爱的第 ${diffDays} 天`;
         }
@@ -2165,25 +2262,9 @@
             if(e.key === 'Enter') sendMessage();
         }
 
-        function uploadAvatar(event, who) {
-            let file = event.target.files[0];
-            if(file) {
-                let reader = new FileReader();
-                reader.onload = e => {
-                    let img = document.getElementById(who + 'AvatarImg');
-                    if(img) img.src = e.target.result;
-                };
-                reader.readAsDataURL(file);
-            }
-        }
-
         function triggerHeWantsToSay() {
-            let allCards = getAllCards();
-            let reply = '';
-            for(let i=0; i<3; i++) {
-                reply += allCards[Math.floor(Math.random() * allCards.length)] + ' ';
-            }
-            addMessage('other', reply, false);
+            let card = getSingleCard();
+            addMessage('other', card, false);
         }
 
         function openImageModal() {
@@ -2246,7 +2327,6 @@
 
         function sendPat() {
             let text = document.getElementById('patInput')?.value.trim() || '拍了拍你';
-            let otherName = document.getElementById('otherName')?.innerText || '小熊';
             addPatMessage('me', '✋ 你拍了拍 ' + otherName + '：' + text, true);
             closePatModal();
             
@@ -2514,17 +2594,6 @@
             input.click();
         }
 
-        function updateNames() {
-            let meNameInput = document.getElementById('meNameInput');
-            let otherNameInput = document.getElementById('otherNameInput');
-            let meName = document.getElementById('meName');
-            let otherName = document.getElementById('otherName');
-            
-            if(meNameInput && meName) meName.innerText = meNameInput.value;
-            if(otherNameInput && otherName) otherName.innerText = otherNameInput.value;
-            updateLoveDays();
-        }
-
         function applyFontLink(url) {
             if(url) {
                 let link = document.createElement('link');
@@ -2681,7 +2750,8 @@
                 memos, periodData, anniversaries, bookList, todoList,
                 patReplies, otherStatusList, favoriteReplies,
                 couponReplies, bookReviews, messageStats, loveStartDate, couponMessages,
-                settings, savedMusicList
+                settings, savedMusicList,
+                otherAvatar, meAvatar, otherName, meName
             };
             let blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
             let url = URL.createObjectURL(blob);
