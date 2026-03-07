@@ -1,12 +1,11 @@
-```html
+
 <!DOCTYPE html>
 <html lang="zh">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
-    <title>🐻 熊兔日常 · 完整字体+比例版 🐇</title>
+    <title>🐻 熊兔日常 · 完整修复版 🐇</title>
     <style>
-        /* 所有样式保持不变 */
         * {
             margin: 0;
             padding: 0;
@@ -80,7 +79,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 8px 10px;
+            padding: 6px 8px;
             background: var(--bg-secondary);
             border-bottom: 2px solid var(--border-color);
             flex-shrink: 0;
@@ -90,11 +89,11 @@
             flex-direction: column;
             align-items: center;
             gap: 2px;
-            min-width: 60px;
+            min-width: 55px;
         }
         .avatar-img {
-            width: 45px;
-            height: 45px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             background: #ffd9e6;
             border: 3px solid var(--bg-secondary);
@@ -104,16 +103,16 @@
         }
         .avatar-name {
             font-weight: 600;
-            font-size: 12px;
+            font-size: 11px;
             color: var(--text-primary);
         }
         .avatar-status {
-            font-size: 9px;
+            font-size: 8px;
             color: var(--text-secondary);
             background: var(--message-me);
             padding: 2px 6px;
             border-radius: 30px;
-            max-width: 65px;
+            max-width: 60px;
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
@@ -121,21 +120,21 @@
         }
         .center-icons {
             display: flex;
-            gap: 8px;
+            gap: 5px;
             justify-content: center;
             align-items: center;
             flex: 1;
         }
         .icon-btn {
             background: var(--bg-secondary);
-            width: 40px;
-            height: 40px;
+            width: 36px;
+            height: 36px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 20px;
-            box-shadow: 0 3px 0 var(--button-shadow);
+            font-size: 18px;
+            box-shadow: 0 2px 0 var(--button-shadow);
             border: 2px solid var(--button-border);
             cursor: pointer;
             color: var(--text-primary);
@@ -143,14 +142,14 @@
         }
         .theme-toggle {
             background: var(--bg-secondary);
-            width: 40px;
-            height: 40px;
+            width: 36px;
+            height: 36px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 22px;
-            box-shadow: 0 3px 0 var(--button-shadow);
+            font-size: 20px;
+            box-shadow: 0 2px 0 var(--button-shadow);
             border: 2px solid var(--button-border);
             cursor: pointer;
             margin-left: 2px;
@@ -160,10 +159,10 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 5px 12px;
+            padding: 4px 10px;
             background: var(--bg-tertiary);
             border-bottom: 1px solid var(--border-color);
-            font-size: 12px;
+            font-size: 11px;
             color: var(--text-primary);
         }
         .love-days {
@@ -172,9 +171,9 @@
         }
         .session-scroll {
             display: flex;
-            gap: 8px;
+            gap: 6px;
             overflow-x: auto;
-            padding: 8px 10px;
+            padding: 6px 8px;
             background: var(--bg-tertiary);
             white-space: nowrap;
             border-bottom: 1px solid var(--border-color);
@@ -185,11 +184,11 @@
             background: var(--bg-secondary);
             border: 2px solid var(--button-border);
             border-radius: 40px;
-            padding: 6px 14px;
-            font-size: 13px;
+            padding: 4px 12px;
+            font-size: 12px;
             display: inline-flex;
             align-items: center;
-            gap: 6px;
+            gap: 4px;
             cursor: pointer;
             color: var(--text-primary);
             flex-shrink: 0;
@@ -201,10 +200,10 @@
         .messages-area {
             flex: 1;
             overflow-y: auto;
-            padding: 12px;
+            padding: 10px;
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 8px;
             background: var(--bg-tertiary);
             -webkit-overflow-scrolling: touch;
             font-size: var(--font-size-base);
@@ -212,7 +211,7 @@
         }
         .message {
             max-width: 85%;
-            padding: 10px 14px;
+            padding: 8px 12px;
             border-radius: var(--bubble-radius);
             word-wrap: break-word;
             font-size: var(--font-size-base);
@@ -252,7 +251,7 @@
         }
         .message.image-message img {
             max-width: 100%;
-            border-radius: 15px;
+            border-radius: 12px;
             border: 3px solid var(--bg-secondary);
         }
         .message.memo-reply, .message.book-reply, .message.coupon-reply {
@@ -300,26 +299,26 @@
         .input-area {
             display: flex;
             align-items: center;
-            gap: 6px;
-            padding: 8px 10px;
+            gap: 4px;
+            padding: 6px 8px;
             background: var(--bg-secondary);
             border-top: 2px solid var(--border-color);
             flex-shrink: 0;
         }
         .input-left {
             display: flex;
-            gap: 5px;
+            gap: 3px;
         }
         .input-icon {
-            width: 42px;
-            height: 42px;
+            width: 38px;
+            height: 38px;
             border-radius: 50%;
             background: var(--bg-secondary);
             border: 2px solid var(--button-border);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 20px;
+            font-size: 18px;
             cursor: pointer;
             box-shadow: 0 2px 0 var(--button-shadow);
             color: var(--text-primary);
@@ -329,12 +328,12 @@
             background: var(--bg-secondary);
             border: 2px solid var(--button-border);
             border-radius: 50%;
-            width: 42px;
-            height: 42px;
+            width: 38px;
+            height: 38px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 20px;
+            font-size: 18px;
             cursor: pointer;
             color: var(--text-primary);
         }
@@ -343,8 +342,8 @@
             background: var(--bg-tertiary);
             border: 2px solid var(--button-border);
             border-radius: 30px;
-            padding: 10px 15px;
-            font-size: 15px;
+            padding: 8px 12px;
+            font-size: 14px;
             outline: none;
             color: var(--text-primary);
             min-width: 0;
@@ -355,34 +354,34 @@
         }
         .input-right {
             display: flex;
-            gap: 5px;
+            gap: 3px;
         }
         .send-btn {
             background: var(--bg-secondary);
             border: 2px solid var(--button-border);
             border-radius: 50px;
-            padding: 0 16px;
-            height: 42px;
-            font-size: 15px;
+            padding: 0 12px;
+            height: 38px;
+            font-size: 14px;
             font-weight: 600;
             color: var(--text-primary);
-            box-shadow: 0 3px 0 var(--button-shadow);
+            box-shadow: 0 2px 0 var(--button-shadow);
             cursor: pointer;
             flex-shrink: 0;
             font-family: var(--custom-font);
         }
         .more-btn {
-            width: 42px;
-            height: 42px;
+            width: 38px;
+            height: 38px;
             border-radius: 50%;
             background: var(--bg-secondary);
             border: 2px solid var(--button-border);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 20px;
+            font-size: 18px;
             cursor: pointer;
-            box-shadow: 0 3px 0 var(--button-shadow);
+            box-shadow: 0 2px 0 var(--button-shadow);
             color: var(--text-primary);
             flex-shrink: 0;
         }
@@ -404,8 +403,8 @@
             width: 100%;
             max-width: 100%;
             margin: 0 auto;
-            border-radius: 25px 25px 0 0;
-            padding: 20px 15px;
+            border-radius: 20px 20px 0 0;
+            padding: 15px;
             transform: translateY(100%);
             transition: transform 0.3s ease;
             color: var(--text-primary);
@@ -419,15 +418,15 @@
             top: 0;
             right: -100%;
             width: 90%;
-            max-width: 400px;
+            max-width: 380px;
             height: 100vh;
             background: var(--bg-secondary);
             box-shadow: -5px 0 20px rgba(0,0,0,0.1);
             transition: right 0.3s ease;
             z-index: 1000;
             overflow-y: auto;
-            padding: 20px 15px;
-            border-radius: 25px 0 0 25px;
+            padding: 15px;
+            border-radius: 20px 0 0 20px;
             color: var(--text-primary);
             -webkit-overflow-scrolling: touch;
         }
@@ -445,9 +444,9 @@
         }
         .overlay.show { display: block; }
         .file-input-hidden { display: none; }
-        .flex-row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
-        .card { background: var(--bg-tertiary); border-radius: 20px; padding: 15px; margin: 10px 0; }
-        .badge { background: var(--message-me); border-radius: 30px; padding: 4px 12px; font-size: 13px; display: inline-block; }
+        .flex-row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+        .card { background: var(--bg-tertiary); border-radius: 15px; padding: 12px; margin: 8px 0; }
+        .badge { background: var(--message-me); border-radius: 30px; padding: 3px 10px; font-size: 12px; display: inline-block; }
         .memo-item { border-bottom: 1px dashed var(--border-color); padding: 8px 0; font-size: 14px; }
         .toggle-btn { min-width: 60px; }
         .bulk-message-item { display: flex; justify-content: space-between; align-items: center; background: var(--bg-tertiary); padding: 8px 12px; border-radius: 30px; margin: 5px 0; }
@@ -471,9 +470,9 @@
         .music-item { 
             display: flex; 
             align-items: center; 
-            gap: 10px; 
-            margin: 8px 0; 
-            padding: 10px; 
+            gap: 8px; 
+            margin: 6px 0; 
+            padding: 8px; 
             background: var(--message-me); 
             border-radius: 30px;
         }
@@ -482,13 +481,14 @@
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
-            font-size: 14px;
+            font-size: 13px;
             color: var(--text-primary);
         }
         .music-item button {
-            padding: 6px 12px;
-            font-size: 14px;
-            min-width: 40px;
+            padding: 4px 8px;
+            font-size: 12px;
+            min-width: 30px;
+            height: 30px;
         }
         .anniversary-item { background: var(--anniversary-bg); border-radius: 15px; padding: 10px; margin: 5px 0; }
         .tarot-card { background: var(--tarot-bg); border-radius: 20px; padding: 15px; margin: 10px 0; text-align: center; border: 3px solid var(--border-color); }
@@ -516,11 +516,12 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 8px 12px;
-            margin: 5px 0;
+            padding: 6px 10px;
+            margin: 4px 0;
             background: var(--bg-secondary);
             border-radius: 20px;
             border: 1px solid var(--border-color);
+            font-size: 13px;
         }
         .book-item, .todo-item, .coupon-item { background: var(--bg-tertiary); border-radius: 15px; padding: 8px; margin: 5px 0; display: flex; justify-content: space-between; }
         .percentage-bar { width: 100%; height: 20px; background: var(--bg-tertiary); border-radius: 10px; margin: 5px 0; overflow: hidden; }
@@ -530,8 +531,8 @@
         .current-playing {
             background: var(--bg-secondary);
             border-radius: 15px;
-            padding: 15px;
-            margin: 10px 0;
+            padding: 12px;
+            margin: 8px 0;
             border: 2px solid var(--border-color);
         }
         .current-playing h5 {
@@ -539,7 +540,7 @@
             color: var(--text-primary);
         }
         .music-count {
-            font-size: 12px;
+            font-size: 11px;
             color: var(--text-secondary);
             text-align: center;
             margin-top: 5px;
@@ -548,12 +549,13 @@
             background: var(--message-me);
             border: 2px solid var(--button-border);
             border-radius: 30px;
-            padding: 10px 15px;
+            padding: 8px 12px;
             text-align: center;
-            margin: 10px 0;
+            margin: 8px 0;
             cursor: pointer;
             color: var(--text-primary);
             font-weight: 600;
+            font-size: 13px;
         }
         .upload-btn:hover {
             opacity: 0.8;
@@ -571,23 +573,24 @@
         }
         .category-tab {
             display: inline-block;
-            padding: 8px 16px;
-            margin: 5px;
+            padding: 6px 12px;
+            margin: 3px;
             background: var(--bg-secondary);
             border: 2px solid var(--border-color);
             border-radius: 30px;
             cursor: pointer;
             color: var(--text-primary);
             font-family: var(--custom-font);
+            font-size: 12px;
         }
         .category-tab.active {
             background: var(--message-me);
             border-color: var(--text-primary);
         }
         .ratio-input {
-            width: 60px;
-            padding: 5px;
-            border-radius: 10px;
+            width: 50px;
+            padding: 4px;
+            border-radius: 8px;
             border: 2px solid var(--border-color);
             background: var(--bg-secondary);
             color: var(--text-primary);
@@ -599,12 +602,12 @@
             color: var(--text-primary);
             margin-top: 5px;
         }
+        #loveStartDate { display: none; }
     </style>
 </head>
 <body>
     <div class="chat-main">
         <div class="top-bar">
-            <!-- 左侧：对方（小熊） -->
             <div class="avatar-left">
                 <img src="" alt="other" class="avatar-img" id="otherAvatarImg" onclick="document.getElementById('otherAvatarUpload').click()">
                 <span class="avatar-name" id="otherName">小熊</span>
@@ -620,7 +623,6 @@
                 <div class="theme-toggle" id="themeToggle" onclick="toggleTheme()">☀️</div>
             </div>
             
-            <!-- 右侧：自己（小兔） -->
             <div class="avatar-right">
                 <img src="" alt="me" class="avatar-img" id="meAvatarImg" onclick="document.getElementById('meAvatarUpload').click()">
                 <span class="avatar-name" id="meName">小兔</span>
@@ -629,21 +631,18 @@
             </div>
         </div>
 
-        <!-- 日常统计信息栏 -->
         <div class="daily-stats">
             <span class="love-days" id="loveDaysDisplay">和小熊恋爱的第 1 天</span>
             <span>总消息: <span id="totalMsgCount">0</span> | 我: <span id="myMsgCount">0</span></span>
         </div>
+        <input type="hidden" id="loveStartDate" value="">
 
-        <!-- 会话栏 (动态管理) -->
         <div class="session-scroll" id="sessionBar">
             <div class="session-tab active" data-session="default" onclick="switchSession('default')">💬 今日闲聊</div>
         </div>
 
-        <!-- 消息区域 (聊天记录会自动保存) -->
         <div class="messages-area" id="chatMessages"></div>
 
-        <!-- 底部输入区 -->
         <div class="input-area">
             <div class="input-left">
                 <div class="input-icon" onclick="openImageModal()">📷</div>
@@ -659,7 +658,6 @@
         </div>
     </div>
 
-    <!-- 长按引用/收藏模态框 -->
     <div class="quote-modal" id="quoteModal">
         <h4>选择操作</h4>
         <button class="send-btn" onclick="quoteMessage()">引用并回复</button>
@@ -667,90 +665,84 @@
         <button class="send-btn" onclick="closeQuoteModal()">取消</button>
     </div>
 
-    <!-- 自定义表情包模态框 -->
     <div class="modal" id="customEmojiModal" onclick="if(event.target===this) closeCustomEmojiModal()">
         <div class="modal-content">
-            <div class="modal-header" style="display:flex; justify-content:space-between; margin-bottom:15px">
+            <div class="modal-header" style="display:flex; justify-content:space-between; margin-bottom:12px">
                 <h3>😊 自定义表情包</h3>
-                <span style="font-size:28px; cursor:pointer" onclick="closeCustomEmojiModal()">✕</span>
+                <span style="font-size:24px; cursor:pointer" onclick="closeCustomEmojiModal()">✕</span>
             </div>
-            <div style="margin-bottom:15px">
+            <div style="margin-bottom:12px">
                 <input type="file" id="customEmojiFile" accept="image/*" onchange="previewCustomEmoji(event)">
-                <button class="send-btn" style="margin-top:10px" onclick="addCustomEmoji()">保存到表情包</button>
+                <button class="send-btn" style="margin-top:8px" onclick="addCustomEmoji()">保存到表情包</button>
             </div>
             <div class="custom-emoji-grid" id="customEmojiGrid"></div>
         </div>
     </div>
 
-    <!-- 批量发送模态框 -->
     <div class="modal" id="bulkModal" onclick="if(event.target===this) closeBulkModal()">
         <div class="modal-content">
-            <div class="modal-header" style="display:flex; justify-content:space-between; margin-bottom:15px">
+            <div class="modal-header" style="display:flex; justify-content:space-between; margin-bottom:12px">
                 <h3>📤 批量发送</h3>
-                <span style="font-size:28px; cursor:pointer" onclick="closeBulkModal()">✕</span>
+                <span style="font-size:24px; cursor:pointer" onclick="closeBulkModal()">✕</span>
             </div>
-            <textarea id="bulkInput" rows="4" placeholder="输入多条消息，每条用换行分隔" style="width:100%; padding:12px; border-radius:15px; border:2px solid var(--button-border); background:var(--bg-tertiary); color:var(--text-primary); margin-bottom:10px"></textarea>
-            <button class="send-btn" style="width:100%; margin-bottom:15px" onclick="prepareBulkMessages()">生成列表</button>
-            <div id="bulkMessageList" style="max-height:300px; overflow-y:auto; margin:15px 0"></div>
-            <div style="display:flex; gap:10px; margin-top:15px">
+            <textarea id="bulkInput" rows="3" placeholder="输入多条消息，每条用换行分隔" style="width:100%; padding:10px; border-radius:12px; border:2px solid var(--button-border); background:var(--bg-tertiary); color:var(--text-primary); margin-bottom:8px"></textarea>
+            <button class="send-btn" style="width:100%; margin-bottom:10px" onclick="prepareBulkMessages()">生成列表</button>
+            <div id="bulkMessageList" style="max-height:250px; overflow-y:auto; margin:10px 0"></div>
+            <div style="display:flex; gap:8px; margin-top:10px">
                 <button class="send-btn" style="flex:1" onclick="sendAllBulkMessages()">全部发送</button>
                 <button class="send-btn" style="flex:1" onclick="closeBulkModal()">取消</button>
             </div>
         </div>
     </div>
 
-    <!-- 图片发送模态框 -->
     <div class="modal" id="imageModal" onclick="if(event.target===this) closeImageModal()">
         <div class="modal-content">
-            <div class="modal-header" style="display:flex; justify-content:space-between; margin-bottom:15px">
+            <div class="modal-header" style="display:flex; justify-content:space-between; margin-bottom:12px">
                 <h3>📷 发送图片</h3>
-                <span style="font-size:28px; cursor:pointer" onclick="closeImageModal()">✕</span>
+                <span style="font-size:24px; cursor:pointer" onclick="closeImageModal()">✕</span>
             </div>
-            <div style="display:flex; gap:10px; margin-bottom:15px">
+            <div style="display:flex; gap:8px; margin-bottom:12px">
                 <button class="send-btn" style="flex:1" onclick="showImageTab('upload')">上传文件</button>
                 <button class="send-btn" style="flex:1" onclick="showImageTab('url')">URL导入</button>
             </div>
             
             <div id="imageUploadTab">
                 <input type="file" id="imageFile" accept="image/*" onchange="previewImage(event)">
-                <div id="imagePreview" style="margin:10px 0; text-align:center"></div>
+                <div id="imagePreview" style="margin:8px 0; text-align:center"></div>
             </div>
             
             <div id="imageUrlTab" style="display:none">
-                <input type="text" id="imageUrl" placeholder="粘贴图片URL" style="width:100%; padding:12px; border-radius:15px; border:2px solid var(--button-border); background:var(--bg-tertiary); color:var(--text-primary)">
+                <input type="text" id="imageUrl" placeholder="粘贴图片URL" style="width:100%; padding:10px; border-radius:12px; border:2px solid var(--button-border); background:var(--bg-tertiary); color:var(--text-primary)">
             </div>
             
-            <div style="display:flex; gap:10px; margin-top:20px">
+            <div style="display:flex; gap:8px; margin-top:15px">
                 <button class="send-btn" style="flex:1" onclick="sendImage()">发送</button>
                 <button class="send-btn" style="flex:1" onclick="closeImageModal()">取消</button>
             </div>
         </div>
     </div>
 
-    <!-- 拍一拍模态框 -->
     <div class="modal" id="patModal" onclick="if(event.target===this) closePatModal()">
         <div class="modal-content">
-            <div class="modal-header" style="display:flex; justify-content:space-between; margin-bottom:15px">
+            <div class="modal-header" style="display:flex; justify-content:space-between; margin-bottom:12px">
                 <h3>✋ 拍一拍</h3>
-                <span style="font-size:28px; cursor:pointer" onclick="closePatModal()">✕</span>
+                <span style="font-size:24px; cursor:pointer" onclick="closePatModal()">✕</span>
             </div>
-            <input type="text" id="patInput" placeholder="输入你想说的话..." style="width:100%; padding:12px; border-radius:15px; border:2px solid var(--button-border); background:var(--bg-tertiary); color:var(--text-primary); margin-bottom:15px">
-            <div style="display:flex; gap:10px">
+            <input type="text" id="patInput" placeholder="输入你想说的话..." style="width:100%; padding:10px; border-radius:12px; border:2px solid var(--button-border); background:var(--bg-tertiary); color:var(--text-primary); margin-bottom:12px">
+            <div style="display:flex; gap:8px">
                 <button class="send-btn" style="flex:1" onclick="sendPat()">发送拍一拍</button>
                 <button class="send-btn" style="flex:1" onclick="closePatModal()">取消</button>
             </div>
         </div>
     </div>
 
-    <!-- 侧边栏抽屉 -->
     <div class="overlay" id="overlay" onclick="closeDrawer()"></div>
     <div class="drawer" id="drawer">
-        <div class="drawer-header" style="display:flex; justify-content:space-between; margin-bottom:20px">
+        <div class="drawer-header" style="display:flex; justify-content:space-between; margin-bottom:15px">
             <h2 id="drawerTitle">⚙️ 设置</h2>
-            <span style="font-size:28px; cursor:pointer" onclick="closeDrawer()">✕</span>
+            <span style="font-size:24px; cursor:pointer" onclick="closeDrawer()">✕</span>
         </div>
 
-        <!-- 外观设置 - 包含字体导入功能 -->
         <div id="appearanceSection" class="drawer-section">
             <h3>🎨 外观设置</h3>
             
@@ -804,11 +796,9 @@
             <button class="send-btn" style="width:100%; margin-top:15px" onclick="saveAppearanceSettings()">保存外观设置</button>
         </div>
 
-        <!-- 聊天设置 - 包含完整的字卡库和比例功能 -->
         <div id="chatSection" class="drawer-section hidden">
             <h3>💬 聊天设置</h3>
             
-            <!-- 字卡比例设置 -->
             <h4>📊 字卡回复比例 (总和需为100%)</h4>
             <div style="margin:15px 0;">
                 <div class="flex-row">
@@ -837,7 +827,6 @@
                 <div id="totalRatio" class="total-percent">当前总和: 100%</div>
             </div>
             
-            <!-- 字卡库分类标签 -->
             <h4>📚 字卡库</h4>
             <div style="margin:15px 0;">
                 <div class="flex-row" style="justify-content:center;">
@@ -847,7 +836,6 @@
                 </div>
             </div>
             
-            <!-- 表情符号分类 -->
             <div id="emojiCategory" class="card-category">
                 <h4>😊 表情符号库</h4>
                 <div style="margin:10px 0;">
@@ -857,7 +845,6 @@
                 <div id="emojiList" style="max-height:200px; overflow-y:auto; background:var(--bg-secondary); border-radius:15px; padding:10px;"></div>
             </div>
             
-            <!-- 数字分类 -->
             <div id="numberCategory" class="card-category" style="display:none;">
                 <h4>🔢 数字库</h4>
                 <div style="margin:10px 0;">
@@ -867,41 +854,34 @@
                 <div id="numberList" style="max-height:200px; overflow-y:auto; background:var(--bg-secondary); border-radius:15px; padding:10px;"></div>
             </div>
             
-            <!-- 字卡分类 (可创建多个角色字卡库) -->
             <div id="characterCategory" class="card-category" style="display:none;">
                 <h4>📝 角色字卡库</h4>
                 
-                <!-- 角色选择标签 -->
                 <div class="flex-row" style="margin:10px 0; overflow-x:auto;">
                     <span class="category-tab active" onclick="switchCharacterCard('小熊')" id="char小熊">🐻 小熊</span>
                     <span class="category-tab" onclick="switchCharacterCard('小兔')" id="char小兔">🐰 小兔</span>
                     <span class="category-tab" onclick="switchCharacterCard('自定义')" id="char自定义">➕ 新建角色</span>
                 </div>
                 
-                <!-- 当前选中的角色字卡显示 -->
                 <div id="currentCharacterCards">
                     <div style="margin:10px 0;">
                         <input type="text" id="newCharacterCard" placeholder="输入新字卡" style="width:70%; padding:8px; border-radius:15px; border:2px solid var(--button-border); background:var(--bg-tertiary);">
                         <button class="send-btn" onclick="addCharacterCard()">添加</button>
                     </div>
                     
-                    <!-- 批量添加区域 -->
                     <div style="margin:10px 0;">
                         <textarea id="bulkCharacterCards" rows="3" placeholder="批量添加字卡，每行一个" style="width:100%; padding:8px; border-radius:15px; border:2px solid var(--button-border); background:var(--bg-tertiary);"></textarea>
                         <button class="send-btn" style="margin-top:5px;" onclick="bulkAddCharacterCards()">批量添加</button>
                     </div>
                     
-                    <!-- 搜索框 -->
                     <div style="margin:10px 0;">
                         <input type="text" id="searchCharacterCard" placeholder="搜索字卡..." style="width:100%; padding:8px; border-radius:15px; border:2px solid var(--button-border); background:var(--bg-tertiary);" oninput="searchCharacterCards()">
                     </div>
                     
-                    <!-- 字卡列表 -->
                     <div id="characterCardList" style="max-height:200px; overflow-y:auto; background:var(--bg-secondary); border-radius:15px; padding:10px;"></div>
                 </div>
             </div>
             
-            <!-- 基本设置区域 -->
             <h4 style="margin-top:20px;">⚙️ 基本设置</h4>
             <div class="flex-row"><label>引用消息</label><button class="send-btn toggle-btn" id="quoteToggle" onclick="toggleSetting('quote')">关闭</button></div>
             <div class="flex-row"><label>消息音效</label><button class="send-btn toggle-btn" id="soundToggle" onclick="toggleSetting('sound')">关闭</button></div>
@@ -941,10 +921,12 @@
             </div>
             <div id="statusList" style="max-height:150px; overflow-y:auto; background:var(--bg-tertiary); border-radius:15px; padding:10px; margin:5px 0;"></div>
             
+            <div id="sessionList" style="max-height:200px; overflow-y:auto; background:var(--bg-tertiary); border-radius:15px; padding:10px; margin:5px 0;"></div>
+            <div id="groupList" style="max-height:200px; overflow-y:auto; background:var(--bg-tertiary); border-radius:15px; padding:10px; margin:5px 0;"></div>
+            
             <button class="send-btn" style="width:100%; margin-top:15px" onclick="saveChatSettings()">保存聊天设置</button>
         </div>
 
-        <!-- 数据管理 -->
         <div id="dataSection" class="drawer-section hidden">
             <h3>💾 数据管理</h3>
             <button class="send-btn" style="width:100%; margin-bottom:10px" onclick="exportAllData()">📤 导出数据</button>
@@ -954,11 +936,9 @@
             <button class="send-btn" style="width:100%;" onclick="resetToDefault()">恢复默认</button>
         </div>
 
-        <!-- 日常互动 -->
         <div id="dailySection" class="drawer-section hidden">
             <h3>📝 日常互动大全</h3>
             
-            <!-- 消息统计 -->
             <div class="card">
                 <h4>📊 消息统计</h4>
                 <div class="stats-list" id="messageStats"></div>
@@ -966,7 +946,6 @@
                 <div id="topWords"></div>
             </div>
             
-            <!-- 一起听歌 -->
             <div class="card">
                 <h4>🎧 我的歌单</h4>
                 <div style="margin-bottom:15px;">
@@ -980,22 +959,17 @@
                     <div id="selectedFileName" style="font-size: 12px; color: var(--text-primary); margin-bottom: 10px; padding: 5px; background: var(--bg-tertiary); border-radius: 5px;"></div>
                 </div>
                 
-                <!-- 当前播放器 -->
                 <div id="currentMusicPlayer" class="current-playing" style="display:none;">
                     <h5>🎵 正在播放</h5>
                     <audio id="currentAudio" controls style="width:100%;"></audio>
                     <p style="font-size:12px; margin-top:5px;" id="currentMusicName"></p>
                 </div>
                 
-                <!-- 已保存的音乐列表 -->
-                <div id="savedMusicList" style="max-height:300px; overflow-y:auto; background:var(--bg-tertiary); border-radius:10px; padding:10px; margin:10px 0;">
-                    <!-- 已保存的音乐列表会动态显示在这里 -->
-                </div>
+                <div id="savedMusicList" style="max-height:300px; overflow-y:auto; background:var(--bg-tertiary); border-radius:10px; padding:10px; margin:10px 0;"></div>
                 
                 <div class="music-count" id="musicCountDisplay">共 0 首歌曲</div>
             </div>
 
-            <!-- 决策币 -->
             <div class="card">
                 <h4>🪙 决策币</h4>
                 <input type="text" id="decisionQuestion" class="decision-input" placeholder="输入你的问题...">
@@ -1005,14 +979,12 @@
                 </div>
             </div>
 
-            <!-- 每日运势 -->
             <div class="card">
                 <h4>⭐ 每日运势</h4>
                 <p id="dailyFortune" style="font-size:20px;">点击抽取</p>
                 <button class="send-btn" onclick="drawFortune()">抽运势</button>
             </div>
 
-            <!-- 塔罗占卜 -->
             <div class="card">
                 <h4>🔮 塔罗占卜</h4>
                 <button class="send-btn" style="width:100%; margin-bottom:15px;" onclick="drawTarotCard()">抽牌</button>
@@ -1022,7 +994,6 @@
                 </div>
             </div>
 
-            <!-- 月经记录 -->
             <div class="card">
                 <h4>🌸 月经记录</h4>
                 <label>上次日期</label>
@@ -1035,12 +1006,10 @@
                 <div id="periodPrediction" style="margin-top:10px; padding:8px; background:var(--bg-tertiary); border-radius:10px;"></div>
             </div>
 
-            <!-- 备忘录独立板块 -->
             <div class="card">
                 <h4>💌 备忘录 <button class="send-btn" onclick="openMemoSection()">进入</button></h4>
             </div>
 
-            <!-- 今日书单推荐 -->
             <div class="card">
                 <h4>📚 今日书单推荐</h4>
                 <div class="flex-row">
@@ -1054,7 +1023,6 @@
                 <span id="bookResult" style="margin-left:10px;"></span>
             </div>
 
-            <!-- 今日可以做 -->
             <div class="card">
                 <h4>✨ 今日可以做</h4>
                 <div class="flex-row">
@@ -1066,7 +1034,6 @@
                 <span id="todoResult" style="margin-left:10px;"></span>
             </div>
 
-            <!-- 喫茶券设置 -->
             <div class="card">
                 <h4>🎫 喫茶券设置</h4>
                 <div class="flex-row">
@@ -1076,7 +1043,6 @@
                 <div id="couponReplyList" style="max-height:150px; overflow-y:auto; margin:10px 0;"></div>
             </div>
 
-            <!-- 歌曲传讯 -->
             <div class="card">
                 <h4>🎵 歌曲传讯</h4>
                 <div class="flex-row">
@@ -1094,21 +1060,11 @@
     </div>
 
     <script>
-        // ---------- 全局变量 ----------
         let currentSession = 'default';
         let sessions = JSON.parse(localStorage.getItem('sessions')) || [{ id: 'default', name: '今日闲聊', type: 'private' }];
         let groups = JSON.parse(localStorage.getItem('groups')) || [];
-        
-        // 音乐播放相关
         let savedMusicList = JSON.parse(localStorage.getItem('savedMusicList')) || [];
-        let currentPlayingIndex = -1;
-        
-        // 聊天记录
-        let chatMessages = JSON.parse(localStorage.getItem('chatMessages')) || {
-            default: []
-        };
-        
-        // 字卡库分类系统 - 完整版
+        let chatMessages = JSON.parse(localStorage.getItem('chatMessages')) || { default: [] };
         let cardCategories = JSON.parse(localStorage.getItem('cardCategories')) || {
             emoji: ['😊', '😂', '🥰', '😍', '🤔', '😭', '👍', '🎉', '❤️', '😘', '🥺', '😤', '😎', '🤗'],
             number: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '100', '1000'],
@@ -1117,74 +1073,38 @@
                 '小兔': ['嗨', '嗯嗯', '好棒', '❤️', '哈哈', '真的吗', '不错', '收到', '好的', '😊']
             }
         };
-        
-        // 当前选中的角色
         let currentCharacter = '小熊';
-        
-        // 字卡比例
-        let cardRatios = JSON.parse(localStorage.getItem('cardRatios')) || {
-            number: 25,
-            emoji: 25,
-            text: 25,
-            image: 25
-        };
-        
-        // 自定义表情包
+        let cardRatios = JSON.parse(localStorage.getItem('cardRatios')) || { number: 25, emoji: 25, text: 25, image: 25 };
         let customEmojis = JSON.parse(localStorage.getItem('customEmojis')) || [];
-        
-        // 食物、备忘录、经期、纪念日等
-        let foodItems = JSON.parse(localStorage.getItem('foodItems')) || ['火锅','烤肉','拉面','沙拉','披萨','寿司','汉堡'];
         let memos = JSON.parse(localStorage.getItem('memos')) || [];
         let periodData = JSON.parse(localStorage.getItem('periodData')) || { lastDate: '', cycle: 28, duration: 5 };
         let anniversaries = JSON.parse(localStorage.getItem('anniversaries')) || [];
-        let avatarVisible = true;
-        let avatarSize = 40;
         let settings = JSON.parse(localStorage.getItem('settings')) || { quote: false, sound: false, readReceipt: true, typing: false };
-        let bulkMessages = [];
-        let currentImageData = null;
-        let currentEmojiData = null;
-        
-        // 拍一拍回复库
         let patReplies = JSON.parse(localStorage.getItem('patReplies')) || ['拍了拍你', '摸了摸头', '戳了戳你', '捏了捏脸', '给了你一个拥抱'];
-        
-        // 对方状态库
         let otherStatusList = JSON.parse(localStorage.getItem('otherStatusList')) || [
             '休息', '健身', '工作', '度假', '吃饭', '悲伤', '难过', 
             '快乐', '想你', '忙碌', '洗漱', '睡觉', '陪在你身边', 
-            '思考', '吃醋', '担心', '🥺', '忮忌'
+            '思考', '吃醋', '担心', '🥺', '忌妒'
         ];
-        
-        // 收藏的回复
         let favoriteReplies = JSON.parse(localStorage.getItem('favoriteReplies')) || [];
-        
-        // 今日闲聊回复条数设置
-        let chatReplyRange = { min: 1, max: 3 };
-        let bulkReplyRange = { min: 1, max: 3 };
-        
-        // 书籍列表
         let bookList = JSON.parse(localStorage.getItem('bookList')) || ['小王子', '解忧杂货店', '活着', '百年孤独', '追风筝的人'];
-        
-        // 今日可以做列表
         let todoList = JSON.parse(localStorage.getItem('todoList')) || ['看书', '运动', '做饭', '看电影', '散步', '听音乐'];
-        
-        // 喫茶券回复库
         let couponReplies = JSON.parse(localStorage.getItem('couponReplies')) || ['谢谢你的券', '改天一起去吧', '好贴心', '下次我请你', '收到券啦'];
         let couponMessages = JSON.parse(localStorage.getItem('couponMessages')) || [];
-        
-        // 阅读心得列表
         let bookReviews = JSON.parse(localStorage.getItem('bookReviews')) || [];
-        
-        // 恋爱天数起始日期
         let loveStartDate = localStorage.getItem('loveStartDate') || new Date().toISOString().split('T')[0];
-        
-        // 消息统计
         let messageStats = JSON.parse(localStorage.getItem('messageStats')) || { total: 0, me: 0, other: 0, firstDate: new Date().toISOString().split('T')[0], lastContact: new Date().toISOString().split('T')[0], wordCount: {} };
-        
-        // 当前长按的消息
+        let bulkMessages = [];
+        let currentImageData = null;
+        let currentEmojiData = null;
+        let chatReplyRange = { min: 1, max: 3 };
+        let bulkReplyRange = { min: 1, max: 3 };
         let longPressedMessage = null;
         let longPressedElement = null;
+        let avatarVisible = true;
+        let avatarSize = 40;
+        let currentPlayingIndex = -1;
 
-        // 塔罗牌数据
         const tarotCards = [
             { name: '愚者', upright: '新的开始，冒险，纯真，自由奔放', reversed: '鲁莽，愚蠢，不负责任，停滞不前' },
             { name: '魔术师', upright: '创造力，技能，专注，行动力', reversed: '欺骗，浪费才能，优柔寡断' },
@@ -1213,148 +1133,553 @@
         window.onload = function() {
             loadFromStorage();
             renderSessionBar();
-            renderSessionList();
-            renderGroupList();
             renderSavedMusicList();
-            renderFoodList();
-            renderMemos();
-            renderCustomEmojiGrid();
-            renderAnniversaries();
+            renderEmojiList();
+            renderNumberList();
+            renderCharacterCardList();
             renderPatReplyList();
             renderStatusList();
             renderFavoritesList();
             renderBookList();
             renderTodoList();
             renderCouponReplyList();
-            
-            // 渲染字卡库
-            renderEmojiList();
-            renderNumberList();
-            renderCharacterCardList();
-            
-            // 更新比例显示
             updateRatioInputs();
-            
             updateMessageStats();
             updateLoveDays();
-            
-            // 加载当前会话的聊天记录
             loadChatMessages(currentSession);
-            
             document.getElementById('lastPeriodDate').value = periodData.lastDate || '';
             document.getElementById('cycleLength').value = periodData.cycle || 28;
             document.getElementById('periodDuration').value = periodData.duration || 5;
             document.getElementById('loveStartDate').value = loveStartDate;
             updateAllToggleButtons();
-            
-            // 设置对方状态定时随机变化
             setInterval(changeOtherStatus, 30000);
             changeOtherStatus();
         };
 
-        // ---------- 字体导入功能 ----------
-        function applyFontLink(url) {
-            if(url) {
-                let link = document.createElement('link');
-                link.href = url;
-                link.rel = 'stylesheet';
-                document.head.appendChild(link);
+        function loadFromStorage() {
+            sessions = JSON.parse(localStorage.getItem('sessions')) || [{ id: 'default', name: '今日闲聊', type: 'private' }];
+            groups = JSON.parse(localStorage.getItem('groups')) || [];
+            savedMusicList = JSON.parse(localStorage.getItem('savedMusicList')) || [];
+            chatMessages = JSON.parse(localStorage.getItem('chatMessages')) || { default: [] };
+            cardCategories = JSON.parse(localStorage.getItem('cardCategories')) || {
+                emoji: ['😊', '😂', '🥰', '😍', '🤔', '😭', '👍', '🎉', '❤️', '😘', '🥺', '😤', '😎', '🤗'],
+                number: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '100', '1000'],
+                character: {
+                    '小熊': ['你好', '在干嘛', '今天怎么样', '晚安', '想你啦', '吃饭了吗', '开心', '好的', '嗯嗯', '哈哈'],
+                    '小兔': ['嗨', '嗯嗯', '好棒', '❤️', '哈哈', '真的吗', '不错', '收到', '好的', '😊']
+                }
+            };
+            cardRatios = JSON.parse(localStorage.getItem('cardRatios')) || { number: 25, emoji: 25, text: 25, image: 25 };
+            customEmojis = JSON.parse(localStorage.getItem('customEmojis')) || [];
+            memos = JSON.parse(localStorage.getItem('memos')) || [];
+            periodData = JSON.parse(localStorage.getItem('periodData')) || { lastDate: '', cycle: 28, duration: 5 };
+            anniversaries = JSON.parse(localStorage.getItem('anniversaries')) || [];
+            settings = JSON.parse(localStorage.getItem('settings')) || { quote: false, sound: false, readReceipt: true, typing: false };
+            patReplies = JSON.parse(localStorage.getItem('patReplies')) || ['拍了拍你', '摸了摸头', '戳了戳你', '捏了捏脸', '给了你一个拥抱'];
+            otherStatusList = JSON.parse(localStorage.getItem('otherStatusList')) || [
+                '休息', '健身', '工作', '度假', '吃饭', '悲伤', '难过', 
+                '快乐', '想你', '忙碌', '洗漱', '睡觉', '陪在你身边', 
+                '思考', '吃醋', '担心', '🥺', '忌妒'
+            ];
+            favoriteReplies = JSON.parse(localStorage.getItem('favoriteReplies')) || [];
+            bookList = JSON.parse(localStorage.getItem('bookList')) || ['小王子', '解忧杂货店', '活着', '百年孤独', '追风筝的人'];
+            todoList = JSON.parse(localStorage.getItem('todoList')) || ['看书', '运动', '做饭', '看电影', '散步', '听音乐'];
+            couponReplies = JSON.parse(localStorage.getItem('couponReplies')) || ['谢谢你的券', '改天一起去吧', '好贴心', '下次我请你', '收到券啦'];
+            couponMessages = JSON.parse(localStorage.getItem('couponMessages')) || [];
+            bookReviews = JSON.parse(localStorage.getItem('bookReviews')) || [];
+            loveStartDate = localStorage.getItem('loveStartDate') || new Date().toISOString().split('T')[0];
+            messageStats = JSON.parse(localStorage.getItem('messageStats')) || { total: 0, me: 0, other: 0, firstDate: new Date().toISOString().split('T')[0], lastContact: new Date().toISOString().split('T')[0], wordCount: {} };
+        }
+
+        function saveAllSettings() {
+            localStorage.setItem('sessions', JSON.stringify(sessions));
+            localStorage.setItem('groups', JSON.stringify(groups));
+            localStorage.setItem('chatMessages', JSON.stringify(chatMessages));
+            localStorage.setItem('cardCategories', JSON.stringify(cardCategories));
+            localStorage.setItem('cardRatios', JSON.stringify(cardRatios));
+            localStorage.setItem('customEmojis', JSON.stringify(customEmojis));
+            localStorage.setItem('memos', JSON.stringify(memos));
+            localStorage.setItem('periodData', JSON.stringify(periodData));
+            localStorage.setItem('anniversaries', JSON.stringify(anniversaries));
+            localStorage.setItem('settings', JSON.stringify(settings));
+            localStorage.setItem('patReplies', JSON.stringify(patReplies));
+            localStorage.setItem('otherStatusList', JSON.stringify(otherStatusList));
+            localStorage.setItem('favoriteReplies', JSON.stringify(favoriteReplies));
+            localStorage.setItem('bookList', JSON.stringify(bookList));
+            localStorage.setItem('todoList', JSON.stringify(todoList));
+            localStorage.setItem('couponReplies', JSON.stringify(couponReplies));
+            localStorage.setItem('couponMessages', JSON.stringify(couponMessages));
+            localStorage.setItem('bookReviews', JSON.stringify(bookReviews));
+            localStorage.setItem('loveStartDate', loveStartDate);
+            localStorage.setItem('messageStats', JSON.stringify(messageStats));
+            localStorage.setItem('savedMusicList', JSON.stringify(savedMusicList));
+            alert('✅ 全部设置已保存');
+        }
+
+        // 备忘录功能完整实现
+        function openMemoSection() {
+            currentSession = 'memo';
+            let msgArea = document.getElementById('chatMessages');
+            msgArea.innerHTML = '';
+            
+            memos.forEach(memo => {
+                let msgDiv = document.createElement('div');
+                msgDiv.classList.add('message', 'book-review');
+                msgDiv.id = memo.id;
                 
-                // 设置自定义字体变量
-                let fontFamily = url.match(/family=([^&:]+)/);
-                if(fontFamily && fontFamily[1]) {
-                    let family = fontFamily[1].replace(/\+/g, ' ');
-                    document.documentElement.style.setProperty('--custom-font', `'${family}', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif`);
-                    alert(`字体 ${family} 已应用`);
-                } else {
-                    alert('字体链接已添加');
-                }
-            }
-        }
-
-        function applyCustomFontCSS() {
-            let css = document.getElementById('customFontCSS').value;
-            if(css) {
-                let style = document.createElement('style');
-                style.innerText = css;
-                document.head.appendChild(style);
+                let deleteBtn = document.createElement('button');
+                deleteBtn.className = 'send-btn';
+                deleteBtn.style.marginTop = '5px';
+                deleteBtn.style.padding = '2px 8px';
+                deleteBtn.style.fontSize = '12px';
+                deleteBtn.innerText = '删除';
+                deleteBtn.onclick = function() { deleteMemo(memo.id); };
                 
-                // 尝试提取字体名称
-                let fontMatch = css.match(/font-family:\s*['"]([^'"]+)['"]/);
-                if(fontMatch && fontMatch[1]) {
-                    document.documentElement.style.setProperty('--custom-font', `'${fontMatch[1]}', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif`);
+                let contentDiv = document.createElement('div');
+                contentDiv.innerHTML = `${memo.text} [${memo.privacy}]`;
+                
+                msgDiv.appendChild(contentDiv);
+                
+                if(memo.viewedByOther) {
+                    let viewedDiv = document.createElement('div');
+                    viewedDiv.classList.add('read-receipt');
+                    viewedDiv.innerText = '对方已看过';
+                    msgDiv.appendChild(viewedDiv);
                 }
-                alert('自定义字体CSS已应用');
-            }
-        }
-
-        // ---------- 字卡比例功能 ----------
-        function updateCardRatios() {
-            let number = parseInt(document.getElementById('numberRatio').value) || 0;
-            let emoji = parseInt(document.getElementById('emojiRatio').value) || 0;
-            let text = parseInt(document.getElementById('textRatio').value) || 0;
-            let image = parseInt(document.getElementById('imageRatio').value) || 0;
-            
-            let total = number + emoji + text + image;
-            
-            document.getElementById('totalRatio').innerText = `当前总和: ${total}%`;
-            
-            if(total === 100) {
-                cardRatios = { number, emoji, text, image };
-                localStorage.setItem('cardRatios', JSON.stringify(cardRatios));
-                document.getElementById('totalRatio').style.color = 'var(--text-primary)';
-            } else {
-                document.getElementById('totalRatio').style.color = '#ff4444';
-            }
-        }
-
-        function updateRatioInputs() {
-            document.getElementById('numberRatio').value = cardRatios.number;
-            document.getElementById('emojiRatio').value = cardRatios.emoji;
-            document.getElementById('textRatio').value = cardRatios.text;
-            document.getElementById('imageRatio').value = cardRatios.image;
-            updateCardRatios();
-        }
-
-        // ---------- 字卡库功能 ----------
-        function switchCardCategory(category) {
-            // 更新标签样式
-            document.getElementById('catEmoji').classList.remove('active');
-            document.getElementById('catNumber').classList.remove('active');
-            document.getElementById('catCharacter').classList.remove('active');
-            document.getElementById('cat' + category.charAt(0).toUpperCase() + category.slice(1)).classList.add('active');
-            
-            // 显示对应的分类
-            document.getElementById('emojiCategory').style.display = category === 'emoji' ? 'block' : 'none';
-            document.getElementById('numberCategory').style.display = category === 'number' ? 'block' : 'none';
-            document.getElementById('characterCategory').style.display = category === 'character' ? 'block' : 'none';
-        }
-
-        function switchCharacterCard(character) {
-            if(character === '自定义') {
-                let newCharacter = prompt('请输入新角色名称：');
-                if(newCharacter && !cardCategories.character[newCharacter]) {
-                    cardCategories.character[newCharacter] = [];
-                    currentCharacter = newCharacter;
-                    // 添加新的标签
-                    let tabHtml = `<span class="category-tab" onclick="switchCharacterCard('${newCharacter}')" id="char${newCharacter}">👤 ${newCharacter}</span>`;
-                    document.querySelector('#characterCategory .flex-row').insertAdjacentHTML('beforeend', tabHtml);
-                } else if(newCharacter) {
-                    alert('该角色已存在');
-                    return;
-                } else {
-                    return;
+                
+                msgDiv.appendChild(deleteBtn);
+                msgArea.appendChild(msgDiv);
+                
+                if(memo.replies && memo.replies.length > 0) {
+                    memo.replies.forEach(reply => {
+                        let replyDiv = document.createElement('div');
+                        replyDiv.classList.add('message', 'memo-reply');
+                        replyDiv.innerText = reply.text;
+                        msgArea.appendChild(replyDiv);
+                    });
                 }
-            }
-            
-            // 更新所有角色标签的active状态
-            document.querySelectorAll('#characterCategory .category-tab').forEach(tab => {
-                tab.classList.remove('active');
             });
-            document.getElementById('char' + character).classList.add('active');
             
-            currentCharacter = character;
-            renderCharacterCardList();
+            let inputDiv = document.createElement('div');
+            inputDiv.style.display = 'flex';
+            inputDiv.style.gap = '10px';
+            inputDiv.style.marginTop = '10px';
+            inputDiv.style.flexDirection = 'column';
+            inputDiv.innerHTML = `
+                <textarea id="memoContent" rows="2" placeholder="记录心情..." style="width:100%; padding:8px; border-radius:12px; border:2px solid var(--border-color); background:var(--bg-secondary); color:var(--text-primary);"></textarea>
+                <div style="display:flex; gap:10px; align-items:center;">
+                    <label style="display:flex; align-items:center; gap:5px;"><input type="radio" name="memoPrivacy" value="public" checked> 公开</label>
+                    <label style="display:flex; align-items:center; gap:5px;"><input type="radio" name="memoPrivacy" value="private"> 私密</label>
+                    <button class="send-btn" style="flex:1;" onclick="postMemoFromSection()">发布</button>
+                </div>
+            `;
+            msgArea.appendChild(inputDiv);
+        }
+
+        function postMemoFromSection() {
+            let text = document.getElementById('memoContent').value.trim();
+            if(!text) return;
+            
+            let privacy = document.querySelector('input[name="memoPrivacy"]:checked').value;
+            let memo = { 
+                text: text, 
+                privacy: privacy, 
+                viewedByOther: false, 
+                timestamp: Date.now(), 
+                id: 'memo_' + Date.now(),
+                replies: [] 
+            };
+            
+            memos.unshift(memo);
+            localStorage.setItem('memos', JSON.stringify(memos));
+            openMemoSection();
+            
+            if(privacy === 'public') {
+                setTimeout(() => {
+                    memo.viewedByOther = true;
+                    
+                    let allCards = getAllCards();
+                    let cards = [];
+                    for(let i=0; i<5; i++) {
+                        cards.push(allCards[Math.floor(Math.random() * allCards.length)]);
+                    }
+                    let replyText = '📝 ' + cards.join(' ');
+                    
+                    if(!memo.replies) memo.replies = [];
+                    memo.replies.push({ text: replyText, timestamp: Date.now() });
+                    
+                    localStorage.setItem('memos', JSON.stringify(memos));
+                    openMemoSection();
+                }, 5000);
+            }
+        }
+
+        function deleteMemo(id) {
+            memos = memos.filter(m => m.id !== id);
+            localStorage.setItem('memos', JSON.stringify(memos));
+            openMemoSection();
+        }
+
+        function getAllCards() {
+            let cards = [];
+            for(let i=0; i<cardRatios.number; i++) cards.push(...cardCategories.number);
+            for(let i=0; i<cardRatios.emoji; i++) cards.push(...cardCategories.emoji);
+            for(let i=0; i<cardRatios.text; i++) {
+                Object.values(cardCategories.character).forEach(arr => cards.push(...arr));
+            }
+            for(let i=0; i<cardRatios.image; i++) cards.push(...customEmojis);
+            return cards.length ? cards : ['❤️', '😊', '👍'];
+        }
+
+        function handleMusicUploadWithSave(event) {
+            let file = event.target.files[0];
+            if(!file) return;
+            
+            let fileNameDisplay = document.getElementById('selectedFileName');
+            fileNameDisplay.innerHTML = `📁 正在处理: ${file.name}...`;
+            
+            if(!file.type.includes('audio/mpeg') && !file.name.endsWith('.mp3')) {
+                alert('请选择MP3格式的音乐文件');
+                fileNameDisplay.innerHTML = '';
+                return;
+            }
+            
+            if(file.size > 20 * 1024 * 1024) {
+                alert('文件过大，请选择小于20MB的MP3文件');
+                fileNameDisplay.innerHTML = '';
+                return;
+            }
+            
+            let reader = new FileReader();
+            reader.onload = function(e) {
+                let musicData = {
+                    id: Date.now(),
+                    name: file.name,
+                    data: e.target.result,
+                    date: new Date().toLocaleString(),
+                    size: (file.size / 1024 / 1024).toFixed(2) + 'MB'
+                };
+                
+                savedMusicList.push(musicData);
+                localStorage.setItem('savedMusicList', JSON.stringify(savedMusicList));
+                renderSavedMusicList();
+                event.target.value = '';
+                fileNameDisplay.innerHTML = `✅ 上传成功: ${file.name}`;
+                setTimeout(() => fileNameDisplay.innerHTML = '', 3000);
+            };
+            
+            reader.onerror = function() {
+                fileNameDisplay.innerHTML = '❌ 上传失败';
+            };
+            
+            reader.readAsDataURL(file);
+        }
+
+        function renderSavedMusicList() {
+            let container = document.getElementById('savedMusicList');
+            if(!container) return;
+            
+            let countDisplay = document.getElementById('musicCountDisplay');
+            if(countDisplay) countDisplay.innerText = `共 ${savedMusicList.length} 首歌曲`;
+            
+            if(savedMusicList.length === 0) {
+                container.innerHTML = '<p style="color:var(--text-secondary); text-align:center; padding:8px;">暂无保存的音乐，请点击上方按钮上传MP3文件</p>';
+                return;
+            }
+            
+            container.innerHTML = '';
+            savedMusicList.forEach((music, index) => {
+                let div = document.createElement('div');
+                div.className = 'music-item';
+                
+                let infoSpan = document.createElement('span');
+                infoSpan.className = 'music-info';
+                infoSpan.title = `${music.name} (${music.size})`;
+                infoSpan.innerText = `${index+1}. ${music.name}`;
+                
+                let playBtn = document.createElement('button');
+                playBtn.className = 'send-btn';
+                playBtn.style.padding = '4px 8px';
+                playBtn.innerHTML = '▶️';
+                playBtn.onclick = function() { playSavedMusic(index); };
+                
+                let deleteBtn = document.createElement('button');
+                deleteBtn.className = 'send-btn';
+                deleteBtn.style.padding = '4px 8px';
+                deleteBtn.innerHTML = '✕';
+                deleteBtn.onclick = function() { deleteSavedMusic(index); };
+                
+                div.appendChild(infoSpan);
+                div.appendChild(playBtn);
+                div.appendChild(deleteBtn);
+                container.appendChild(div);
+            });
+        }
+
+        function playSavedMusic(index) {
+            let music = savedMusicList[index];
+            if(!music) return;
+            
+            currentPlayingIndex = index;
+            
+            let playerContainer = document.getElementById('currentMusicPlayer');
+            let audio = document.getElementById('currentAudio');
+            let musicName = document.getElementById('currentMusicName');
+            
+            playerContainer.style.display = 'block';
+            audio.src = music.data;
+            musicName.innerText = `正在播放：${music.name}`;
+            
+            setTimeout(() => {
+                audio.play().catch(e => console.log('自动播放失败'));
+            }, 300);
+        }
+
+        function deleteSavedMusic(index) {
+            if(confirm(`确定要删除《${savedMusicList[index].name}》吗？`)) {
+                if(currentPlayingIndex === index) {
+                    let playerContainer = document.getElementById('currentMusicPlayer');
+                    let audio = document.getElementById('currentAudio');
+                    audio.pause();
+                    audio.src = '';
+                    playerContainer.style.display = 'none';
+                    currentPlayingIndex = -1;
+                }
+                
+                savedMusicList.splice(index, 1);
+                localStorage.setItem('savedMusicList', JSON.stringify(savedMusicList));
+                renderSavedMusicList();
+            }
+        }
+
+        function renderSessionBar() {
+            let bar = document.getElementById('sessionBar');
+            if(!bar) return;
+            bar.innerHTML = '';
+            
+            sessions.forEach(session => {
+                let tab = document.createElement('div');
+                tab.className = 'session-tab' + (session.id === currentSession ? ' active' : '');
+                tab.dataset.session = session.id;
+                tab.onclick = () => switchSession(session.id);
+                tab.innerHTML = '💬 ' + session.name;
+                bar.appendChild(tab);
+            });
+            
+            let readingTab = document.createElement('div');
+            readingTab.className = 'session-tab' + (currentSession === 'reading' ? ' active' : '');
+            readingTab.onclick = () => switchSession('reading');
+            readingTab.innerHTML = '📖 阅读心得';
+            bar.appendChild(readingTab);
+            
+            let couponTab = document.createElement('div');
+            couponTab.className = 'session-tab' + (currentSession === 'coupon' ? ' active' : '');
+            couponTab.onclick = () => switchSession('coupon');
+            couponTab.innerHTML = '🎫 喫茶券';
+            bar.appendChild(couponTab);
+        }
+
+        function switchSession(sessionId) {
+            currentSession = sessionId;
+            renderSessionBar();
+            loadChatMessages(sessionId);
+        }
+
+        function loadChatMessages(sessionId) {
+            let area = document.getElementById('chatMessages');
+            if(!area) return;
+            area.innerHTML = '';
+            
+            if(sessionId === 'reading') {
+                renderReadingSession();
+                return;
+            } else if(sessionId === 'coupon') {
+                renderCouponSession();
+                return;
+            } else if(sessionId === 'memo') {
+                openMemoSection();
+                return;
+            }
+            
+            let messages = chatMessages[sessionId] || [];
+            messages.forEach(msg => {
+                if(msg.type === 'text') {
+                    addMessage(msg.sender, msg.text, msg.isMe, false);
+                } else if(msg.type === 'image') {
+                    addImageMessage(msg.sender, msg.src, msg.isMe, false);
+                } else if(msg.type === 'pat') {
+                    addPatMessage(msg.sender, msg.text, msg.isMe, false);
+                }
+            });
+        }
+
+        function addMessage(sender, text, isMe, shouldSave = true) {
+            let area = document.getElementById('chatMessages');
+            if(!area) return;
+            
+            let msgDiv = document.createElement('div');
+            msgDiv.classList.add('message');
+            if(isMe) msgDiv.classList.add('me'); else msgDiv.classList.add('other');
+            msgDiv.innerText = text;
+            area.appendChild(msgDiv);
+            area.scrollTop = area.scrollHeight;
+            
+            if(shouldSave && currentSession && !currentSession.startsWith('reading') && !currentSession.startsWith('coupon') && !currentSession.startsWith('memo')) {
+                if(!chatMessages[currentSession]) {
+                    chatMessages[currentSession] = [];
+                }
+                chatMessages[currentSession].push({
+                    type: 'text',
+                    sender: sender,
+                    text: text,
+                    isMe: isMe,
+                    timestamp: Date.now()
+                });
+                saveChatMessages();
+            }
+            
+            if(!isMe) {
+                setupMessageLongPress(msgDiv, text);
+            }
+        }
+
+        function addImageMessage(sender, imgSrc, isMe, shouldSave = true) {
+            let area = document.getElementById('chatMessages');
+            if(!area) return;
+            
+            let msgDiv = document.createElement('div');
+            msgDiv.classList.add('message', 'image-message');
+            if(isMe) msgDiv.classList.add('me'); else msgDiv.classList.add('other');
+            msgDiv.innerHTML = `<img src="${imgSrc}" alt="图片" style="max-width:100%; border-radius:12px;">`;
+            area.appendChild(msgDiv);
+            area.scrollTop = area.scrollHeight;
+            
+            if(shouldSave && currentSession && !currentSession.startsWith('reading') && !currentSession.startsWith('coupon') && !currentSession.startsWith('memo')) {
+                if(!chatMessages[currentSession]) {
+                    chatMessages[currentSession] = [];
+                }
+                chatMessages[currentSession].push({
+                    type: 'image',
+                    sender: sender,
+                    src: imgSrc,
+                    isMe: isMe,
+                    timestamp: Date.now()
+                });
+                saveChatMessages();
+            }
+        }
+
+        function addPatMessage(sender, text, isMe, shouldSave = true) {
+            let area = document.getElementById('chatMessages');
+            if(!area) return;
+            
+            let msgDiv = document.createElement('div');
+            msgDiv.classList.add('message', 'pat');
+            if(isMe) msgDiv.classList.add('me'); else msgDiv.classList.add('other');
+            msgDiv.innerText = text;
+            area.appendChild(msgDiv);
+            area.scrollTop = area.scrollHeight;
+            
+            if(shouldSave && currentSession && !currentSession.startsWith('reading') && !currentSession.startsWith('coupon') && !currentSession.startsWith('memo')) {
+                if(!chatMessages[currentSession]) {
+                    chatMessages[currentSession] = [];
+                }
+                chatMessages[currentSession].push({
+                    type: 'pat',
+                    sender: sender,
+                    text: text,
+                    isMe: isMe,
+                    timestamp: Date.now()
+                });
+                saveChatMessages();
+            }
+        }
+
+        function saveChatMessages() {
+            localStorage.setItem('chatMessages', JSON.stringify(chatMessages));
+        }
+
+        function changeOtherStatus() {
+            let statusEl = document.getElementById('otherStatus');
+            if(statusEl && otherStatusList.length) {
+                const randomIndex = Math.floor(Math.random() * otherStatusList.length);
+                statusEl.innerText = otherStatusList[randomIndex];
+            }
+        }
+
+        function sendMessage() {
+            let input = document.getElementById('chatInput');
+            if(!input) return;
+            
+            let text = input.value.trim();
+            if(text) {
+                addMessage('me', text, true);
+                input.value = '';
+                
+                messageStats.me++;
+                messageStats.total++;
+                localStorage.setItem('messageStats', JSON.stringify(messageStats));
+                updateMessageStats();
+                
+                let words = text.split(/\s+/);
+                words.forEach(word => {
+                    if(word.length > 1) {
+                        if(!messageStats.wordCount) messageStats.wordCount = {};
+                        messageStats.wordCount[word] = (messageStats.wordCount[word] || 0) + 1;
+                    }
+                });
+                
+                simulateOtherReply();
+            }
+        }
+
+        function simulateOtherReply() {
+            if(settings.typing) {
+                let typingDiv = document.createElement('div');
+                typingDiv.classList.add('typing-indicator');
+                typingDiv.innerText = '对方正在输入...';
+                document.getElementById('chatMessages').appendChild(typingDiv);
+            }
+            
+            let minDelay = parseFloat(document.getElementById('minReplyDelay')?.value || 0.5) * 1000;
+            let maxDelay = parseFloat(document.getElementById('maxReplyDelay')?.value || 2.0) * 1000;
+            let delay = Math.random() * (maxDelay - minDelay) + minDelay;
+            
+            setTimeout(() => {
+                if(settings.typing) {
+                    document.querySelector('.typing-indicator')?.remove();
+                }
+                
+                let allCards = getAllCards();
+                let reply = '';
+                for(let j=0; j<3; j++) {
+                    reply += allCards[Math.floor(Math.random() * allCards.length)] + ' ';
+                }
+                addMessage('other', reply, false);
+                
+                messageStats.other = (messageStats.other || 0) + 1;
+                messageStats.total = (messageStats.total || 0) + 1;
+                messageStats.lastContact = new Date().toISOString().split('T')[0];
+                localStorage.setItem('messageStats', JSON.stringify(messageStats));
+                updateMessageStats();
+            }, delay);
+        }
+
+        function updateMessageStats() {
+            let totalEl = document.getElementById('totalMsgCount');
+            let myEl = document.getElementById('myMsgCount');
+            if(totalEl) totalEl.innerText = messageStats.total || 0;
+            if(myEl) myEl.innerText = messageStats.me || 0;
+        }
+
+        function updateLoveDays() {
+            let start = new Date(loveStartDate);
+            let today = new Date();
+            let diffTime = Math.abs(today - start);
+            let diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            let otherName = document.getElementById('otherName')?.innerText || '小熊';
+            let loveDisplay = document.getElementById('loveDaysDisplay');
+            if(loveDisplay) loveDisplay.innerText = `和${otherName}恋爱的第 ${diffDays} 天`;
         }
 
         function renderEmojiList() {
@@ -1364,10 +1689,7 @@
             cardCategories.emoji.forEach((emoji, index) => {
                 let div = document.createElement('div');
                 div.className = 'card-item';
-                div.innerHTML = `
-                    <span style="font-size:20px;">${emoji}</span>
-                    <button class="send-btn" style="padding:2px 8px;" onclick="deleteEmoji(${index})">删除</button>
-                `;
+                div.innerHTML = `<span style="font-size:18px;">${emoji}</span><button class="send-btn" style="padding:2px 6px;" onclick="deleteEmoji(${index})">删除</button>`;
                 container.appendChild(div);
             });
         }
@@ -1379,10 +1701,7 @@
             cardCategories.number.forEach((num, index) => {
                 let div = document.createElement('div');
                 div.className = 'card-item';
-                div.innerHTML = `
-                    <span>${num}</span>
-                    <button class="send-btn" style="padding:2px 8px;" onclick="deleteNumber(${index})">删除</button>
-                `;
+                div.innerHTML = `<span>${num}</span><button class="send-btn" style="padding:2px 6px;" onclick="deleteNumber(${index})">删除</button>`;
                 container.appendChild(div);
             });
         }
@@ -1398,16 +1717,85 @@
             filteredCards.forEach((card, index) => {
                 let div = document.createElement('div');
                 div.className = 'card-item';
-                div.innerHTML = `
-                    <span>${card}</span>
-                    <button class="send-btn" style="padding:2px 8px;" onclick="deleteCharacterCard(${index})">删除</button>
-                `;
+                div.innerHTML = `<span>${card}</span><button class="send-btn" style="padding:2px 6px;" onclick="deleteCharacterCard(${index})">删除</button>`;
                 container.appendChild(div);
             });
             
             if(filteredCards.length === 0) {
-                container.innerHTML = '<p style="color:var(--text-secondary); text-align:center; padding:10px;">暂无字卡</p>';
+                container.innerHTML = '<p style="color:var(--text-secondary); text-align:center; padding:8px;">暂无字卡</p>';
             }
+        }
+
+        function renderPatReplyList() {
+            let list = document.getElementById('patReplyList');
+            if(!list) return;
+            list.innerHTML = '';
+            patReplies.forEach((reply, idx) => {
+                let div = document.createElement('div');
+                div.className = 'flex-row';
+                div.innerHTML = `<span>${reply}</span><button class="send-btn" onclick="removePatReply(${idx})">删除</button>`;
+                list.appendChild(div);
+            });
+        }
+
+        function renderStatusList() {
+            let list = document.getElementById('statusList');
+            if(!list) return;
+            list.innerHTML = '';
+            otherStatusList.forEach((status, idx) => {
+                let div = document.createElement('div');
+                div.className = 'flex-row';
+                div.innerHTML = `<span>${status}</span><button class="send-btn" onclick="removeStatus(${idx})">删除</button>`;
+                list.appendChild(div);
+            });
+        }
+
+        function renderFavoritesList() {
+            let list = document.getElementById('favoritesList');
+            if(!list) return;
+            list.innerHTML = '';
+            favoriteReplies.forEach((reply, idx) => {
+                let div = document.createElement('div');
+                div.className = 'flex-row';
+                div.innerHTML = `<span>${reply}</span><button class="send-btn" onclick="removeFavorite(${idx})">删除</button>`;
+                list.appendChild(div);
+            });
+        }
+
+        function renderBookList() {
+            let list = document.getElementById('bookList');
+            if(!list) return;
+            list.innerHTML = '';
+            bookList.forEach((book, idx) => {
+                let div = document.createElement('div');
+                div.className = 'book-item';
+                div.innerHTML = `<span>${book}</span><button class="send-btn" onclick="removeBook(${idx})">删除</button>`;
+                list.appendChild(div);
+            });
+        }
+
+        function renderTodoList() {
+            let list = document.getElementById('todoList');
+            if(!list) return;
+            list.innerHTML = '';
+            todoList.forEach((todo, idx) => {
+                let div = document.createElement('div');
+                div.className = 'todo-item';
+                div.innerHTML = `<span>${todo}</span><button class="send-btn" onclick="removeTodo(${idx})">删除</button>`;
+                list.appendChild(div);
+            });
+        }
+
+        function renderCouponReplyList() {
+            let list = document.getElementById('couponReplyList');
+            if(!list) return;
+            list.innerHTML = '';
+            couponReplies.forEach((reply, idx) => {
+                let div = document.createElement('div');
+                div.className = 'flex-row';
+                div.innerHTML = `<span>${reply}</span><button class="send-btn" onclick="removeCouponReply(${idx})">删除</button>`;
+                list.appendChild(div);
+            });
         }
 
         function addEmoji() {
@@ -1458,21 +1846,6 @@
             }
         }
 
-        function bulkAddCharacterCards() {
-            let textarea = document.getElementById('bulkCharacterCards');
-            let text = textarea.value.trim();
-            if(text) {
-                let cards = text.split('\n').filter(card => card.trim() !== '');
-                if(!cardCategories.character[currentCharacter]) {
-                    cardCategories.character[currentCharacter] = [];
-                }
-                cardCategories.character[currentCharacter].push(...cards);
-                localStorage.setItem('cardCategories', JSON.stringify(cardCategories));
-                renderCharacterCardList();
-                textarea.value = '';
-            }
-        }
-
         function deleteCharacterCard(index) {
             cardCategories.character[currentCharacter].splice(index, 1);
             localStorage.setItem('cardCategories', JSON.stringify(cardCategories));
@@ -1481,295 +1854,223 @@
 
         function searchCharacterCards() {
             let searchInput = document.getElementById('searchCharacterCard');
-            let filter = searchInput.value;
+            let filter = searchInput ? searchInput.value : '';
             renderCharacterCardList(filter);
         }
 
-        // ---------- 音乐播放功能 ----------
-        function handleMusicUploadWithSave(event) {
-            let file = event.target.files[0];
-            if(!file) {
-                console.log('没有选择文件');
-                return;
-            }
+        function switchCardCategory(category) {
+            let catEmoji = document.getElementById('catEmoji');
+            let catNumber = document.getElementById('catNumber');
+            let catCharacter = document.getElementById('catCharacter');
+            if(catEmoji) catEmoji.classList.remove('active');
+            if(catNumber) catNumber.classList.remove('active');
+            if(catCharacter) catCharacter.classList.remove('active');
             
-            console.log('选择了文件:', file.name);
+            let activeCat = document.getElementById('cat' + category.charAt(0).toUpperCase() + category.slice(1));
+            if(activeCat) activeCat.classList.add('active');
             
-            // 显示选中的文件名
-            let fileNameDisplay = document.getElementById('selectedFileName');
-            fileNameDisplay.innerHTML = `📁 已选择: ${file.name} (正在处理...)`;
-            
-            // 检查文件类型
-            if(!file.type.includes('audio/mpeg') && !file.name.endsWith('.mp3')) {
-                alert('请选择MP3格式的音乐文件');
-                fileNameDisplay.innerHTML = '';
-                return;
-            }
-            
-            // 检查文件大小 (限制20MB)
-            if(file.size > 20 * 1024 * 1024) {
-                alert('文件过大，请选择小于20MB的MP3文件');
-                fileNameDisplay.innerHTML = '';
-                return;
-            }
-            
-            // 使用FileReader读取文件为DataURL
-            let reader = new FileReader();
-            reader.onload = function(e) {
-                console.log('文件读取完成');
-                
-                let musicData = {
-                    id: Date.now(),
-                    name: file.name,
-                    data: e.target.result,
-                    date: new Date().toLocaleString(),
-                    size: (file.size / 1024 / 1024).toFixed(2) + 'MB'
-                };
-                
-                // 添加到列表
-                savedMusicList.push(musicData);
-                
-                // 保存到localStorage
-                localStorage.setItem('savedMusicList', JSON.stringify(savedMusicList));
-                
-                // 重新渲染列表
-                renderSavedMusicList();
-                
-                // 清空input
-                event.target.value = '';
-                
-                // 显示成功消息
-                fileNameDisplay.innerHTML = `✅ 上传成功: ${file.name}`;
-                setTimeout(() => {
-                    fileNameDisplay.innerHTML = '';
-                }, 3000);
-                
-                alert(`✅ 《${file.name}》已保存到歌单，现在共有 ${savedMusicList.length} 首歌曲`);
-            };
-            
-            reader.onerror = function() {
-                console.error('文件读取失败');
-                fileNameDisplay.innerHTML = '❌ 上传失败，请重试';
-            };
-            
-            reader.readAsDataURL(file);
+            let emojiCat = document.getElementById('emojiCategory');
+            let numberCat = document.getElementById('numberCategory');
+            let charCat = document.getElementById('characterCategory');
+            if(emojiCat) emojiCat.style.display = category === 'emoji' ? 'block' : 'none';
+            if(numberCat) numberCat.style.display = category === 'number' ? 'block' : 'none';
+            if(charCat) charCat.style.display = category === 'character' ? 'block' : 'none';
         }
 
-        function renderSavedMusicList() {
-            console.log('渲染音乐列表，当前歌曲数:', savedMusicList.length);
-            
-            let container = document.getElementById('savedMusicList');
-            if(!container) return;
-            
-            // 更新歌曲数量显示
-            let countDisplay = document.getElementById('musicCountDisplay');
-            if(countDisplay) {
-                countDisplay.innerText = `共 ${savedMusicList.length} 首歌曲`;
+        function switchCharacterCard(character) {
+            if(character === '自定义') {
+                let newCharacter = prompt('请输入新角色名称：');
+                if(newCharacter && !cardCategories.character[newCharacter]) {
+                    cardCategories.character[newCharacter] = [];
+                    currentCharacter = newCharacter;
+                    localStorage.setItem('cardCategories', JSON.stringify(cardCategories));
+                    
+                    let tabContainer = document.querySelector('#characterCategory .flex-row');
+                    if(tabContainer) {
+                        let tabHtml = `<span class="category-tab" onclick="switchCharacterCard('${newCharacter}')" id="char${newCharacter}">👤 ${newCharacter}</span>`;
+                        tabContainer.insertAdjacentHTML('beforeend', tabHtml);
+                    }
+                } else if(newCharacter) {
+                    alert('该角色已存在');
+                    return;
+                } else {
+                    return;
+                }
             }
             
-            if(savedMusicList.length === 0) {
-                container.innerHTML = '<p style="color:var(--text-secondary); text-align:center; padding:10px;">暂无保存的音乐，请点击上方按钮上传MP3文件</p>';
-                return;
-            }
-            
-            container.innerHTML = '';
-            savedMusicList.forEach((music, index) => {
-                let div = document.createElement('div');
-                div.className = 'music-item';
-                
-                // 创建歌曲信息
-                let infoSpan = document.createElement('span');
-                infoSpan.className = 'music-info';
-                infoSpan.title = `${music.name} (${music.size})`;
-                infoSpan.innerText = `${index+1}. ${music.name}`;
-                
-                // 创建播放按钮
-                let playBtn = document.createElement('button');
-                playBtn.className = 'send-btn';
-                playBtn.style.padding = '6px 12px';
-                playBtn.innerHTML = '▶️';
-                playBtn.onclick = function() { 
-                    console.log('播放歌曲:', index);
-                    playSavedMusic(index); 
-                };
-                
-                // 创建删除按钮
-                let deleteBtn = document.createElement('button');
-                deleteBtn.className = 'send-btn';
-                deleteBtn.style.padding = '6px 12px';
-                deleteBtn.innerHTML = '✕';
-                deleteBtn.onclick = function() { 
-                    console.log('删除歌曲:', index);
-                    deleteSavedMusic(index); 
-                };
-                
-                div.appendChild(infoSpan);
-                div.appendChild(playBtn);
-                div.appendChild(deleteBtn);
-                
-                container.appendChild(div);
+            document.querySelectorAll('#characterCategory .category-tab').forEach(tab => {
+                tab.classList.remove('active');
             });
+            let charTab = document.getElementById('char' + character);
+            if(charTab) charTab.classList.add('active');
+            
+            currentCharacter = character;
+            renderCharacterCardList();
         }
 
-        function playSavedMusic(index) {
-            console.log('尝试播放歌曲:', index);
-            
-            let music = savedMusicList[index];
-            if(!music) {
-                console.error('歌曲不存在');
-                return;
-            }
-            
-            currentPlayingIndex = index;
-            
-            let playerContainer = document.getElementById('currentMusicPlayer');
-            let audio = document.getElementById('currentAudio');
-            let musicName = document.getElementById('currentMusicName');
-            
-            playerContainer.style.display = 'block';
-            audio.src = music.data;
-            musicName.innerText = `正在播放：${music.name}`;
-            
-            // 尝试自动播放
-            setTimeout(() => {
-                audio.play().then(() => {
-                    console.log('自动播放成功');
-                }).catch(e => {
-                    console.log('自动播放失败，请手动点击播放按钮:', e);
-                    musicName.innerText = `请点击播放按钮：${music.name}`;
-                });
-            }, 500);
-        }
-
-        function deleteSavedMusic(index) {
-            console.log('尝试删除歌曲:', index);
-            
-            if(confirm(`确定要删除《${savedMusicList[index].name}》吗？`)) {
-                // 如果正在播放这首歌，隐藏播放器
-                if(currentPlayingIndex === index) {
-                    let playerContainer = document.getElementById('currentMusicPlayer');
-                    let audio = document.getElementById('currentAudio');
-                    audio.pause();
-                    audio.src = '';
-                    playerContainer.style.display = 'none';
-                    currentPlayingIndex = -1;
+        function bulkAddCharacterCards() {
+            let textarea = document.getElementById('bulkCharacterCards');
+            let text = textarea ? textarea.value.trim() : '';
+            if(text) {
+                let cards = text.split('\n').filter(card => card.trim() !== '');
+                if(!cardCategories.character[currentCharacter]) {
+                    cardCategories.character[currentCharacter] = [];
                 }
-                
-                savedMusicList.splice(index, 1);
-                localStorage.setItem('savedMusicList', JSON.stringify(savedMusicList));
-                renderSavedMusicList();
-                
-                console.log('删除成功，剩余歌曲:', savedMusicList.length);
+                cardCategories.character[currentCharacter].push(...cards);
+                localStorage.setItem('cardCategories', JSON.stringify(cardCategories));
+                renderCharacterCardList();
+                if(textarea) textarea.value = '';
             }
         }
 
-        // 保存聊天记录到localStorage
-        function saveChatMessages() {
-            localStorage.setItem('chatMessages', JSON.stringify(chatMessages));
-        }
-
-        // 加载指定会话的聊天记录
-        function loadChatMessages(sessionId) {
-            let area = document.getElementById('chatMessages');
-            area.innerHTML = '';
-            
-            if(sessionId === 'reading') {
-                renderReadingSession();
-                return;
-            } else if(sessionId === 'coupon') {
-                renderCouponSession();
-                return;
-            } else if(sessionId === 'memo') {
-                openMemoSection();
-                return;
-            }
-            
-            let messages = chatMessages[sessionId] || [];
-            messages.forEach(msg => {
-                if(msg.type === 'text') {
-                    addMessage(msg.sender, msg.text, msg.isMe, false);
-                } else if(msg.type === 'image') {
-                    addImageMessage(msg.sender, msg.src, msg.isMe, false);
-                } else if(msg.type === 'pat') {
-                    addPatMessage(msg.sender, msg.text, msg.isMe, false);
-                }
-            });
-        }
-
-        function addMessage(sender, text, isMe, shouldSave = true) {
-            let area = document.getElementById('chatMessages');
-            let msgDiv = document.createElement('div');
-            msgDiv.classList.add('message');
-            if(isMe) msgDiv.classList.add('me'); else msgDiv.classList.add('other');
-            msgDiv.innerText = text;
-            area.appendChild(msgDiv);
-            area.scrollTop = area.scrollHeight;
-            
-            if(shouldSave && currentSession !== 'reading' && currentSession !== 'coupon' && currentSession !== 'memo') {
-                if(!chatMessages[currentSession]) {
-                    chatMessages[currentSession] = [];
-                }
-                chatMessages[currentSession].push({
-                    type: 'text',
-                    sender: sender,
-                    text: text,
-                    isMe: isMe,
-                    timestamp: Date.now()
-                });
-                saveChatMessages();
-            }
-            
-            if(!isMe) {
-                setupMessageLongPress(msgDiv, text);
+        function addPatReply() {
+            let input = document.getElementById('newPatReply');
+            let reply = input ? input.value.trim() : '';
+            if(reply) {
+                patReplies.push(reply);
+                localStorage.setItem('patReplies', JSON.stringify(patReplies));
+                renderPatReplyList();
+                if(input) input.value = '';
             }
         }
 
-        function addImageMessage(sender, imgSrc, isMe, shouldSave = true) {
-            let area = document.getElementById('chatMessages');
-            let msgDiv = document.createElement('div');
-            msgDiv.classList.add('message', 'image-message');
-            if(isMe) msgDiv.classList.add('me'); else msgDiv.classList.add('other');
-            msgDiv.innerHTML = `<img src="${imgSrc}" alt="图片" style="max-width:100%; border-radius:15px;">`;
-            area.appendChild(msgDiv);
-            area.scrollTop = area.scrollHeight;
-            
-            if(shouldSave && currentSession !== 'reading' && currentSession !== 'coupon' && currentSession !== 'memo') {
-                if(!chatMessages[currentSession]) {
-                    chatMessages[currentSession] = [];
-                }
-                chatMessages[currentSession].push({
-                    type: 'image',
-                    sender: sender,
-                    src: imgSrc,
-                    isMe: isMe,
-                    timestamp: Date.now()
-                });
-                saveChatMessages();
+        function removePatReply(idx) {
+            patReplies.splice(idx, 1);
+            localStorage.setItem('patReplies', JSON.stringify(patReplies));
+            renderPatReplyList();
+        }
+
+        function addStatus() {
+            let input = document.getElementById('newStatus');
+            let status = input ? input.value.trim() : '';
+            if(status) {
+                otherStatusList.push(status);
+                localStorage.setItem('otherStatusList', JSON.stringify(otherStatusList));
+                renderStatusList();
+                if(input) input.value = '';
             }
         }
 
-        function addPatMessage(sender, text, isMe, shouldSave = true) {
-            let area = document.getElementById('chatMessages');
-            let msgDiv = document.createElement('div');
-            msgDiv.classList.add('message', 'pat');
-            if(isMe) msgDiv.classList.add('me'); else msgDiv.classList.add('other');
-            msgDiv.innerText = text;
-            area.appendChild(msgDiv);
-            area.scrollTop = area.scrollHeight;
-            
-            if(shouldSave && currentSession !== 'reading' && currentSession !== 'coupon' && currentSession !== 'memo') {
-                if(!chatMessages[currentSession]) {
-                    chatMessages[currentSession] = [];
-                }
-                chatMessages[currentSession].push({
-                    type: 'pat',
-                    sender: sender,
-                    text: text,
-                    isMe: isMe,
-                    timestamp: Date.now()
-                });
-                saveChatMessages();
+        function removeStatus(idx) {
+            otherStatusList.splice(idx, 1);
+            localStorage.setItem('otherStatusList', JSON.stringify(otherStatusList));
+            renderStatusList();
+        }
+
+        function removeFavorite(idx) {
+            favoriteReplies.splice(idx, 1);
+            localStorage.setItem('favoriteReplies', JSON.stringify(favoriteReplies));
+            renderFavoritesList();
+        }
+
+        function addBook() {
+            let input = document.getElementById('bookInput');
+            let book = input ? input.value.trim() : '';
+            if(book) {
+                bookList.push(book);
+                localStorage.setItem('bookList', JSON.stringify(bookList));
+                renderBookList();
+                if(input) input.value = '';
             }
+        }
+
+        function bulkAddBooks() {
+            let text = document.getElementById('bulkBookInput').value.trim();
+            if(text) {
+                let books = text.split('\n').filter(b => b.trim() !== '');
+                bookList.push(...books);
+                localStorage.setItem('bookList', JSON.stringify(bookList));
+                renderBookList();
+                document.getElementById('bulkBookInput').value = '';
+            }
+        }
+
+        function removeBook(idx) {
+            bookList.splice(idx, 1);
+            localStorage.setItem('bookList', JSON.stringify(bookList));
+            renderBookList();
+        }
+
+        function recommendBook() {
+            let result = document.getElementById('bookResult');
+            if(result && bookList.length) {
+                let book = bookList[Math.floor(Math.random() * bookList.length)];
+                result.innerText = '推荐: ' + book;
+            }
+        }
+
+        function addTodo() {
+            let input = document.getElementById('todoInput');
+            let todo = input ? input.value.trim() : '';
+            if(todo) {
+                todoList.push(todo);
+                localStorage.setItem('todoList', JSON.stringify(todoList));
+                renderTodoList();
+                if(input) input.value = '';
+            }
+        }
+
+        function removeTodo(idx) {
+            todoList.splice(idx, 1);
+            localStorage.setItem('todoList', JSON.stringify(todoList));
+            renderTodoList();
+        }
+
+        function pickRandomTodo() {
+            let result = document.getElementById('todoResult');
+            if(result && todoList.length) {
+                let todo = todoList[Math.floor(Math.random() * todoList.length)];
+                result.innerText = '今天可以做: ' + todo;
+            }
+        }
+
+        function addCouponReply() {
+            let input = document.getElementById('couponReplyInput');
+            let reply = input ? input.value.trim() : '';
+            if(reply) {
+                couponReplies.push(reply);
+                localStorage.setItem('couponReplies', JSON.stringify(couponReplies));
+                renderCouponReplyList();
+                if(input) input.value = '';
+            }
+        }
+
+        function removeCouponReply(idx) {
+            couponReplies.splice(idx, 1);
+            localStorage.setItem('couponReplies', JSON.stringify(couponReplies));
+            renderCouponReplyList();
+        }
+
+        function updateCardRatios() {
+            let number = parseInt(document.getElementById('numberRatio')?.value) || 0;
+            let emoji = parseInt(document.getElementById('emojiRatio')?.value) || 0;
+            let text = parseInt(document.getElementById('textRatio')?.value) || 0;
+            let image = parseInt(document.getElementById('imageRatio')?.value) || 0;
+            
+            let total = number + emoji + text + image;
+            
+            let totalEl = document.getElementById('totalRatio');
+            if(totalEl) totalEl.innerText = `当前总和: ${total}%`;
+            
+            if(total === 100) {
+                cardRatios = { number, emoji, text, image };
+                localStorage.setItem('cardRatios', JSON.stringify(cardRatios));
+                if(totalEl) totalEl.style.color = 'var(--text-primary)';
+            } else {
+                if(totalEl) totalEl.style.color = '#ff4444';
+            }
+        }
+
+        function updateRatioInputs() {
+            let numInput = document.getElementById('numberRatio');
+            let emojiInput = document.getElementById('emojiRatio');
+            let textInput = document.getElementById('textRatio');
+            let imageInput = document.getElementById('imageRatio');
+            if(numInput) numInput.value = cardRatios.number;
+            if(emojiInput) emojiInput.value = cardRatios.emoji;
+            if(textInput) textInput.value = cardRatios.text;
+            if(imageInput) imageInput.value = cardRatios.image;
+            updateCardRatios();
         }
 
         function setupMessageLongPress(element, text) {
@@ -1780,7 +2081,8 @@
                     longPressedMessage = text;
                     longPressedElement = element;
                     element.classList.add('long-press');
-                    document.getElementById('quoteModal').style.display = 'block';
+                    let modal = document.getElementById('quoteModal');
+                    if(modal) modal.style.display = 'block';
                 }, 500);
             });
             element.addEventListener('touchend', () => {
@@ -1795,12 +2097,10 @@
 
         function quoteMessage() {
             if(longPressedMessage) {
-                document.getElementById('chatInput').value = '引用: "' + longPressedMessage + '" ';
-                document.getElementById('quoteModal').style.display = 'none';
-                if(longPressedElement) {
-                    longPressedElement.classList.remove('long-press');
-                }
+                let input = document.getElementById('chatInput');
+                if(input) input.value = '引用: "' + longPressedMessage + '" ';
             }
+            closeQuoteModal();
         }
 
         function favoriteMessage() {
@@ -1808,90 +2108,462 @@
                 favoriteReplies.push(longPressedMessage);
                 localStorage.setItem('favoriteReplies', JSON.stringify(favoriteReplies));
                 renderFavoritesList();
-                document.getElementById('quoteModal').style.display = 'none';
-                if(longPressedElement) {
-                    longPressedElement.classList.remove('long-press');
-                }
             }
+            closeQuoteModal();
         }
 
         function closeQuoteModal() {
-            document.getElementById('quoteModal').style.display = 'none';
+            let modal = document.getElementById('quoteModal');
+            if(modal) modal.style.display = 'none';
             if(longPressedElement) {
                 longPressedElement.classList.remove('long-press');
             }
         }
 
-        function changeOtherStatus() {
-            const randomIndex = Math.floor(Math.random() * otherStatusList.length);
-            document.getElementById('otherStatus').innerText = otherStatusList[randomIndex];
-        }
-
-        function addStatus() {
-            let newStatus = document.getElementById('newStatus').value.trim();
-            if(newStatus) {
-                otherStatusList.push(newStatus);
-                localStorage.setItem('otherStatusList', JSON.stringify(otherStatusList));
+        function openDrawer(section) {
+            let drawer = document.getElementById('drawer');
+            let overlay = document.getElementById('overlay');
+            if(drawer) drawer.classList.add('open');
+            if(overlay) overlay.classList.add('show');
+            
+            document.querySelectorAll('.drawer-section').forEach(s => s.classList.add('hidden'));
+            let sectionEl = document.getElementById(section + 'Section');
+            if(sectionEl) sectionEl.classList.remove('hidden');
+            
+            if(section === 'daily') { 
+                renderSavedMusicList();
+                renderBookList();
+                renderTodoList();
+                renderCouponReplyList();
+                updateMessageStats();
+            }
+            if(section === 'chat') { 
+                renderEmojiList();
+                renderNumberList();
+                renderCharacterCardList();
+                renderPatReplyList();
                 renderStatusList();
-                document.getElementById('newStatus').value = '';
+                renderFavoritesList();
+                updateRatioInputs();
             }
         }
 
-        function renderStatusList() {
-            let list = document.getElementById('statusList');
-            if(!list) return;
-            list.innerHTML = '';
-            otherStatusList.forEach((status, idx) => {
-                let div = document.createElement('div');
-                div.className = 'flex-row';
-                div.innerHTML = `<span>${status}</span><button class="send-btn" onclick="removeStatus(${idx})">删除</button>`;
-                list.appendChild(div);
-            });
+        function closeDrawer() {
+            let drawer = document.getElementById('drawer');
+            let overlay = document.getElementById('overlay');
+            if(drawer) drawer.classList.remove('open');
+            if(overlay) overlay.classList.remove('show');
         }
 
-        function removeStatus(idx) {
-            otherStatusList.splice(idx, 1);
-            localStorage.setItem('otherStatusList', JSON.stringify(otherStatusList));
-            renderStatusList();
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+            let themeBtn = document.getElementById('themeToggle');
+            if(themeBtn) themeBtn.innerText = document.body.classList.contains('dark-mode') ? '🌙' : '☀️';
         }
 
-        function renderSessionBar() {
-            let bar = document.getElementById('sessionBar');
-            bar.innerHTML = '';
-            sessions.forEach(session => {
-                let tab = document.createElement('div');
-                tab.className = 'session-tab' + (session.id === currentSession ? ' active' : '');
-                tab.dataset.session = session.id;
-                tab.onclick = () => switchSession(session.id);
-                if(session.type === 'group') {
-                    let group = groups.find(g => g.id === session.id);
-                    let memberCount = group ? group.members.length : 0;
-                    tab.innerHTML = '👥 ' + session.name + ' (' + memberCount + ')';
-                } else {
-                    tab.innerHTML = '💬 ' + session.name;
-                }
-                bar.appendChild(tab);
-            });
-            let readingTab = document.createElement('div');
-            readingTab.className = 'session-tab' + (currentSession === 'reading' ? ' active' : '');
-            readingTab.dataset.session = 'reading';
-            readingTab.onclick = () => switchSession('reading');
-            readingTab.innerHTML = '📖 阅读心得';
-            bar.appendChild(readingTab);
+        function handleKeyPress(e) {
+            if(e.key === 'Enter') sendMessage();
+        }
+
+        function uploadAvatar(event, who) {
+            let file = event.target.files[0];
+            if(file) {
+                let reader = new FileReader();
+                reader.onload = e => {
+                    let img = document.getElementById(who + 'AvatarImg');
+                    if(img) img.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function triggerHeWantsToSay() {
+            let allCards = getAllCards();
+            let reply = '';
+            for(let i=0; i<3; i++) {
+                reply += allCards[Math.floor(Math.random() * allCards.length)] + ' ';
+            }
+            addMessage('other', reply, false);
+        }
+
+        function openImageModal() {
+            let modal = document.getElementById('imageModal');
+            if(modal) modal.classList.add('show');
+            showImageTab('upload');
+        }
+
+        function closeImageModal() {
+            let modal = document.getElementById('imageModal');
+            if(modal) modal.classList.remove('show');
+            currentImageData = null;
+            let preview = document.getElementById('imagePreview');
+            if(preview) preview.innerHTML = '';
+        }
+
+        function showImageTab(tab) {
+            let uploadTab = document.getElementById('imageUploadTab');
+            let urlTab = document.getElementById('imageUrlTab');
+            if(uploadTab) uploadTab.style.display = tab === 'upload' ? 'block' : 'none';
+            if(urlTab) urlTab.style.display = tab === 'url' ? 'block' : 'none';
+        }
+
+        function previewImage(event) {
+            let file = event.target.files[0];
+            if(file) {
+                let reader = new FileReader();
+                reader.onload = function(e) {
+                    let preview = document.getElementById('imagePreview');
+                    if(preview) preview.innerHTML = `<img src="${e.target.result}" style="max-width:100%; max-height:120px; border-radius:12px;">`;
+                    currentImageData = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function sendImage() {
+            let activeTab = document.getElementById('imageUploadTab')?.style.display !== 'none' ? 'upload' : 'url';
+            if(activeTab === 'upload' && currentImageData) {
+                addImageMessage('me', currentImageData, true);
+            } else if(activeTab === 'url') {
+                let url = document.getElementById('imageUrl')?.value.trim();
+                if(url) addImageMessage('me', url, true);
+            }
+            closeImageModal();
+            simulateOtherReply();
+        }
+
+        function openPatModal() {
+            let modal = document.getElementById('patModal');
+            if(modal) modal.classList.add('show');
+        }
+
+        function closePatModal() {
+            let modal = document.getElementById('patModal');
+            if(modal) modal.classList.remove('show');
+            let input = document.getElementById('patInput');
+            if(input) input.value = '';
+        }
+
+        function sendPat() {
+            let text = document.getElementById('patInput')?.value.trim() || '拍了拍你';
+            let otherName = document.getElementById('otherName')?.innerText || '小熊';
+            addPatMessage('me', '✋ 你拍了拍 ' + otherName + '：' + text, true);
+            closePatModal();
             
-            let couponTab = document.createElement('div');
-            couponTab.className = 'session-tab' + (currentSession === 'coupon' ? ' active' : '');
-            couponTab.dataset.session = 'coupon';
-            couponTab.onclick = () => switchSession('coupon');
-            couponTab.innerHTML = '🎫 喫茶券';
-            bar.appendChild(couponTab);
+            setTimeout(() => {
+                let reply = patReplies[Math.floor(Math.random() * patReplies.length)];
+                addPatMessage('other', '✋ ' + otherName + ' ' + reply, false);
+            }, 600);
         }
 
-        function switchSession(sessionId) {
-            currentSession = sessionId;
-            renderSessionBar();
-            loadChatMessages(sessionId);
+        function openBulkModal() {
+            let modal = document.getElementById('bulkModal');
+            if(modal) modal.classList.add('show');
+            bulkMessages = [];
+            renderBulkList();
         }
+
+        function closeBulkModal() {
+            let modal = document.getElementById('bulkModal');
+            if(modal) modal.classList.remove('show');
+        }
+
+        function prepareBulkMessages() {
+            let text = document.getElementById('bulkInput')?.value || '';
+            let lines = text.split('\n').filter(l => l.trim() !== '');
+            bulkMessages = lines.map((msg, idx) => ({ id: 'b'+Date.now()+idx, text: msg }));
+            renderBulkList();
+        }
+
+        function renderBulkList() {
+            let container = document.getElementById('bulkMessageList');
+            if(!container) return;
+            container.innerHTML = '';
+            bulkMessages.forEach((msg, index) => {
+                let div = document.createElement('div');
+                div.className = 'bulk-message-item';
+                div.innerHTML = `<span>${msg.text}</span><button class="send-btn" style="padding:2px 8px;" onclick="removeBulkMessage(${index})">✕</button>`;
+                container.appendChild(div);
+            });
+        }
+
+        function removeBulkMessage(idx) {
+            bulkMessages.splice(idx, 1);
+            renderBulkList();
+        }
+
+        function sendAllBulkMessages() {
+            bulkMessages.forEach(m => addMessage('me', m.text, true));
+            closeBulkModal();
+            simulateOtherReply();
+        }
+
+        function openCustomEmojiModal() {
+            let modal = document.getElementById('customEmojiModal');
+            if(modal) modal.classList.add('show');
+            renderCustomEmojiGrid();
+        }
+
+        function closeCustomEmojiModal() {
+            let modal = document.getElementById('customEmojiModal');
+            if(modal) modal.classList.remove('show');
+        }
+
+        function renderCustomEmojiGrid() {
+            let grid = document.getElementById('customEmojiGrid');
+            if(!grid) return;
+            grid.innerHTML = '';
+            customEmojis.forEach((imgData, idx) => {
+                let div = document.createElement('div');
+                div.className = 'custom-emoji-item';
+                div.innerHTML = `<img src="${imgData}" style="width:50px; height:50px; object-fit:cover; border-radius:8px;" onclick="sendCustomEmoji('${imgData}')"><button style="position:absolute; top:-5px; right:-5px; background:#ff4444; color:white; border:none; border-radius:50%; width:20px; height:20px; cursor:pointer;" onclick="removeCustomEmoji(${idx})">✕</button>`;
+                grid.appendChild(div);
+            });
+        }
+
+        function previewCustomEmoji(event) {
+            let file = event.target.files[0];
+            if(file) {
+                let reader = new FileReader();
+                reader.onload = function(e) {
+                    currentEmojiData = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function addCustomEmoji() {
+            if(currentEmojiData) {
+                customEmojis.push(currentEmojiData);
+                localStorage.setItem('customEmojis', JSON.stringify(customEmojis));
+                renderCustomEmojiGrid();
+                currentEmojiData = null;
+                let fileInput = document.getElementById('customEmojiFile');
+                if(fileInput) fileInput.value = '';
+            }
+        }
+
+        function sendCustomEmoji(imgData) {
+            addImageMessage('me', imgData, true);
+            closeCustomEmojiModal();
+            simulateOtherReply();
+        }
+
+        function removeCustomEmoji(idx) {
+            customEmojis.splice(idx, 1);
+            localStorage.setItem('customEmojis', JSON.stringify(customEmojis));
+            renderCustomEmojiGrid();
+        }
+
+        function drawTarotCard() {
+            const randomIndex = Math.floor(Math.random() * tarotCards.length);
+            const card = tarotCards[randomIndex];
+            const isUpright = Math.random() > 0.5;
+            const position = isUpright ? '正位' : '逆位';
+            const meaning = isUpright ? card.upright : card.reversed;
+            
+            let resultDiv = document.getElementById('tarotResult');
+            let nameEl = document.getElementById('tarotName');
+            let meaningEl = document.getElementById('tarotMeaning');
+            
+            if(resultDiv) resultDiv.style.display = 'block';
+            if(nameEl) nameEl.innerText = card.name + ' (' + position + ')';
+            if(meaningEl) meaningEl.innerText = meaning;
+            
+            addMessage('me', '🔮 抽到了塔罗牌：' + card.name + position + ' - ' + meaning, true);
+        }
+
+        function savePeriod() {
+            let lastDate = document.getElementById('lastPeriodDate')?.value;
+            let cycle = parseInt(document.getElementById('cycleLength')?.value) || 28;
+            let duration = parseInt(document.getElementById('periodDuration')?.value) || 5;
+            
+            periodData = { lastDate: lastDate || '', cycle: cycle, duration: duration };
+            localStorage.setItem('periodData', JSON.stringify(periodData));
+            
+            if(lastDate) {
+                let last = new Date(lastDate);
+                let next = new Date(last);
+                next.setDate(last.getDate() + cycle);
+                let today = new Date();
+                let daysUntil = Math.ceil((next - today) / (1000 * 60 * 60 * 24));
+                
+                let prediction = `下次经期预计在 ${next.toLocaleDateString()}，还有 ${daysUntil} 天`;
+                if(daysUntil <= 7) prediction += ' ⚠️ 即将到来';
+                
+                let predEl = document.getElementById('periodPrediction');
+                if(predEl) predEl.innerText = prediction;
+            }
+            alert('周期已保存');
+        }
+
+        function flipDecisionCoin() {
+            let question = document.getElementById('decisionQuestion')?.value.trim();
+            let result = Math.random() > 0.5 ? 'YES' : 'NO';
+            let resultEl = document.getElementById('decisionResult');
+            if(resultEl) resultEl.innerText = result;
+            if(question) {
+                addMessage('me', '❓ ' + question + ' → ' + result, true);
+            }
+        }
+
+        const fortunes = ['大吉', '中吉', '小吉', '吉', '末吉', '凶', '大凶'];
+        function drawFortune() {
+            let fortuneEl = document.getElementById('dailyFortune');
+            if(fortuneEl) fortuneEl.innerText = fortunes[Math.floor(Math.random() * fortunes.length)];
+        }
+
+        function customSongMessage() {
+            let playlistCount = parseInt(document.getElementById('customPlaylistCount')?.value) || Math.floor(Math.random() * 2000) + 1;
+            let songCount = parseInt(document.getElementById('customSongCount')?.value) || Math.floor(Math.random() * 10000) + 1;
+            
+            if(playlistCount > 2000) playlistCount = 2000;
+            if(songCount > 10000) songCount = 10000;
+            
+            let randomPlaylist = Math.floor(Math.random() * playlistCount) + 1;
+            let randomSong = Math.floor(Math.random() * songCount) + 1;
+            
+            let msgEl = document.getElementById('songMessage');
+            if(msgEl) msgEl.innerText = `第${randomPlaylist}个歌单中的第${randomSong}首歌`;
+        }
+
+        function toggleSetting(name) {
+            settings[name] = !settings[name];
+            updateToggleButton(name);
+            localStorage.setItem('settings', JSON.stringify(settings));
+        }
+
+        function updateToggleButton(name) {
+            let btn = document.getElementById(name + 'Toggle');
+            if(btn) btn.innerText = settings[name] ? '开启' : '关闭';
+        }
+
+        function updateAllToggleButtons() {
+            for(let key in settings) updateToggleButton(key);
+        }
+
+        function updateChatReplyCount(value) {
+            let [min, max] = value.split('-').map(Number);
+            chatReplyRange = { min, max };
+        }
+
+        function updateBulkReplyCount(value) {
+            let [min, max] = value.split('-').map(Number);
+            bulkReplyRange = { min, max };
+        }
+
+        function adjustFontSize(size) {
+            document.documentElement.style.setProperty('--font-size-base', size + 'px');
+            let display = document.getElementById('fontSizeDisplay');
+            if(display) display.innerText = size + 'px';
+        }
+
+        function adjustLoveDaysSize(size) {
+            document.documentElement.style.setProperty('--love-days-size', size + 'px');
+        }
+
+        function changeBgColor(color) {
+            document.body.style.backgroundColor = color;
+        }
+
+        function changeBubbleColor(color) {
+            document.documentElement.style.setProperty('--message-me', color);
+        }
+
+        function changeBubbleShape(radius) {
+            document.documentElement.style.setProperty('--bubble-radius', radius);
+        }
+
+        function toggleAvatarVisibility() {
+            avatarVisible = !avatarVisible;
+            document.querySelectorAll('.avatar-img, .avatar-name').forEach(el => {
+                if(el) el.style.display = avatarVisible ? 'flex' : 'none';
+            });
+            let toggleBtn = document.getElementById('avatarToggleBtn');
+            if(toggleBtn) toggleBtn.innerText = avatarVisible ? '开启' : '关闭';
+        }
+
+        function adjustAvatarSize(val) {
+            avatarSize = val;
+            document.querySelectorAll('.avatar-img').forEach(img => {
+                if(img) {
+                    img.style.width = val + 'px';
+                    img.style.height = val + 'px';
+                }
+            });
+        }
+
+        function uploadBackgroundImage() {
+            let input = document.createElement('input');
+            input.type = 'file';
+            input.accept = 'image/*';
+            input.onchange = e => {
+                let file = e.target.files[0];
+                if(file) {
+                    let reader = new FileReader();
+                    reader.onload = ev => {
+                        let chatMain = document.querySelector('.chat-main');
+                        if(chatMain) {
+                            chatMain.style.backgroundImage = `url(${ev.target.result})`;
+                            chatMain.style.backgroundSize = 'cover';
+                        }
+                    };
+                    reader.readAsDataURL(file);
+                }
+            };
+            input.click();
+        }
+
+        function updateNames() {
+            let meNameInput = document.getElementById('meNameInput');
+            let otherNameInput = document.getElementById('otherNameInput');
+            let meName = document.getElementById('meName');
+            let otherName = document.getElementById('otherName');
+            
+            if(meNameInput && meName) meName.innerText = meNameInput.value;
+            if(otherNameInput && otherName) otherName.innerText = otherNameInput.value;
+            updateLoveDays();
+        }
+
+        function applyFontLink(url) {
+            if(url) {
+                let link = document.createElement('link');
+                link.href = url;
+                link.rel = 'stylesheet';
+                document.head.appendChild(link);
+                
+                let fontFamily = url.match(/family=([^&:]+)/);
+                if(fontFamily && fontFamily[1]) {
+                    let family = fontFamily[1].replace(/\+/g, ' ');
+                    document.documentElement.style.setProperty('--custom-font', `'${family}', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif`);
+                    alert(`字体 ${family} 已应用`);
+                } else {
+                    alert('字体链接已添加');
+                }
+            }
+        }
+
+        function applyCustomFontCSS() {
+            let css = document.getElementById('customFontCSS')?.value;
+            if(css) {
+                let style = document.createElement('style');
+                style.innerText = css;
+                document.head.appendChild(style);
+                
+                let fontMatch = css.match(/font-family:\s*['"]([^'"]+)['"]/);
+                if(fontMatch && fontMatch[1]) {
+                    document.documentElement.style.setProperty('--custom-font', `'${fontMatch[1]}', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif`);
+                }
+                alert('自定义字体CSS已应用');
+            }
+        }
+
+        function saveAppearanceSettings() { alert('外观设置已保存'); }
+        function saveChatSettings() { 
+            updateCardRatios();
+            alert('聊天设置已保存'); 
+        }
+        function saveAllDailySettings() { alert('日常设置已保存'); }
 
         function renderReadingSession() {
             let msgArea = document.getElementById('chatMessages');
@@ -1934,31 +2606,7 @@
             };
             bookReviews.unshift(review);
             localStorage.setItem('bookReviews', JSON.stringify(bookReviews));
-            
             renderReadingSession();
-            document.getElementById('readingInput').value = '';
-            
-            setTimeout(() => {
-                review.viewed = true;
-                localStorage.setItem('bookReviews', JSON.stringify(bookReviews));
-                renderReadingSession();
-                
-                setTimeout(() => {
-                    let allCards = getAllCards();
-                    let cards = [];
-                    for(let i=0; i<10; i++) {
-                        cards.push(allCards[Math.floor(Math.random() * allCards.length)]);
-                    }
-                    let fixedReplies = ['很有趣的感想', '想和你继续聊聊这本书的情节', '你喜欢这本书吗？', '想和你一起看书', '从你的分享中得知这本书似乎很精彩'];
-                    let fixed = fixedReplies[Math.floor(Math.random() * fixedReplies.length)];
-                    let replyText = cards.join(' ') + ' ' + fixed;
-                    
-                    let replyDiv = document.createElement('div');
-                    replyDiv.classList.add('message', 'book-reply');
-                    replyDiv.innerText = replyText;
-                    document.getElementById('chatMessages').appendChild(replyDiv);
-                }, 2000);
-            }, 5000);
         }
 
         function renderCouponSession() {
@@ -2020,846 +2668,17 @@
             
             couponMessages.unshift(coupon);
             localStorage.setItem('couponMessages', JSON.stringify(couponMessages));
-            
-            renderCouponSessionWithoutPaper();
-            
-            setTimeout(() => {
-                coupon.viewed = true;
-                localStorage.setItem('couponMessages', JSON.stringify(couponMessages));
-                
-                setTimeout(() => {
-                    let replyCount = Math.floor(Math.random() * 3) + 1;
-                    for(let i=0; i<replyCount; i++) {
-                        let reply = couponReplies[Math.floor(Math.random() * couponReplies.length)];
-                        coupon.replies.push(reply);
-                    }
-                    localStorage.setItem('couponMessages', JSON.stringify(couponMessages));
-                    renderCouponSessionWithoutPaper();
-                }, 2000);
-            }, 5000);
-        }
-
-        function renderCouponSessionWithoutPaper() {
-            let msgArea = document.getElementById('chatMessages');
-            msgArea.innerHTML = '';
-            
-            if(couponMessages && couponMessages.length > 0) {
-                couponMessages.forEach(coupon => {
-                    let couponDiv = document.createElement('div');
-                    couponDiv.classList.add('message', 'coupon');
-                    couponDiv.innerText = coupon.text;
-                    msgArea.appendChild(couponDiv);
-                    
-                    if(coupon.viewed) {
-                        let viewedDiv = document.createElement('div');
-                        viewedDiv.classList.add('read-receipt');
-                        viewedDiv.innerText = '对方已看过';
-                        msgArea.appendChild(viewedDiv);
-                    }
-                    
-                    if(coupon.replies && coupon.replies.length > 0) {
-                        coupon.replies.forEach(reply => {
-                            let replyDiv = document.createElement('div');
-                            replyDiv.classList.add('message', 'coupon-reply');
-                            replyDiv.innerText = reply;
-                            msgArea.appendChild(replyDiv);
-                        });
-                    }
-                });
-            }
+            renderCouponSession();
         }
 
         function cancelCoupon() {
-            renderCouponSessionWithoutPaper();
+            renderCouponSession();
         }
-
-        function getAllCards() {
-            let cards = [];
-            
-            // 根据比例生成卡片池
-            for(let i=0; i<cardRatios.number; i++) cards.push(...cardCategories.number);
-            for(let i=0; i<cardRatios.emoji; i++) cards.push(...cardCategories.emoji);
-            for(let i=0; i<cardRatios.text; i++) {
-                Object.values(cardCategories.character).forEach(arr => cards.push(...arr));
-            }
-            for(let i=0; i<cardRatios.image; i++) cards.push(...customEmojis);
-            
-            return cards;
-        }
-
-        function createNewSession() {
-            let name = document.getElementById('newSessionName').value.trim();
-            if(name) {
-                let newSession = { id: 'session_' + Date.now(), name: name, type: 'private' };
-                sessions.push(newSession);
-                chatMessages[newSession.id] = [];
-                localStorage.setItem('sessions', JSON.stringify(sessions));
-                saveChatMessages();
-                renderSessionBar();
-                renderSessionList();
-                document.getElementById('newSessionName').value = '';
-            }
-        }
-
-        function renderSessionList() {
-            let list = document.getElementById('sessionList');
-            if(!list) return;
-            list.innerHTML = '';
-            sessions.forEach((session, idx) => {
-                if(session.id !== 'default') {
-                    let div = document.createElement('div');
-                    div.className = 'flex-row';
-                    div.innerHTML = `<span>${session.name}</span><button class="send-btn" onclick="deleteSession('${session.id}')">删除</button>`;
-                    list.appendChild(div);
-                }
-            });
-        }
-
-        function deleteSession(sessionId) {
-            sessions = sessions.filter(s => s.id !== sessionId);
-            delete chatMessages[sessionId];
-            if(currentSession === sessionId) currentSession = 'default';
-            localStorage.setItem('sessions', JSON.stringify(sessions));
-            saveChatMessages();
-            renderSessionBar();
-            renderSessionList();
-            loadChatMessages(currentSession);
-        }
-
-        function createGroupChat() {
-            let groupName = document.getElementById('newGroupName').value.trim();
-            if(groupName) {
-                let newGroup = {
-                    id: 'group_' + Date.now(),
-                    name: groupName,
-                    members: [{ name: '小熊', cards: [] }]
-                };
-                groups.push(newGroup);
-                sessions.push({ id: newGroup.id, name: groupName, type: 'group' });
-                chatMessages[newGroup.id] = [];
-                localStorage.setItem('groups', JSON.stringify(groups));
-                localStorage.setItem('sessions', JSON.stringify(sessions));
-                saveChatMessages();
-                renderSessionBar();
-                renderGroupList();
-                document.getElementById('newGroupName').value = '';
-            }
-        }
-
-        function renderGroupList() {
-            let list = document.getElementById('groupList');
-            if(!list) return;
-            list.innerHTML = '';
-            groups.forEach((group, idx) => {
-                let div = document.createElement('div');
-                div.className = 'group-member';
-                div.innerHTML = `
-                    <div style="flex:1">
-                        <strong>${group.name}</strong>
-                        <div>成员: ${group.members.map(m => m.name).join(', ')}</div>
-                    </div>
-                    <button class="send-btn" onclick="addGroupMember('${group.id}')">➕</button>
-                    <button class="send-btn" onclick="removeGroupMember('${group.id}')">➖</button>
-                    <button class="send-btn" onclick="deleteGroup('${group.id}')">删除</button>
-                `;
-                list.appendChild(div);
-            });
-        }
-
-        function addGroupMember(groupId) {
-            let group = groups.find(g => g.id === groupId);
-            if(group) {
-                let newMember = prompt('输入新成员名称');
-                if(newMember) {
-                    group.members.push({ name: newMember, cards: [] });
-                    if(!cardCategories.character[newMember]) {
-                        cardCategories.character[newMember] = [];
-                    }
-                    localStorage.setItem('groups', JSON.stringify(groups));
-                    localStorage.setItem('cardCategories', JSON.stringify(cardCategories));
-                    renderGroupList();
-                }
-            }
-        }
-
-        function removeGroupMember(groupId) {
-            let group = groups.find(g => g.id === groupId);
-            if(group && group.members.length > 1) {
-                let memberName = prompt('输入要删除的成员名称');
-                let index = group.members.findIndex(m => m.name === memberName);
-                if(index !== -1) {
-                    group.members.splice(index, 1);
-                    localStorage.setItem('groups', JSON.stringify(groups));
-                    renderGroupList();
-                }
-            } else {
-                alert('至少需要保留一位成员');
-            }
-        }
-
-        function deleteGroup(groupId) {
-            groups = groups.filter(g => g.id !== groupId);
-            sessions = sessions.filter(s => s.id !== groupId);
-            delete chatMessages[groupId];
-            localStorage.setItem('groups', JSON.stringify(groups));
-            localStorage.setItem('sessions', JSON.stringify(sessions));
-            saveChatMessages();
-            renderSessionBar();
-            renderGroupList();
-        }
-
-        function openCustomEmojiModal() {
-            document.getElementById('customEmojiModal').classList.add('show');
-            renderCustomEmojiGrid();
-        }
-
-        function closeCustomEmojiModal() {
-            document.getElementById('customEmojiModal').classList.remove('show');
-        }
-
-        function previewCustomEmoji(event) {
-            let file = event.target.files[0];
-            if(file) {
-                let reader = new FileReader();
-                reader.onload = function(e) {
-                    currentEmojiData = e.target.result;
-                };
-                reader.readAsDataURL(file);
-            }
-        }
-
-        function addCustomEmoji() {
-            if(currentEmojiData) {
-                customEmojis.push(currentEmojiData);
-                localStorage.setItem('customEmojis', JSON.stringify(customEmojis));
-                renderCustomEmojiGrid();
-                currentEmojiData = null;
-                document.getElementById('customEmojiFile').value = '';
-            }
-        }
-
-        function renderCustomEmojiGrid() {
-            let grid = document.getElementById('customEmojiGrid');
-            if(!grid) return;
-            grid.innerHTML = '';
-            customEmojis.forEach((imgData, idx) => {
-                let div = document.createElement('div');
-                div.className = 'custom-emoji-item';
-                div.innerHTML = `<img src="${imgData}" onclick="sendCustomEmoji('${imgData}')"><button onclick="removeCustomEmoji(${idx})">✕</button>`;
-                grid.appendChild(div);
-            });
-        }
-
-        function sendCustomEmoji(imgData) {
-            addImageMessage('me', imgData, true);
-            closeCustomEmojiModal();
-            simulateOtherReply();
-        }
-
-        function removeCustomEmoji(idx) {
-            customEmojis.splice(idx, 1);
-            localStorage.setItem('customEmojis', JSON.stringify(customEmojis));
-            renderCustomEmojiGrid();
-        }
-
-        function openPatModal() { document.getElementById('patModal').classList.add('show'); }
-        function closePatModal() { document.getElementById('patModal').classList.remove('show'); document.getElementById('patInput').value = ''; }
-        
-        function sendPat() {
-            let text = document.getElementById('patInput').value.trim();
-            if(!text) text = '拍了拍你';
-            let otherName = document.getElementById('otherName').innerText;
-            addPatMessage('me', '✋ 你拍了拍 ' + otherName + '：' + text, true);
-            closePatModal();
-            
-            setTimeout(() => {
-                let reply = patReplies[Math.floor(Math.random() * patReplies.length)];
-                addPatMessage('other', '✋ ' + otherName + ' ' + reply, false);
-            }, 600);
-        }
-
-        function addPatReply() {
-            let reply = document.getElementById('newPatReply').value.trim();
-            if(reply) {
-                patReplies.push(reply);
-                localStorage.setItem('patReplies', JSON.stringify(patReplies));
-                renderPatReplyList();
-                document.getElementById('newPatReply').value = '';
-            }
-        }
-
-        function renderPatReplyList() {
-            let list = document.getElementById('patReplyList');
-            if(!list) return;
-            list.innerHTML = '';
-            patReplies.forEach((reply, idx) => {
-                let div = document.createElement('div');
-                div.className = 'flex-row';
-                div.innerHTML = `<span>${reply}</span><button class="send-btn" onclick="removePatReply(${idx})">删除</button>`;
-                list.appendChild(div);
-            });
-        }
-
-        function removePatReply(idx) {
-            patReplies.splice(idx, 1);
-            localStorage.setItem('patReplies', JSON.stringify(patReplies));
-            renderPatReplyList();
-        }
-
-        function updateChatReplyCount(value) {
-            let [min, max] = value.split('-').map(Number);
-            chatReplyRange = { min, max };
-        }
-
-        function updateBulkReplyCount(value) {
-            let [min, max] = value.split('-').map(Number);
-            bulkReplyRange = { min, max };
-        }
-
-        function simulateOtherReply() {
-            if(settings.typing) {
-                let typingDiv = document.createElement('div');
-                typingDiv.classList.add('typing-indicator');
-                typingDiv.innerText = '对方正在输入...';
-                document.getElementById('chatMessages').appendChild(typingDiv);
-            }
-            
-            let minDelay = parseFloat(document.getElementById('minReplyDelay').value) * 1000;
-            let maxDelay = parseFloat(document.getElementById('maxReplyDelay').value) * 1000;
-            let delay = Math.random() * (maxDelay - minDelay) + minDelay;
-            
-            setTimeout(() => {
-                if(settings.typing) {
-                    document.querySelector('.typing-indicator')?.remove();
-                }
-                
-                let range = currentSession === 'default' ? chatReplyRange : bulkReplyRange;
-                let count = Math.floor(Math.random() * (range.max - range.min + 1)) + range.min;
-                let allCards = getAllCards();
-                
-                for(let i=0; i<count; i++) {
-                    let reply = '';
-                    for(let j=0; j<3; j++) {
-                        reply += allCards[Math.floor(Math.random() * allCards.length)] + ' ';
-                    }
-                    addMessage('other', reply, false);
-                }
-                
-                messageStats.other += count;
-                messageStats.total += count;
-                messageStats.lastContact = new Date().toISOString().split('T')[0];
-                localStorage.setItem('messageStats', JSON.stringify(messageStats));
-                updateMessageStats();
-            }, delay);
-        }
-
-        function sendMessage() {
-            let input = document.getElementById('chatInput');
-            let text = input.value.trim();
-            if(text) {
-                addMessage('me', text, true);
-                input.value = '';
-                
-                messageStats.me++;
-                messageStats.total++;
-                localStorage.setItem('messageStats', JSON.stringify(messageStats));
-                updateMessageStats();
-                
-                let words = text.split(/\s+/);
-                words.forEach(word => {
-                    if(word.length > 1) {
-                        messageStats.wordCount[word] = (messageStats.wordCount[word] || 0) + 1;
-                    }
-                });
-                
-                if(currentSession === 'default' || currentSession.startsWith('session') || currentSession.startsWith('group')) {
-                    simulateOtherReply();
-                }
-                
-                if(settings.readReceipt) {
-                    setTimeout(() => {
-                        let lastMsg = document.querySelector('.message.me:last-child');
-                        if(lastMsg) {
-                            let nextElement = lastMsg.nextElementSibling;
-                            if(!nextElement || !nextElement.classList.contains('read-receipt')) {
-                                let receipt = document.createElement('div');
-                                receipt.classList.add('read-receipt');
-                                receipt.innerText = '已读';
-                                lastMsg.parentNode.insertBefore(receipt, lastMsg.nextSibling);
-                            }
-                        }
-                    }, 2000);
-                }
-            }
-        }
-
-        function updateMessageStats() {
-            document.getElementById('totalMsgCount').innerText = messageStats.total || 0;
-            document.getElementById('myMsgCount').innerText = messageStats.me || 0;
-            
-            let statsDiv = document.getElementById('messageStats');
-            if(statsDiv) {
-                statsDiv.innerHTML = `
-                    <div>总消息数: ${messageStats.total || 0}</div>
-                    <div>我发送的: ${messageStats.me || 0}</div>
-                    <div>初次相遇: ${messageStats.firstDate || '今天'}</div>
-                    <div>最近联络: ${messageStats.lastContact || '今天'}</div>
-                `;
-            }
-            
-            let words = Object.entries(messageStats.wordCount || {})
-                .sort((a,b) => b[1] - a[1])
-                .slice(0,5);
-            let topWordsDiv = document.getElementById('topWords');
-            if(topWordsDiv) {
-                topWordsDiv.innerHTML = words.map(w => `${w[0]} (${w[1]}次)`).join('<br>');
-            }
-        }
-
-        function updateLoveDays() {
-            let start = new Date(loveStartDate);
-            let today = new Date();
-            let diffTime = Math.abs(today - start);
-            let diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-            let otherName = document.getElementById('otherName').innerText;
-            document.getElementById('loveDaysDisplay').innerText = `和${otherName}恋爱的第 ${diffDays} 天`;
-        }
-
-        function adjustLoveDaysSize(size) {
-            document.documentElement.style.setProperty('--love-days-size', size + 'px');
-        }
-
-        function drawTarotCard() {
-            const randomIndex = Math.floor(Math.random() * tarotCards.length);
-            const card = tarotCards[randomIndex];
-            const isUpright = Math.random() > 0.5;
-            const position = isUpright ? '正位' : '逆位';
-            const meaning = isUpright ? card.upright : card.reversed;
-            
-            document.getElementById('tarotName').innerText = card.name + ' (' + position + ')';
-            document.getElementById('tarotMeaning').innerText = meaning;
-            document.getElementById('tarotResult').style.display = 'block';
-            addMessage('me', '🔮 抽到了塔罗牌：' + card.name + position + ' - ' + meaning, true);
-        }
-
-        function savePeriod() {
-            periodData.lastDate = document.getElementById('lastPeriodDate').value;
-            periodData.cycle = parseInt(document.getElementById('cycleLength').value) || 28;
-            periodData.duration = parseInt(document.getElementById('periodDuration').value) || 5;
-            localStorage.setItem('periodData', JSON.stringify(periodData));
-            
-            if(periodData.lastDate) {
-                let last = new Date(periodData.lastDate);
-                let next = new Date(last);
-                next.setDate(last.getDate() + periodData.cycle);
-                let today = new Date();
-                let daysUntil = Math.ceil((next - today) / (1000 * 60 * 60 * 24));
-                
-                let prediction = `下次经期预计在 ${next.toLocaleDateString()}，还有 ${daysUntil} 天`;
-                if(daysUntil <= 7) {
-                    prediction += ' ⚠️ 即将到来';
-                }
-                document.getElementById('periodPrediction').innerText = prediction;
-            }
-            alert('周期已保存');
-        }
-
-        function openMemoSection() {
-            currentSession = 'memo';
-            let msgArea = document.getElementById('chatMessages');
-            msgArea.innerHTML = '';
-            
-            memos.forEach(memo => {
-                let msgDiv = document.createElement('div');
-                msgDiv.classList.add('message', 'book-review');
-                msgDiv.id = memo.id;
-                msgDiv.innerHTML = `
-                    <div>${memo.text} [${memo.privacy}]</div>
-                    ${memo.viewedByOther ? '<div class="read-receipt">对方已看过</div>' : ''}
-                    <button class="send-btn" onclick="deleteMemo('${memo.id}')">删除</button>
-                `;
-                msgArea.appendChild(msgDiv);
-                
-                if(memo.replies && memo.replies.length > 0) {
-                    memo.replies.forEach(reply => {
-                        let replyDiv = document.createElement('div');
-                        replyDiv.classList.add('message', 'memo-reply');
-                        replyDiv.innerText = reply.text;
-                        msgArea.appendChild(replyDiv);
-                    });
-                }
-            });
-            
-            let inputDiv = document.createElement('div');
-            inputDiv.style.display = 'flex';
-            inputDiv.style.gap = '10px';
-            inputDiv.style.marginTop = '10px';
-            inputDiv.innerHTML = `
-                <textarea id="memoContent" rows="2" placeholder="记录心情..." style="flex:1; padding:8px;"></textarea>
-                <div style="display:flex; flex-direction:column; gap:5px;">
-                    <label><input type="radio" name="memoPrivacy" value="public" checked> 公开</label>
-                    <label><input type="radio" name="memoPrivacy" value="private"> 私密</label>
-                    <button class="send-btn" onclick="postMemoFromSection()">发布</button>
-                </div>
-            `;
-            msgArea.appendChild(inputDiv);
-        }
-
-        function postMemoFromSection() {
-            let text = document.getElementById('memoContent').value.trim();
-            if(!text) return;
-            let privacy = document.querySelector('input[name="memoPrivacy"]:checked').value;
-            let memo = { 
-                text: text, 
-                privacy: privacy, 
-                viewedByOther: false, 
-                timestamp: Date.now(), 
-                id: 'memo_' + Date.now(),
-                replies: [] 
-            };
-            memos.unshift(memo);
-            localStorage.setItem('memos', JSON.stringify(memos));
-            openMemoSection();
-            
-            if(privacy === 'public') {
-                setTimeout(() => {
-                    memo.viewedByOther = true;
-                    let allCards = getAllCards();
-                    let cards = [];
-                    for(let i=0; i<10; i++) {
-                        cards.push(allCards[Math.floor(Math.random() * allCards.length)]);
-                    }
-                    let replyText = '📝 ' + cards.join(' ');
-                    
-                    memo.replies.push({ text: replyText, timestamp: Date.now() });
-                    localStorage.setItem('memos', JSON.stringify(memos));
-                    openMemoSection();
-                }, 5000);
-            }
-        }
-
-        function deleteMemo(id) {
-            memos = memos.filter(m => m.id !== id);
-            localStorage.setItem('memos', JSON.stringify(memos));
-            openMemoSection();
-        }
-
-        function addBook() {
-            let book = document.getElementById('bookInput').value.trim();
-            if(book) {
-                bookList.push(book);
-                localStorage.setItem('bookList', JSON.stringify(bookList));
-                renderBookList();
-                document.getElementById('bookInput').value = '';
-            }
-        }
-
-        function bulkAddBooks() {
-            let text = document.getElementById('bulkBookInput').value.trim();
-            if(text) {
-                let books = text.split('\n').filter(b => b.trim() !== '');
-                bookList.push(...books);
-                localStorage.setItem('bookList', JSON.stringify(bookList));
-                renderBookList();
-                document.getElementById('bulkBookInput').value = '';
-            }
-        }
-
-        function renderBookList() {
-            let list = document.getElementById('bookList');
-            if(!list) return;
-            list.innerHTML = '';
-            bookList.forEach((book, idx) => {
-                let div = document.createElement('div');
-                div.className = 'book-item';
-                div.innerHTML = `<span>${book}</span><button class="send-btn" onclick="removeBook(${idx})">删除</button>`;
-                list.appendChild(div);
-            });
-        }
-
-        function removeBook(idx) {
-            bookList.splice(idx, 1);
-            localStorage.setItem('bookList', JSON.stringify(bookList));
-            renderBookList();
-        }
-
-        function recommendBook() {
-            if(bookList.length) {
-                let book = bookList[Math.floor(Math.random() * bookList.length)];
-                document.getElementById('bookResult').innerText = '推荐: ' + book;
-            }
-        }
-
-        function addTodo() {
-            let todo = document.getElementById('todoInput').value.trim();
-            if(todo) {
-                todoList.push(todo);
-                localStorage.setItem('todoList', JSON.stringify(todoList));
-                renderTodoList();
-                document.getElementById('todoInput').value = '';
-            }
-        }
-
-        function renderTodoList() {
-            let list = document.getElementById('todoList');
-            if(!list) return;
-            list.innerHTML = '';
-            todoList.forEach((todo, idx) => {
-                let div = document.createElement('div');
-                div.className = 'todo-item';
-                div.innerHTML = `<span>${todo}</span><button class="send-btn" onclick="removeTodo(${idx})">删除</button>`;
-                list.appendChild(div);
-            });
-        }
-
-        function removeTodo(idx) {
-            todoList.splice(idx, 1);
-            localStorage.setItem('todoList', JSON.stringify(todoList));
-            renderTodoList();
-        }
-
-        function pickRandomTodo() {
-            if(todoList.length) {
-                let todo = todoList[Math.floor(Math.random() * todoList.length)];
-                document.getElementById('todoResult').innerText = '今天可以做: ' + todo;
-            }
-        }
-
-        function addCouponReply() {
-            let reply = document.getElementById('couponReplyInput').value.trim();
-            if(reply) {
-                couponReplies.push(reply);
-                localStorage.setItem('couponReplies', JSON.stringify(couponReplies));
-                renderCouponReplyList();
-                document.getElementById('couponReplyInput').value = '';
-            }
-        }
-
-        function renderCouponReplyList() {
-            let list = document.getElementById('couponReplyList');
-            if(!list) return;
-            list.innerHTML = '';
-            couponReplies.forEach((reply, idx) => {
-                let div = document.createElement('div');
-                div.className = 'flex-row';
-                div.innerHTML = `<span>${reply}</span><button class="send-btn" onclick="removeCouponReply(${idx})">删除</button>`;
-                list.appendChild(div);
-            });
-        }
-
-        function removeCouponReply(idx) {
-            couponReplies.splice(idx, 1);
-            localStorage.setItem('couponReplies', JSON.stringify(couponReplies));
-            renderCouponReplyList();
-        }
-
-        function customSongMessage() {
-            let playlistCount = parseInt(document.getElementById('customPlaylistCount').value) || Math.floor(Math.random() * 2000) + 1;
-            let songCount = parseInt(document.getElementById('customSongCount').value) || Math.floor(Math.random() * 10000) + 1;
-            
-            if(playlistCount > 2000) playlistCount = 2000;
-            if(songCount > 10000) songCount = 10000;
-            
-            let randomPlaylist = Math.floor(Math.random() * playlistCount) + 1;
-            let randomSong = Math.floor(Math.random() * songCount) + 1;
-            document.getElementById('songMessage').innerText = `第${randomPlaylist}个歌单中的第${randomSong}首歌`;
-        }
-
-        function openImageModal() { document.getElementById('imageModal').classList.add('show'); showImageTab('upload'); }
-        function closeImageModal() { document.getElementById('imageModal').classList.remove('show'); currentImageData = null; document.getElementById('imagePreview').innerHTML = ''; }
-        function showImageTab(tab) {
-            document.getElementById('imageUploadTab').style.display = tab==='upload'?'block':'none';
-            document.getElementById('imageUrlTab').style.display = tab==='url'?'block':'none';
-        }
-        function previewImage(event) {
-            let file = event.target.files[0];
-            if(file) {
-                let reader = new FileReader();
-                reader.onload = function(e) {
-                    document.getElementById('imagePreview').innerHTML = `<img src="${e.target.result}" style="max-width:100%; max-height:150px; border-radius:15px;">`;
-                    currentImageData = e.target.result;
-                };
-                reader.readAsDataURL(file);
-            }
-        }
-        function sendImage() {
-            let activeTab = document.getElementById('imageUploadTab').style.display !== 'none' ? 'upload' : 'url';
-            if(activeTab === 'upload' && currentImageData) {
-                addImageMessage('me', currentImageData, true);
-            } else if(activeTab === 'url') {
-                let url = document.getElementById('imageUrl').value.trim();
-                if(url) addImageMessage('me', url, true);
-            }
-            closeImageModal();
-            simulateOtherReply();
-        }
-
-        function openBulkModal() { document.getElementById('bulkModal').classList.add('show'); bulkMessages = []; renderBulkList(); }
-        function closeBulkModal() { document.getElementById('bulkModal').classList.remove('show'); }
-        function prepareBulkMessages() {
-            let text = document.getElementById('bulkInput').value;
-            let lines = text.split('\n').filter(l => l.trim() !== '');
-            bulkMessages = lines.map((msg, idx) => ({ id: 'b'+Date.now()+idx, text: msg }));
-            renderBulkList();
-        }
-        function renderBulkList() {
-            let container = document.getElementById('bulkMessageList');
-            container.innerHTML = '';
-            bulkMessages.forEach((msg, index) => {
-                let div = document.createElement('div');
-                div.className = 'bulk-message-item';
-                div.innerHTML = `<span>${msg.text}</span><button class="send-btn" style="padding:2px 10px;" onclick="removeBulkMessage(${index})">✕</button>`;
-                container.appendChild(div);
-            });
-        }
-        function removeBulkMessage(idx) { bulkMessages.splice(idx, 1); renderBulkList(); }
-        function sendAllBulkMessages() {
-            bulkMessages.forEach(m => addMessage('me', m.text, true));
-            closeBulkModal();
-            simulateOtherReply();
-        }
-
-        function flipDecisionCoin() {
-            let question = document.getElementById('decisionQuestion').value.trim();
-            let result = Math.random() > 0.5 ? 'YES' : 'NO';
-            document.getElementById('decisionResult').innerText = result;
-            if(question) {
-                addMessage('me', '❓ ' + question + ' → ' + result, true);
-            }
-        }
-
-        const fortunes = ['大吉', '中吉', '小吉', '吉', '末吉', '凶', '大凶'];
-        function drawFortune() { document.getElementById('dailyFortune').innerText = fortunes[Math.floor(Math.random() * fortunes.length)]; }
-
-        function toggleSetting(name) {
-            settings[name] = !settings[name];
-            updateToggleButton(name);
-            localStorage.setItem('settings', JSON.stringify(settings));
-        }
-        function updateToggleButton(name) {
-            let btn = document.getElementById(name+'Toggle');
-            if(btn) btn.innerText = settings[name] ? '开启' : '关闭';
-        }
-        function updateAllToggleButtons() {
-            for(let key in settings) updateToggleButton(key);
-        }
-
-        function changeBgColor(color) { document.body.style.backgroundColor = color; }
-        function changeBubbleColor(color) { document.documentElement.style.setProperty('--message-me', color); }
-        function changeBubbleShape(radius) {
-            document.documentElement.style.setProperty('--bubble-radius', radius);
-        }
-        function adjustFontSize(size) {
-            document.documentElement.style.setProperty('--font-size-base', size + 'px');
-            document.getElementById('fontSizeDisplay').innerText = size + 'px';
-        }
-        function toggleAvatarVisibility() {
-            avatarVisible = !avatarVisible;
-            document.querySelectorAll('.avatar-img, .avatar-name').forEach(el => el.style.display = avatarVisible ? 'flex' : 'none');
-            document.getElementById('avatarToggleBtn').innerText = avatarVisible ? '开启' : '关闭';
-        }
-        function adjustAvatarSize(val) { 
-            avatarSize = val; 
-            document.querySelectorAll('.avatar-img').forEach(img => { 
-                img.style.width = val + 'px'; 
-                img.style.height = val + 'px'; 
-            }); 
-        }
-        function uploadBackgroundImage() {
-            let input = document.createElement('input'); input.type = 'file'; input.accept = 'image/*';
-            input.onchange = e => { let file = e.target.files[0]; if(file) { let reader = new FileReader(); reader.onload = ev => { document.querySelector('.chat-main').style.backgroundImage = `url(${ev.target.result})`; document.querySelector('.chat-main').style.backgroundSize = 'cover'; }; reader.readAsDataURL(file); } };
-            input.click();
-        }
-        function updateNames() { 
-            document.getElementById('meName').innerText = document.getElementById('meNameInput').value; 
-            document.getElementById('otherName').innerText = document.getElementById('otherNameInput').value; 
-            updateLoveDays();
-        }
-
-        function addAnniversary() {
-            let name = document.getElementById('anniversaryName').value.trim();
-            let date = document.getElementById('anniversaryDate').value;
-            if(!name || !date) return;
-            
-            let annDate = new Date(date);
-            anniversaries.push({ 
-                name, 
-                date: date,
-                originalDate: date,
-                type: 'anniversary'
-            });
-            localStorage.setItem('anniversaries', JSON.stringify(anniversaries));
-            renderAnniversaries();
-            document.getElementById('anniversaryName').value = '';
-            document.getElementById('anniversaryDate').value = '';
-        }
-
-        function renderAnniversaries() {
-            let container = document.getElementById('anniversaryList');
-            if(!container) return;
-            container.innerHTML = '';
-            let today = new Date();
-            today.setHours(0,0,0,0);
-            
-            anniversaries.forEach((item, idx) => {
-                let annDate = new Date(item.originalDate);
-                let currentYear = today.getFullYear();
-                annDate.setFullYear(currentYear);
-                
-                if(annDate < today) {
-                    annDate.setFullYear(currentYear + 1);
-                }
-                
-                let diffDays = Math.ceil((annDate - today) / (1000*60*60*24));
-                let status = diffDays === 0 ? '就是今天！' : `还有 ${diffDays} 天`;
-                
-                if(diffDays <= 7 && diffDays > 0) {
-                    status += ' ⚠️ 即将到来';
-                }
-                
-                let div = document.createElement('div');
-                div.className = 'anniversary-item';
-                div.innerHTML = `
-                    <div style="display:flex; justify-content:space-between;">
-                        <span>${item.name}</span>
-                        <button onclick="removeAnniversary(${idx})">✕</button>
-                    </div>
-                    <div>${item.originalDate} (${status})</div>
-                `;
-                container.appendChild(div);
-            });
-        }
-
-        function removeAnniversary(idx) {
-            anniversaries.splice(idx, 1);
-            localStorage.setItem('anniversaries', JSON.stringify(anniversaries));
-            renderAnniversaries();
-        }
-
-        function addFood() {
-            let food = document.getElementById('foodInput').value.trim();
-            if(food) { foodItems.push(food); document.getElementById('foodInput').value = ''; renderFoodList(); saveFood(); }
-        }
-        function renderFoodList() {
-            let container = document.getElementById('foodList');
-            if(!container) return;
-            container.innerHTML = '';
-            foodItems.forEach((f, idx) => {
-                let span = document.createElement('span'); span.style.background = 'var(--message-me)'; span.style.padding = '4px 8px'; span.style.borderRadius = '20px'; span.style.margin = '2px'; span.innerText = f;
-                span.onclick = () => { foodItems.splice(idx,1); renderFoodList(); saveFood(); };
-                container.appendChild(span);
-            });
-        }
-        function pickRandomFood() {
-            if(foodItems.length) document.getElementById('foodResult').innerText = '今天吃: ' + foodItems[Math.floor(Math.random() * foodItems.length)];
-            else document.getElementById('foodResult').innerText = '请先添加食物';
-        }
-        function saveFood() { localStorage.setItem('foodItems', JSON.stringify(foodItems)); }
 
         function exportAllData() {
             let data = {
                 sessions, groups, chatMessages, cardCategories, cardRatios, customEmojis,
-                foodItems, memos, periodData, anniversaries, bookList, todoList,
+                memos, periodData, anniversaries, bookList, todoList,
                 patReplies, otherStatusList, favoriteReplies,
                 couponReplies, bookReviews, messageStats, loveStartDate, couponMessages,
                 settings, savedMusicList
@@ -2871,9 +2690,11 @@
             a.download = 'bearrabbit_data.json';
             a.click();
         }
+
         function importAllData() {
-            document.getElementById('importFile').click();
+            document.getElementById('importFile')?.click();
         }
+
         function handleImportFile(event) {
             let file = event.target.files[0];
             if(!file) return;
@@ -2881,29 +2702,7 @@
             reader.onload = function(e) {
                 try {
                     let data = JSON.parse(e.target.result);
-                    if(data.sessions) sessions = data.sessions;
-                    if(data.groups) groups = data.groups;
-                    if(data.chatMessages) chatMessages = data.chatMessages;
-                    if(data.cardCategories) cardCategories = data.cardCategories;
-                    if(data.cardRatios) cardRatios = data.cardRatios;
-                    if(data.customEmojis) customEmojis = data.customEmojis;
-                    if(data.foodItems) foodItems = data.foodItems;
-                    if(data.memos) memos = data.memos;
-                    if(data.periodData) periodData = data.periodData;
-                    if(data.anniversaries) anniversaries = data.anniversaries;
-                    if(data.bookList) bookList = data.bookList;
-                    if(data.todoList) todoList = data.todoList;
-                    if(data.patReplies) patReplies = data.patReplies;
-                    if(data.otherStatusList) otherStatusList = data.otherStatusList;
-                    if(data.favoriteReplies) favoriteReplies = data.favoriteReplies;
-                    if(data.couponReplies) couponReplies = data.couponReplies;
-                    if(data.bookReviews) bookReviews = data.bookReviews;
-                    if(data.messageStats) messageStats = data.messageStats;
-                    if(data.loveStartDate) loveStartDate = data.loveStartDate;
-                    if(data.couponMessages) couponMessages = data.couponMessages;
-                    if(data.settings) settings = data.settings;
-                    if(data.savedMusicList) savedMusicList = data.savedMusicList;
-                    
+                    Object.assign(this, data);
                     saveAllSettings();
                     alert('导入成功！');
                     location.reload();
@@ -2914,107 +2713,17 @@
             reader.readAsText(file);
         }
 
-        function saveAppearanceSettings() { 
-            alert('外观设置已保存'); 
-        }
-        function saveChatSettings() { 
-            updateCardRatios();
-            alert('聊天设置已保存'); 
-        }
-        function saveAllDailySettings() { alert('日常设置已保存'); }
-        function saveAllSettings() {
-            localStorage.setItem('sessions', JSON.stringify(sessions));
-            localStorage.setItem('groups', JSON.stringify(groups));
-            localStorage.setItem('chatMessages', JSON.stringify(chatMessages));
-            localStorage.setItem('cardCategories', JSON.stringify(cardCategories));
-            localStorage.setItem('cardRatios', JSON.stringify(cardRatios));
-            localStorage.setItem('customEmojis', JSON.stringify(customEmojis));
-            localStorage.setItem('foodItems', JSON.stringify(foodItems));
-            localStorage.setItem('memos', JSON.stringify(memos));
-            localStorage.setItem('periodData', JSON.stringify(periodData));
-            localStorage.setItem('anniversaries', JSON.stringify(anniversaries));
-            localStorage.setItem('bookList', JSON.stringify(bookList));
-            localStorage.setItem('todoList', JSON.stringify(todoList));
-            localStorage.setItem('patReplies', JSON.stringify(patReplies));
-            localStorage.setItem('otherStatusList', JSON.stringify(otherStatusList));
-            localStorage.setItem('favoriteReplies', JSON.stringify(favoriteReplies));
-            localStorage.setItem('couponReplies', JSON.stringify(couponReplies));
-            localStorage.setItem('bookReviews', JSON.stringify(bookReviews));
-            localStorage.setItem('messageStats', JSON.stringify(messageStats));
-            localStorage.setItem('loveStartDate', loveStartDate);
-            localStorage.setItem('couponMessages', JSON.stringify(couponMessages));
-            localStorage.setItem('settings', JSON.stringify(settings));
-            localStorage.setItem('savedMusicList', JSON.stringify(savedMusicList));
-            alert('全部设置已保存到本地');
-        }
-        function loadFromStorage() {
-            if(localStorage.getItem('sessions')) sessions = JSON.parse(localStorage.getItem('sessions'));
-            if(localStorage.getItem('groups')) groups = JSON.parse(localStorage.getItem('groups'));
-            if(localStorage.getItem('chatMessages')) chatMessages = JSON.parse(localStorage.getItem('chatMessages'));
-            if(localStorage.getItem('cardCategories')) cardCategories = JSON.parse(localStorage.getItem('cardCategories'));
-            if(localStorage.getItem('cardRatios')) cardRatios = JSON.parse(localStorage.getItem('cardRatios'));
-            if(localStorage.getItem('customEmojis')) customEmojis = JSON.parse(localStorage.getItem('customEmojis'));
-            if(localStorage.getItem('foodItems')) foodItems = JSON.parse(localStorage.getItem('foodItems'));
-            if(localStorage.getItem('memos')) memos = JSON.parse(localStorage.getItem('memos'));
-            if(localStorage.getItem('periodData')) periodData = JSON.parse(localStorage.getItem('periodData'));
-            if(localStorage.getItem('anniversaries')) anniversaries = JSON.parse(localStorage.getItem('anniversaries'));
-            if(localStorage.getItem('bookList')) bookList = JSON.parse(localStorage.getItem('bookList'));
-            if(localStorage.getItem('todoList')) todoList = JSON.parse(localStorage.getItem('todoList'));
-            if(localStorage.getItem('patReplies')) patReplies = JSON.parse(localStorage.getItem('patReplies'));
-            if(localStorage.getItem('otherStatusList')) otherStatusList = JSON.parse(localStorage.getItem('otherStatusList'));
-            if(localStorage.getItem('favoriteReplies')) favoriteReplies = JSON.parse(localStorage.getItem('favoriteReplies'));
-            if(localStorage.getItem('couponReplies')) couponReplies = JSON.parse(localStorage.getItem('couponReplies'));
-            if(localStorage.getItem('bookReviews')) bookReviews = JSON.parse(localStorage.getItem('bookReviews'));
-            if(localStorage.getItem('messageStats')) messageStats = JSON.parse(localStorage.getItem('messageStats'));
-            if(localStorage.getItem('loveStartDate')) loveStartDate = localStorage.getItem('loveStartDate');
-            if(localStorage.getItem('couponMessages')) couponMessages = JSON.parse(localStorage.getItem('couponMessages'));
-            if(localStorage.getItem('settings')) settings = JSON.parse(localStorage.getItem('settings'));
-            if(localStorage.getItem('savedMusicList')) savedMusicList = JSON.parse(localStorage.getItem('savedMusicList'));
-        }
-        function clearAllData() { if(confirm('确定清除所有本地数据?')) { localStorage.clear(); location.reload(); } }
-        function resetToDefault() { localStorage.clear(); location.reload(); }
-        function handleKeyPress(e) { if(e.key==='Enter') sendMessage(); }
-        function uploadAvatar(event, who) {
-            let file = event.target.files[0];
-            if(file) { let reader = new FileReader(); reader.onload = e => document.getElementById(who+'AvatarImg').src = e.target.result; reader.readAsDataURL(file); }
-        }
-        function toggleTheme() { document.body.classList.toggle('dark-mode'); document.getElementById('themeToggle').innerText = document.body.classList.contains('dark-mode')?'🌙':'☀️'; }
-        function openDrawer(section) {
-            document.getElementById('drawer').classList.add('open'); document.getElementById('overlay').classList.add('show');
-            document.querySelectorAll('.drawer-section').forEach(s => s.classList.add('hidden'));
-            document.getElementById(section + 'Section').classList.remove('hidden');
-            if(section==='daily') { 
-                renderSavedMusicList();
-                renderFoodList(); 
-                renderAnniversaries();
-                renderBookList();
-                renderTodoList();
-                renderCouponReplyList();
-                updateMessageStats();
-            }
-            if(section==='chat') { 
-                renderSessionList(); 
-                renderGroupList();
-                renderPatReplyList();
-                renderStatusList();
-                renderFavoritesList();
-                // 渲染字卡库
-                renderEmojiList();
-                renderNumberList();
-                renderCharacterCardList();
-                updateRatioInputs();
+        function clearAllData() {
+            if(confirm('确定清除所有本地数据?')) {
+                localStorage.clear();
+                location.reload();
             }
         }
-        function closeDrawer() { document.getElementById('drawer').classList.remove('open'); document.getElementById('overlay').classList.remove('show'); }
-        function triggerHeWantsToSay() { 
-            let allCards = getAllCards();
-            let reply = '';
-            for(let i=0; i<3; i++) {
-                reply += allCards[Math.floor(Math.random() * allCards.length)] + ' ';
-            }
-            addMessage('other', reply, false); 
+
+        function resetToDefault() {
+            localStorage.clear();
+            location.reload();
         }
     </script>
 </body>
 </html>
-```
